@@ -54,6 +54,7 @@ def export_lmvs(lmvs_path: Path, out_path: Path) -> None:
     data = json.loads(lmvs_path.read_text(encoding="utf-8"))
     episode_id = str(data.get("id") or lmvs_path.parent.name)
     phases = data.get("phases", [])
+    messages = data.get("messages", []) or []
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     t = 0
@@ -91,6 +92,16 @@ def export_lmvs(lmvs_path: Path, out_path: Path) -> None:
                     "centers_count": len(centers.get(power, []))
                 }
                 t = emit_event(out_fh, episode_id, t, phase_name, power, "result", payload)
+
+            for msg in messages:
+                if msg.get("phase") != phase_name:
+                    continue
+                sender = msg.get("sender", "UNKNOWN")
+                payload = {
+                    "recipient": msg.get("recipient"),
+                    "message": msg.get("message")
+                }
+                t = emit_event(out_fh, episode_id, t, phase_name, sender, "message", payload)
 
 
 def main() -> int:
