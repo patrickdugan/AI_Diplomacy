@@ -182,6 +182,43 @@ def _get_text(node: Any) -> str:
     return ""
 
 
+def _is_ending(encounter: Dict[str, Any]) -> bool:
+    if not encounter:
+        return True
+    options = encounter.get("options", []) or []
+    if not options:
+        return True
+    # If all options have no reactions/consequence, treat as terminal
+    for opt in options:
+        reactions = opt.get("reactions", []) or []
+        if reactions and reactions[0].get("consequence_id"):
+            return False
+    return True
+
+
+def _extract_choice_id(raw: str, valid_ids: List[str]) -> Optional[str]:
+    if not raw:
+        return None
+    raw = raw.strip()
+    # direct match
+    if raw in valid_ids:
+        return raw
+    # look for id in text
+    for cid in valid_ids:
+        if cid in raw:
+            return cid
+    # try JSON
+    try:
+        data = json.loads(raw)
+        if isinstance(data, dict):
+            cid = data.get("choice_id") or data.get("id")
+            if isinstance(cid, str) and cid in valid_ids:
+                return cid
+    except Exception:
+        pass
+    return None
+
+
 def _play_storyworld_path(path: Path, max_steps: int = 3) -> Dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     encounters = data.get("encounters", []) or []
@@ -232,6 +269,92 @@ def _play_storyworld_path(path: Path, max_steps: int = 3) -> Dict[str, Any]:
     }
 
 
+async def _play_storyworld_with_model(path: Path, model_client, max_steps: int = 12) -> Dict[str, Any]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    encounters = data.get("encounters", []) or []
+    spools = data.get("spools", []) or []
+
+    first_encounter_id = None
+    for spool in spools:
+        if spool.get("starts_active") and spool.get("encounters"):
+            first_encounter_id = spool["encounters"][0]
+            break
+    if not first_encounter_id and encounters:
+        first_encounter_id = encounters[0].get("id")
+
+    history = []
+    current_id = first_encounter_id
+    steps = 0
+    visited = set()
+
+    while current_id and steps < max_steps and current_id not in visited:
+        visited.add(current_id)
+        encounter = next((e for e in encounters if e.get("id") == current_id), None)
+        if not encounter:
+            break
+
+        options = encounter.get("options", []) or []
+        option_ids = [o.get("id") for o in options if isinstance(o.get("id"), str)]
+        option_texts = []
+        for opt in options:
+            option_texts.append(
+                {
+                    "id": opt.get("id"),
+                    "text": _get_text(opt.get("text_script", {})),
+                }
+            )
+
+        prompt = {
+            "task": "Choose exactly one option id.",
+            "encounter_title": encounter.get("title", ""),
+            "encounter_text": _get_text(encounter.get("text_script", {})),
+            "options": option_texts,
+            "output_schema": {"choice_id": "opt_id"},
+        }
+        try:
+            try:
+                raw = await model_client.generate_response(json.dumps(prompt, ensure_ascii=False), temperature=0.2)
+            except TypeError:
+                raw = await model_client.generate_response(json.dumps(prompt, ensure_ascii=False))
+        except Exception:
+            raw = ""
+
+        choice_id = _extract_choice_id(raw, option_ids) if option_ids else None
+        if not choice_id and options:
+            choice_id = options[0].get("id")
+
+        chosen = next((o for o in options if o.get("id") == choice_id), None)
+        choice_text = _get_text(chosen.get("text_script", {})) if chosen else ""
+        reaction = None
+        next_id = None
+        if chosen and chosen.get("reactions"):
+            reaction = chosen["reactions"][0]
+            next_id = reaction.get("consequence_id")
+
+        history.append(
+            {
+                "encounter_id": encounter.get("id"),
+                "encounter_title": encounter.get("title", ""),
+                "choice_id": choice_id,
+                "choice_text": choice_text,
+                "next_encounter_id": next_id,
+                "raw_model_output": raw[:500],
+            }
+        )
+
+        if _is_ending(encounter) or not next_id:
+            break
+
+        current_id = next_id
+        steps += 1
+
+    return {
+        "storyworld_id": data.get("IFID") or data.get("storyworld_title") or data.get("storyworld_title", ""),
+        "steps": len(history),
+        "history": history,
+    }
+
+
 async def generate_storyworld_forecast(
     *,
     power_name: str,
@@ -250,6 +373,8 @@ async def generate_storyworld_forecast(
     bank_dir = _storyworld_bank_dir()
     bank_only = os.getenv("STORYWORLD_BANK_ONLY", "0").strip() == "1"
     playback_enabled = os.getenv("STORYWORLD_PLAYBACK", "0").strip() == "1"
+    play_mode = os.getenv("STORYWORLD_PLAY_MODE", "heuristic").strip().lower()
+    max_steps = int(os.getenv("STORYWORLD_PLAY_MAX_STEPS", "12"))
 
     world_path = storyworld_path or _default_storyworld_path()
     if not world_path.exists() and not bank_dir.exists():
@@ -281,7 +406,10 @@ async def generate_storyworld_forecast(
         }
         if playback_enabled and template.get("source"):
             try:
-                playback = _play_storyworld_path(Path(template["source"]), max_steps=3)
+                if play_mode == "model":
+                    playback = await _play_storyworld_with_model(Path(template["source"]), model_client, max_steps=max_steps)
+                else:
+                    playback = _play_storyworld_path(Path(template["source"]), max_steps=3)
                 data["playback"] = playback
             except Exception:
                 pass
