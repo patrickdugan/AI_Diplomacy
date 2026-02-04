@@ -171,6 +171,67 @@ def _build_forecast_prompt(
     return json.dumps(prompt, ensure_ascii=False, indent=2)
 
 
+def _get_text(node: Any) -> str:
+    if isinstance(node, dict):
+        if isinstance(node.get("value"), str):
+            return node["value"]
+        if isinstance(node.get("text"), str):
+            return node["text"]
+    if isinstance(node, str):
+        return node
+    return ""
+
+
+def _play_storyworld_path(path: Path, max_steps: int = 3) -> Dict[str, Any]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    encounters = data.get("encounters", []) or []
+    spools = data.get("spools", []) or []
+
+    first_encounter_id = None
+    for spool in spools:
+        if spool.get("starts_active") and spool.get("encounters"):
+            first_encounter_id = spool["encounters"][0]
+            break
+    if not first_encounter_id and encounters:
+        first_encounter_id = encounters[0].get("id")
+
+    history = []
+    current_id = first_encounter_id
+    steps = 0
+    visited = set()
+
+    while current_id and steps < max_steps and current_id not in visited:
+        visited.add(current_id)
+        encounter = next((e for e in encounters if e.get("id") == current_id), None)
+        if not encounter:
+            break
+        options = encounter.get("options", []) or []
+        chosen = options[0] if options else None
+        choice_text = _get_text(chosen.get("text_script", {})) if chosen else ""
+        reaction = None
+        next_id = None
+        if chosen and chosen.get("reactions"):
+            reaction = chosen["reactions"][0]
+            next_id = reaction.get("consequence_id")
+
+        history.append(
+            {
+                "encounter_id": encounter.get("id"),
+                "encounter_title": encounter.get("title", ""),
+                "choice": choice_text,
+                "next_encounter_id": next_id,
+            }
+        )
+        current_id = next_id
+        steps += 1
+
+    return {
+        "storyworld_id": data.get("IFID") or data.get("storyworld_title") or data.get("storyworld_title", ""),
+        "steps": len(history),
+        "history": history,
+    }
+
+
 async def generate_storyworld_forecast(
     *,
     power_name: str,
@@ -188,6 +249,7 @@ async def generate_storyworld_forecast(
     phase = getattr(game, "current_short_phase", "")
     bank_dir = _storyworld_bank_dir()
     bank_only = os.getenv("STORYWORLD_BANK_ONLY", "0").strip() == "1"
+    playback_enabled = os.getenv("STORYWORLD_PLAYBACK", "0").strip() == "1"
 
     world_path = storyworld_path or _default_storyworld_path()
     if not world_path.exists() and not bank_dir.exists():
@@ -217,6 +279,12 @@ async def generate_storyworld_forecast(
             "reasoning": filled.get("intent", ""),
             "message_frame": filled.get("message_frame", {}),
         }
+        if playback_enabled and template.get("source"):
+            try:
+                playback = _play_storyworld_path(Path(template["source"]), max_steps=3)
+                data["playback"] = playback
+            except Exception:
+                pass
         raw = json.dumps(data)
     else:
         prompt = _build_forecast_prompt(
