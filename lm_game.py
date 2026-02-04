@@ -57,6 +57,7 @@ except Exception:
         def log_params(self, *args, **kwargs): pass
         def log_metric(self, *args, **kwargs): pass
         def log_artifact(self, *args, **kwargs): pass
+        def end_run(self, *args, **kwargs): pass
 
         class openai:
             @staticmethod
