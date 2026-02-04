@@ -4,6 +4,7 @@ import re
 import logging
 import ast  # For literal_eval in JSON fallback parsing
 import aiohttp  # For direct HTTP requests to Responses API
+from pathlib import Path
 
 from typing import List, Dict, Optional, Tuple, NamedTuple
 from dotenv import load_dotenv
@@ -27,6 +28,7 @@ from .utils import load_prompt, run_llm_and_log, log_llm_response, log_llm_respo
 # Import DiplomacyAgent for type hinting if needed, but avoid circular import if possible
 from .prompt_constructor import construct_order_generation_prompt, build_context_prompt
 # Moved formatter imports to avoid circular import - imported locally where needed
+from .storyworld_adapter import generate_storyworld_forecast
 
 # set logger back to just info
 logger = logging.getLogger("client")
@@ -1392,6 +1394,330 @@ class RequestsOpenAIClient(BaseModelClient):
 
 
 ##############################################################################
+# Codex Web Hook Client
+##############################################################################
+
+
+class CodexWebClient(BaseModelClient):
+    """
+    Calls a local/web hook (Codex web login token) instead of an API key.
+    Expects an HTTP JSON endpoint defined by CODEX_WEBHOOK_URL.
+    """
+
+    def __init__(self, model_name: str = "codex-web", prompts_dir: Optional[str] = None, endpoint: Optional[str] = None, token: Optional[str] = None):
+        super().__init__(model_name, prompts_dir=prompts_dir)
+        self.endpoint = (endpoint or os.environ.get("CODEX_WEBHOOK_URL") or "").strip()
+        self.token = (token or os.environ.get("CODEX_WEBHOOK_TOKEN") or "").strip()
+        self.timeout = int(os.environ.get("CODEX_WEBHOOK_TIMEOUT", "180"))
+        if not self.endpoint:
+            raise ValueError("CODEX_WEBHOOK_URL is required for CodexWebClient")
+
+    async def generate_response(self, prompt: str, temperature: float = 0.0, inject_random_seed: bool = True) -> str:
+        system_prompt_content = f"{generate_random_seed()}\n\n{self.system_prompt}" if inject_random_seed else self.system_prompt
+
+        payload = {
+            "model": self.model_name,
+            "system": system_prompt_content,
+            "prompt": prompt,
+            "temperature": temperature,
+            "max_tokens": self.max_tokens,
+        }
+        headers = {"Content-Type": "application/json"}
+        if self.token:
+            headers["Authorization"] = f"Bearer {self.token}"
+
+        async with aiohttp.ClientSession() as session:
+            async with session.post(self.endpoint, json=payload, headers=headers, timeout=self.timeout) as resp:
+                text = await resp.text()
+                if resp.status >= 400:
+                    body_excerpt = text[:3000] + ("...[truncated]" if len(text) > 3000 else "")
+                    raise ValueError(f"[{self.model_name}] Codex webhook error {resp.status}: {body_excerpt}")
+
+                # Try JSON first
+                try:
+                    data = json.loads(text)
+                except json.JSONDecodeError:
+                    return text.strip()
+
+                # Common response shapes
+                if isinstance(data, dict):
+                    if "content" in data and isinstance(data["content"], str):
+                        return data["content"].strip()
+                    if "text" in data and isinstance(data["text"], str):
+                        return data["text"].strip()
+                    if "response" in data and isinstance(data["response"], str):
+                        return data["response"].strip()
+                    if "choices" in data and isinstance(data["choices"], list) and data["choices"]:
+                        choice = data["choices"][0]
+                        if isinstance(choice, dict):
+                            message = choice.get("message", {})
+                            if isinstance(message, dict) and isinstance(message.get("content"), str):
+                                return message["content"].strip()
+                            if isinstance(choice.get("text"), str):
+                                return choice["text"].strip()
+
+                # Fallback: return stringified JSON
+                return json.dumps(data).strip()
+
+##############################################################################
+# Silent Client (No-op baseline)
+##############################################################################
+
+
+class SilentClient(BaseModelClient):
+    """
+    A no-op client that emits no negotiation messages and only HOLD orders.
+    Useful for keeping a 3-way experiment inside the 7-player engine.
+    """
+
+    def __init__(self, model_name: str = "silent", prompts_dir: Optional[str] = None):
+        super().__init__(model_name, prompts_dir=prompts_dir)
+
+    async def generate_response(self, prompt: str, temperature: float = 0.0, inject_random_seed: bool = True) -> str:
+        return ""
+
+    async def get_orders(
+        self,
+        game,
+        board_state,
+        power_name: str,
+        possible_orders: Dict[str, List[str]],
+        conversation_text: str,
+        model_error_stats: dict,
+        log_file_path: str,
+        phase: str,
+        agent_goals: Optional[List[str]] = None,
+        agent_relationships: Optional[Dict[str, str]] = None,
+        agent_private_diary_str: Optional[str] = None,
+    ) -> List[str]:
+        return self.fallback_orders(possible_orders)
+
+    async def get_conversation_reply(
+        self,
+        game,
+        board_state,
+        power_name: str,
+        possible_orders: Dict[str, List[str]],
+        game_history: GameHistory,
+        game_phase: str,
+        log_file_path: str,
+        active_powers: Optional[List[str]] = None,
+        agent_goals: Optional[List[str]] = None,
+        agent_relationships: Optional[Dict[str, str]] = None,
+        agent_private_diary_str: Optional[str] = None,
+    ) -> List[Dict[str, str]]:
+        return []
+
+
+##############################################################################
+# Storyworld Persuasion Wrapper
+##############################################################################
+
+
+class StoryworldPersuasionClient(BaseModelClient):
+    """
+    Wraps a base model client and injects a storyworld forecast artifact
+    into negotiation prompts (orders unaffected).
+    """
+
+    def __init__(
+        self,
+        base_client: BaseModelClient,
+        prompts_dir: Optional[str] = None,
+        storyworld_client: Optional[BaseModelClient] = None,
+        storyworld_path: Optional[str] = None,
+    ):
+        super().__init__(f"storyworld+{base_client.model_name}", prompts_dir=prompts_dir)
+        self.base_client = base_client
+        self.storyworld_client = storyworld_client or base_client
+        self.storyworld_path = Path(storyworld_path) if storyworld_path else None
+
+    def set_system_prompt(self, content: str):
+        self.base_client.set_system_prompt(content)
+        self.system_prompt = content
+
+    async def generate_response(self, prompt: str, temperature: float = 0.0, inject_random_seed: bool = True) -> str:
+        return await self.base_client.generate_response(prompt, temperature=temperature, inject_random_seed=inject_random_seed)
+
+    async def get_orders(
+        self,
+        game,
+        board_state,
+        power_name: str,
+        possible_orders: Dict[str, List[str]],
+        conversation_text: str,
+        model_error_stats: dict,
+        log_file_path: str,
+        phase: str,
+        agent_goals: Optional[List[str]] = None,
+        agent_relationships: Optional[Dict[str, str]] = None,
+        agent_private_diary_str: Optional[str] = None,
+    ) -> List[str]:
+        return await self.base_client.get_orders(
+            game,
+            board_state,
+            power_name,
+            possible_orders,
+            conversation_text,
+            model_error_stats,
+            log_file_path,
+            phase,
+            agent_goals=agent_goals,
+            agent_relationships=agent_relationships,
+            agent_private_diary_str=agent_private_diary_str,
+        )
+
+    async def get_conversation_reply(
+        self,
+        game,
+        board_state,
+        power_name: str,
+        possible_orders: Dict[str, List[str]],
+        game_history: GameHistory,
+        game_phase: str,
+        log_file_path: str,
+        active_powers: Optional[List[str]] = None,
+        agent_goals: Optional[List[str]] = None,
+        agent_relationships: Optional[Dict[str, str]] = None,
+        agent_private_diary_str: Optional[str] = None,
+    ) -> List[Dict[str, str]]:
+        raw_input_prompt = ""
+        raw_response = ""
+        success_status = "Failure: Initialized"
+        messages_to_return: List[Dict[str, str]] = []
+
+        try:
+            raw_input_prompt = self.base_client.build_conversation_prompt(
+                game,
+                board_state,
+                power_name,
+                possible_orders,
+                game_history,
+                agent_goals=agent_goals,
+                agent_relationships=agent_relationships,
+                agent_private_diary_str=agent_private_diary_str,
+            )
+
+            log_dir = Path(log_file_path).parent if log_file_path else None
+            forecast_log = (log_dir / "storyworld_forecasts.jsonl") if log_dir else None
+
+            forecast = await generate_storyworld_forecast(
+                power_name=power_name,
+                board_state=board_state,
+                game=game,
+                active_powers=active_powers or [],
+                model_client=self.storyworld_client,
+                log_path=forecast_log,
+                storyworld_path=self.storyworld_path,
+            )
+
+            if forecast:
+                artifact = {
+                    "storyworld_id": forecast.storyworld_id,
+                    "mapped_agents": forecast.mapped_agents,
+                    "target_power": forecast.target_power,
+                    "forecast": forecast.forecast,
+                    "confidence": forecast.confidence,
+                    "reasoning": forecast.reasoning,
+                }
+                raw_input_prompt = (
+                    raw_input_prompt
+                    + "\n\nSTORYWORLD_FORECAST_ARTIFACT (Use this as evidence for persuasion):\n"
+                    + json.dumps(artifact, ensure_ascii=False, indent=2)
+                )
+
+            raw_response = await run_llm_and_log(
+                client=self.base_client,
+                prompt=raw_input_prompt,
+                power_name=power_name,
+                phase=game_phase,
+                response_type="negotiation",
+            )
+
+            # Conditionally format the response based on USE_UNFORMATTED_PROMPTS
+            if config.USE_UNFORMATTED_PROMPTS:
+                from .formatter import format_with_gemini_flash, FORMAT_CONVERSATION
+
+                formatted_response = await format_with_gemini_flash(
+                    raw_response, FORMAT_CONVERSATION, power_name=power_name, phase=game_phase, log_file_path=log_file_path
+                )
+            else:
+                formatted_response = raw_response
+
+            parsed_messages = []
+            json_blocks = []
+
+            try:
+                data = json.loads(formatted_response)
+                if isinstance(data, list):
+                    parsed_messages = data
+                    json_blocks = [json.dumps(item) for item in data if isinstance(item, dict)]
+            except json.JSONDecodeError:
+                raw_response = formatted_response
+
+            if not parsed_messages:
+                double_brace_blocks = re.findall(r"\{\{(.*?)\}\}", raw_response, re.DOTALL)
+                if double_brace_blocks:
+                    json_blocks.extend(["{" + block.strip() + "}" for block in double_brace_blocks])
+                else:
+                    code_block_match = re.search(r"```json\n(.*?)\n```", raw_response, re.DOTALL)
+                    if code_block_match:
+                        potential = code_block_match.group(1).strip()
+                        try:
+                            data = json.loads(potential)
+                            if isinstance(data, list):
+                                json_blocks = [json.dumps(item) for item in data if isinstance(item, dict)]
+                            elif isinstance(data, dict):
+                                json_blocks = [json.dumps(data)]
+                        except json.JSONDecodeError:
+                            json_blocks = re.findall(r"\{.*?\}", potential, re.DOTALL)
+                    else:
+                        json_blocks = re.findall(r"\{.*?\}", raw_response, re.DOTALL)
+
+            if not parsed_messages and json_blocks:
+                for block in json_blocks:
+                    try:
+                        cleaned = re.sub(r",\s*([\}\]])", r"\1", block.strip())
+                        parsed_message = json.loads(cleaned)
+                        parsed_messages.append(parsed_message)
+                    except json.JSONDecodeError:
+                        pass
+
+            if parsed_messages:
+                validated = []
+                for msg in parsed_messages:
+                    if isinstance(msg, dict) and "message_type" in msg and "content" in msg:
+                        if msg["message_type"] == "private" and "recipient" not in msg:
+                            continue
+                        validated.append(msg)
+                parsed_messages = validated
+
+            if parsed_messages:
+                success_status = "Success: Messages extracted"
+                messages_to_return = parsed_messages
+            else:
+                success_status = "Success: No valid messages"
+                messages_to_return = []
+
+        except Exception as e:
+            logger.error(f"[{self.model_name}] Error in storyworld conversation for {power_name}: {e}", exc_info=True)
+            success_status = f"Failure: Exception ({type(e).__name__})"
+            messages_to_return = []
+        finally:
+            if log_file_path:
+                await log_llm_response_async(
+                    log_file_path=log_file_path,
+                    model_name=self.model_name,
+                    power_name=power_name,
+                    phase=game_phase,
+                    response_type="negotiation_message",
+                    raw_input_prompt=raw_input_prompt,
+                    raw_response=raw_response,
+                    success=success_status,
+                )
+            return messages_to_return
+
+##############################################################################
 # 3) Factory to Load Model Client
 ##############################################################################
 class ModelSpec(NamedTuple):
@@ -1428,6 +1754,9 @@ class Prefix(StrEnum):
     DEEPSEEK          = "deepseek"
     OPENROUTER        = "openrouter"
     TOGETHER          = "together"
+    STORYWORLD        = "storyworld"
+    SILENT            = "silent"
+    CODEXWEB          = "codexweb"
 
 def load_model_client(model_id: str, prompts_dir: Optional[str] = None) -> BaseModelClient:
     """
@@ -1506,6 +1835,13 @@ def load_model_client(model_id: str, prompts_dir: Optional[str] = None) -> BaseM
                 return OpenRouterClient(spec.model, prompts_dir)
             case Prefix.TOGETHER:
                 return TogetherAIClient(spec.model, prompts_dir)
+            case Prefix.SILENT:
+                return SilentClient(spec.model or "silent", prompts_dir=prompts_dir)
+            case Prefix.STORYWORLD:
+                base = load_model_client(spec.model, prompts_dir=prompts_dir)
+                return StoryworldPersuasionClient(base, prompts_dir=prompts_dir)
+            case Prefix.CODEXWEB:
+                return CodexWebClient(spec.model or "codex-web", prompts_dir=prompts_dir)
 
     # ------------------------------------------------------------------ #
     # 2. Heuristic fallback path (identical to the original behaviour)   #
@@ -1543,6 +1879,14 @@ def load_model_client(model_id: str, prompts_dir: Optional[str] = None) -> BaseM
     if "deepseek" in lower_id:
         logger.info(f"[load_model_client] Selected DeepSeekClient for '{spec.model}'")
         return DeepSeekClient(spec.model, prompts_dir)
+
+    if lower_id.startswith("silent"):
+        logger.info(f"[load_model_client] Selected SilentClient for '{spec.model}'")
+        return SilentClient(spec.model, prompts_dir=prompts_dir)
+
+    if lower_id.startswith("codexweb"):
+        logger.info(f"[load_model_client] Selected CodexWebClient for '{spec.model}'")
+        return CodexWebClient(spec.model, prompts_dir=prompts_dir)
 
     # Default: OpenAI-compatible async client
     logger.info(f"[load_model_client] No specific match found, using default OpenAIClient for '{spec.model}'")
