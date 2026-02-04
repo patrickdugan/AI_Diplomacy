@@ -1,0 +1,19 @@
+﻿{
+  "id": "dmz_bargain_05",
+  "title": "DMZ Bargain",
+  "archetype": "dmz",
+  "intent": "Reduce local risk to focus resources elsewhere.",
+  "forecast": {
+    "question": "Will a DMZ stabilize the border?",
+    "likely_outcome": "dmz_stable",
+    "probabilities": {
+      "dmz_stable": 0.62,
+      "dmz_violated": 0.38
+    }
+  },
+  "message_frame": {
+    "claim": "A DMZ in {ZONE} improves both our odds immediately.",
+    "evidence": "Neither of us benefits from an early border fight.",
+    "ask": "Confirm: no moves into {ZONE} this phase."
+  }
+}

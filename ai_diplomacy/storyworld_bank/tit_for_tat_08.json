@@ -1,0 +1,19 @@
+﻿{
+  "id": "tit_for_tat_08",
+  "title": "Tit For Tat",
+  "archetype": "tit_for_tat",
+  "intent": "Condition cooperation on reciprocal behavior.",
+  "forecast": {
+    "question": "Will reciprocity stabilize cooperation?",
+    "likely_outcome": "cooperate",
+    "probabilities": {
+      "cooperate": 0.57,
+      "defect": 0.43
+    }
+  },
+  "message_frame": {
+    "claim": "I will mirror your actions; cooperation yields immediate mutual benefit.",
+    "evidence": "Past reciprocity in Diplomacy sustains stable alliances.",
+    "ask": "Signal cooperation with {ASK_SUPPORT}."
+  }
+}

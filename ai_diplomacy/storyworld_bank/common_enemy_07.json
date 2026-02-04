@@ -1,0 +1,19 @@
+﻿{
+  "id": "common_enemy_07",
+  "title": "Common Enemy",
+  "archetype": "common_enemy",
+  "intent": "Align with a rival against a mutual dominant threat.",
+  "forecast": {
+    "question": "Will the dominant threat overrun the region?",
+    "likely_outcome": "overrun",
+    "probabilities": {
+      "overrun": 0.68,
+      "stall": 0.32
+    }
+  },
+  "message_frame": {
+    "claim": "If {THREAT} is not checked now, they will dominate by next year.",
+    "evidence": "Their center count and position already exceed equilibrium.",
+    "ask": "Join me in a containment line: {ASK_SUPPORT}."
+  }
+}

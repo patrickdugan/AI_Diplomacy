@@ -1,0 +1,20 @@
+﻿{
+  "id": "coalition_compact_01",
+  "title": "Coalition Compact",
+  "archetype": "coalition",
+  "intent": "Form a stable coalition by aligning threat perceptions and offering concrete support.",
+  "forecast": {
+    "question": "Who is most likely to attack next turn?",
+    "likely_outcome": "target_attacks",
+    "probabilities": {
+      "target_attacks": 0.65,
+      "target_defends": 0.25,
+      "target_stalls": 0.10
+    }
+  },
+  "message_frame": {
+    "claim": "My forecast indicates {THREAT} is poised to strike {TARGET} next phase.",
+    "evidence": "Unit concentrations and recent silence point to a near-term attack.",
+    "ask": "Coordinate with me: {ASK_SUPPORT}."
+  }
+}

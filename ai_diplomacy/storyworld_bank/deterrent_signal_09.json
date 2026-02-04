@@ -1,0 +1,19 @@
+﻿{
+  "id": "deterrent_signal_09",
+  "title": "Deterrent Signal",
+  "archetype": "deterrent_signal",
+  "intent": "Warn against aggression by signaling immediate costs.",
+  "forecast": {
+    "question": "Will the threat press forward despite deterrence?",
+    "likely_outcome": "presses",
+    "probabilities": {
+      "presses": 0.52,
+      "backs_off": 0.48
+    }
+  },
+  "message_frame": {
+    "claim": "If {THREAT} moves in, the counterstrike will be immediate.",
+    "evidence": "Our units are positioned to punish an incursion.",
+    "ask": "Back me with support or a DMZ to make the threat credible."
+  }
+}

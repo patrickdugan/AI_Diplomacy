@@ -1,0 +1,19 @@
+﻿{
+  "id": "credible_threat_04",
+  "title": "Credible Threat",
+  "archetype": "credible_threat",
+  "intent": "Signal resolve and capability to deter or coerce.",
+  "forecast": {
+    "question": "Will deterrence hold?",
+    "likely_outcome": "deterrence_holds",
+    "probabilities": {
+      "deterrence_holds": 0.55,
+      "deterrence_fails": 0.45
+    }
+  },
+  "message_frame": {
+    "claim": "Deterrence works only if we present a united front against {THREAT}.",
+    "evidence": "Their current line is thin and vulnerable to coordinated pressure.",
+    "ask": "State your commitment: {ASK_SUPPORT}."
+  }
+}

@@ -1,0 +1,19 @@
+﻿{
+  "id": "tradeoff_split_06",
+  "title": "Tradeoff Split",
+  "archetype": "tradeoff",
+  "intent": "Offer a credible split of gains to secure cooperation.",
+  "forecast": {
+    "question": "Can joint allocation maximize expected gain?",
+    "likely_outcome": "split_success",
+    "probabilities": {
+      "split_success": 0.58,
+      "split_breaks": 0.42
+    }
+  },
+  "message_frame": {
+    "claim": "A clear split of {ZONE_A}/{ZONE_B} avoids conflict and accelerates growth.",
+    "evidence": "Competing here slows both of us while {THREAT} expands.",
+    "ask": "Agree to the split and coordinate moves: {ASK_SUPPORT}."
+  }
+}

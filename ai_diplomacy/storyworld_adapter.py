@@ -40,6 +40,15 @@ def _default_storyworld_path() -> Path:
     return base / "storyworld" / "examples" / "diplomacy_min.json"
 
 
+def _storyworld_bank_dir() -> Path:
+    return Path(
+        os.getenv(
+            "STORYWORLD_BANK_DIR",
+            str(Path(__file__).resolve().parents[0] / "storyworld_bank"),
+        )
+    )
+
+
 def _safe_json_load(text: str) -> Dict[str, Any]:
     if not text or not text.strip():
         return {}
@@ -67,6 +76,58 @@ def _pick_storyworld_agents(active_powers: List[str], focal_power: str) -> Tuple
         chosen.append(focal_power)
     mapping = {chosen[0]: "AgentA", chosen[1]: "AgentB", chosen[2]: "AgentC"}
     return chosen, mapping
+
+
+def _select_template(power_name: str, phase: str, bank_dir: Path) -> Optional[Dict[str, Any]]:
+    if not bank_dir.exists():
+        return None
+    candidates = sorted(bank_dir.glob("*.json"))
+    if not candidates:
+        return None
+    key = f"{power_name}:{phase}"
+    idx = abs(hash(key)) % len(candidates)
+    try:
+        return json.loads(candidates[idx].read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _choose_threat_and_target(active_powers: List[str], board_state: Dict[str, Any], power_name: str) -> Tuple[str, str]:
+    centers = board_state.get("centers", {})
+
+    def center_count(p: str) -> int:
+        return len(centers.get(p, []))
+
+    others = [p for p in active_powers if p != power_name]
+    if not others:
+        return power_name, power_name
+    threat = max(others, key=center_count)
+    target = min(others, key=center_count) if len(others) > 1 else power_name
+    return threat, target
+
+
+def _fill_template(template: Dict[str, Any], threat: str, target: str) -> Dict[str, Any]:
+    filled = json.loads(json.dumps(template))
+    message = filled.get("message_frame", {})
+    ask = message.get("ask", "")
+    if "{ASK_SUPPORT}" in ask:
+        ask = ask.replace("{ASK_SUPPORT}", "support a key move or agree a DMZ")
+    if "{THREAT}" in ask:
+        ask = ask.replace("{THREAT}", threat)
+    if "{TARGET}" in ask:
+        ask = ask.replace("{TARGET}", target)
+    message["ask"] = ask
+
+    claim = message.get("claim", "")
+    claim = claim.replace("{THREAT}", threat).replace("{TARGET}", target).replace("{ZONE}", "a key border zone")
+    message["claim"] = claim
+
+    evidence = message.get("evidence", "")
+    evidence = evidence.replace("{THREAT}", threat).replace("{TARGET}", target).replace("{ZONE}", "a key border zone")
+    message["evidence"] = evidence
+
+    filled["message_frame"] = message
+    return filled
 
 
 def _build_forecast_prompt(
@@ -124,12 +185,16 @@ async def generate_storyworld_forecast(
     if DiplomacyStoryworldEnv is None or load_storyworld is None:
         return None
 
+    phase = getattr(game, "current_short_phase", "")
+    bank_dir = _storyworld_bank_dir()
+    bank_only = os.getenv("STORYWORLD_BANK_ONLY", "0").strip() == "1"
+
     world_path = storyworld_path or _default_storyworld_path()
-    if not world_path.exists():
+    if not world_path.exists() and not bank_dir.exists():
         return None
 
     try:
-        data = load_storyworld(world_path)
+        data = load_storyworld(world_path) if world_path.exists() else {}
     except Exception:
         return None
 
@@ -137,22 +202,39 @@ async def generate_storyworld_forecast(
     state = env.reset(seed=seed)
 
     chosen, mapping = _pick_storyworld_agents(active_powers, power_name)
-    prompt = _build_forecast_prompt(
-        power_name=power_name,
-        board_state=board_state,
-        game=game,
-        active_powers=chosen,
-        story_state=state,
-        mapping=mapping,
-    )
+    threat, target = _choose_threat_and_target(chosen, board_state, power_name)
 
-    try:
+    if bank_only:
+        template = _select_template(power_name, phase, bank_dir)
+        if not template:
+            return None
+        filled = _fill_template(template, threat, target)
+        data = {
+            "storyworld_id": filled.get("id", "template"),
+            "target_power": target,
+            "forecast": filled.get("forecast", {}),
+            "confidence": filled.get("forecast", {}).get("probabilities", {}).get("target_attacks", 0.6),
+            "reasoning": filled.get("intent", ""),
+            "message_frame": filled.get("message_frame", {}),
+        }
+        raw = json.dumps(data)
+    else:
+        prompt = _build_forecast_prompt(
+            power_name=power_name,
+            board_state=board_state,
+            game=game,
+            active_powers=chosen,
+            story_state=state,
+            mapping=mapping,
+        )
+
         try:
-            raw = await model_client.generate_response(prompt, temperature=0.2)
-        except TypeError:
-            raw = await model_client.generate_response(prompt)
-    except Exception:
-        return None
+            try:
+                raw = await model_client.generate_response(prompt, temperature=0.2)
+            except TypeError:
+                raw = await model_client.generate_response(prompt)
+        except Exception:
+            return None
 
     data = _safe_json_load(raw)
     if not data:

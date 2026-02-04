@@ -1,0 +1,19 @@
+﻿{
+  "id": "grudger_memory_02",
+  "title": "Grudger Memory",
+  "archetype": "grudger",
+  "intent": "Emphasize a rival's pattern of betrayals and build a durable counter-commitment.",
+  "forecast": {
+    "question": "Will the rival betray a recent agreement?",
+    "likely_outcome": "betrayal",
+    "probabilities": {
+      "betrayal": 0.70,
+      "no_betrayal": 0.30
+    }
+  },
+  "message_frame": {
+    "claim": "I expect {THREAT} to break their word with {TARGET} this phase.",
+    "evidence": "Prior commitments were violated and their last moves align with a stab.",
+    "ask": "Let us pre-empt: {ASK_SUPPORT}."
+  }
+}

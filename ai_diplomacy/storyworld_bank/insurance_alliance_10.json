@@ -1,0 +1,19 @@
+﻿{
+  "id": "insurance_alliance_10",
+  "title": "Insurance Alliance",
+  "archetype": "insurance",
+  "intent": "Offer a hedged alliance to reduce risk across fronts.",
+  "forecast": {
+    "question": "Does hedged alignment reduce downside risk?",
+    "likely_outcome": "risk_reduced",
+    "probabilities": {
+      "risk_reduced": 0.61,
+      "risk_unchanged": 0.39
+    }
+  },
+  "message_frame": {
+    "claim": "A limited pact reduces downside risk while keeping options open.",
+    "evidence": "Neither of us can afford a two-front war this early.",
+    "ask": "Commit to mutual non-aggression and one concrete support: {ASK_SUPPORT}."
+  }
+}

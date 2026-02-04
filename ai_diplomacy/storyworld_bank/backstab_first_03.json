@@ -1,0 +1,19 @@
+﻿{
+  "id": "backstab_first_03",
+  "title": "Backstab First",
+  "archetype": "backstab_first",
+  "intent": "Justify a pre-emptive strike as the rational equilibrium.",
+  "forecast": {
+    "question": "Is a pre-emptive strike optimal?",
+    "likely_outcome": "strike_now",
+    "probabilities": {
+      "strike_now": 0.60,
+      "wait": 0.40
+    }
+  },
+  "message_frame": {
+    "claim": "The equilibrium favors striking {THREAT} before they consolidate.",
+    "evidence": "If we wait one phase, their position becomes unassailable.",
+    "ask": "Align attacks: {ASK_SUPPORT}."
+  }
+}
