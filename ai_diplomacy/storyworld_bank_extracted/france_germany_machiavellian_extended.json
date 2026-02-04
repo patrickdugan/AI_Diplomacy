@@ -1,0 +1,20 @@
+{
+  "id": "france_germany_machiavellian_extended",
+  "title": "The Entente Gambit: A Machiavellian Projection",
+  "archetype": "machiavellian",
+  "intent": "Extended storyworld: France manipulates Germany into alliance against England using Machiavellian tactics. 30+ encounters modeling threat inflation, false reassurances, exploitable commitments, and multiple endings including Germany discove",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "Extended storyworld: France manipulates Germany into alliance against England using Machiavellian tactics. 30+ encounters modeling threat inflation, false reassurances, exploitable commitments, and multiple endings including Germany discovering the manipulation.",
+    "evidence": "SPRING 1901 - DIPLOMATIC COMMUNIQUE FROM PARIS\n\nThe French ambassador arrives in Berlin with an unexpected proposal. The traditional Franco-German rivalry, he suggests, is obsolete. A new threat demands new alignments.",
+    "ask": "Germany agrees to hear France's proposal."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\france_germany_machiavellian_extended.json"
+}

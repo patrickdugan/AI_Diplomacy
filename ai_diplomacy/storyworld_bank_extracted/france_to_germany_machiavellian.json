@@ -1,0 +1,20 @@
+{
+  "id": "france_to_germany_machiavellian",
+  "title": "Franco-German Entente: A Strategic Projection",
+  "archetype": "machiavellian",
+  "intent": "A storyworld projection from France to Germany, depicting the strategic value of an alliance against England. Uses Machiavellian framing to emphasize mutual gains and downplay risks.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "A storyworld projection from France to Germany, depicting the strategic value of an alliance against England. Uses Machiavellian framing to emphasize mutual gains and downplay risks.",
+    "evidence": "FRANCE'S PROJECTION: The board stands at Spring 1901. England has built two fleets - an aggressive posture toward the continent. Germany faces a choice: compete with France for scraps, or join forces against the island power.",
+    "ask": "Consider the strategic position: England controls the seas while we share a land border."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\france_to_germany_machiavellian.json"
+}
