@@ -39,7 +39,30 @@ from config import config
 
 dotenv.load_dotenv()
 
-import mlflow
+try:
+    import mlflow
+    _MLFLOW_AVAILABLE = True
+except Exception:
+    _MLFLOW_AVAILABLE = False
+
+    class _DummyRun:
+        def __enter__(self): return self
+        def __exit__(self, exc_type, exc, tb): return False
+
+    class _DummyMLflow:
+        def set_tracking_uri(self, *args, **kwargs): pass
+        def set_experiment(self, *args, **kwargs): pass
+        def start_run(self, *args, **kwargs): return _DummyRun()
+        def log_param(self, *args, **kwargs): pass
+        def log_params(self, *args, **kwargs): pass
+        def log_metric(self, *args, **kwargs): pass
+        def log_artifact(self, *args, **kwargs): pass
+
+        class openai:
+            @staticmethod
+            def autolog(*args, **kwargs): pass
+
+    mlflow = _DummyMLflow()
 
 mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
 mlflow.set_experiment(experiment_id=os.getenv("MLFLOW_EXPERIMENT_ID"))
