@@ -21,8 +21,12 @@ try:
     import google.generativeai as genai
 except Exception:
     genai = None
-from together import AsyncTogether
-from together.error import APIError as TogetherAPIError  # For specific error handling
+try:
+    from together import AsyncTogether
+    from together.error import APIError as TogetherAPIError  # For specific error handling
+except Exception:
+    AsyncTogether = None
+    TogetherAPIError = Exception
 
 from config import config
 from .game_history import GameHistory
@@ -1242,6 +1246,8 @@ class TogetherAIClient(BaseModelClient):
 
     def __init__(self, model_name: str, prompts_dir: Optional[str] = None):
         super().__init__(model_name, prompts_dir=prompts_dir)  # model_name here is the actual Together AI model identifier
+        if AsyncTogether is None:
+            raise ImportError("together is not installed. Install it or avoid TogetherAI models.")
         self.api_key = os.environ.get("TOGETHER_API_KEY")
         if not self.api_key:
             raise ValueError("TOGETHER_API_KEY environment variable is required for TogetherAIClient")
