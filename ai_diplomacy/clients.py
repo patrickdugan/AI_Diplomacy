@@ -453,12 +453,16 @@ class BaseModelClient:
         # MINIMAL CHANGE: Just change to load unformatted version conditionally
         # Check if country-specific prompts are enabled
         if config.COUNTRY_SPECIFIC_PROMPTS:
-            # Try to load country-specific version first
-            country_specific_file = get_prompt_path(f"conversation_instructions_{power_name.lower()}.txt")
-            instructions = load_prompt(country_specific_file, prompts_dir=self.prompts_dir)
-            
-            # Fall back to generic if country-specific not found
-            if not instructions:
+            # Try to load country-specific version first, but fall back safely
+            country_specific_name = f"conversation_instructions_{power_name.lower()}.txt"
+            country_specific_path = (
+                Path(self.prompts_dir) / get_prompt_path(country_specific_name)
+                if self.prompts_dir is not None
+                else Path(__file__).resolve().parent / "prompts" / get_prompt_path(country_specific_name)
+            )
+            if country_specific_path.exists():
+                instructions = load_prompt(get_prompt_path(country_specific_name), prompts_dir=self.prompts_dir)
+            else:
                 instructions = load_prompt(get_prompt_path("conversation_instructions.txt"), prompts_dir=self.prompts_dir)
         else:
             # Load generic conversation instructions
@@ -827,22 +831,26 @@ class OpenAIClient(BaseModelClient):
                 ],
             }
             
-            # Handle model-specific parameters
-            # Check if model name starts with 'nectarine' or is in the specific list
+            # Handle model-specific parameters.
+            # Many newer OpenAI models require max_completion_tokens (not max_tokens).
+            model_id = self.model_name.lower()
             uses_max_completion_tokens = (
-                self.model_name in ["o4-mini", "o3-mini", "o3", "gpt-4.1"] or
-                self.model_name.startswith("nectarine")
+                model_id.startswith("gpt-5")
+                or model_id.startswith("gpt-4.1")
+                or model_id.startswith("o3")
+                or model_id.startswith("o4")
+                or model_id.startswith("nectarine")
             )
+            # Some models only allow the default temperature (1.0).
+            temperature_default_only = model_id.startswith("gpt-5") or model_id in ["o4-mini", "o3-mini", "o3"]
             
             if uses_max_completion_tokens:
                 completion_params["max_completion_tokens"] = self.max_tokens
-                # o4-mini, o3-mini, o3 only support default temperature of 1.0
-                if self.model_name in ["o4-mini", "o3-mini", "o3"]:
-                    completion_params["temperature"] = 1.0
-                else:
-                    completion_params["temperature"] = temperature
             else:
                 completion_params["max_tokens"] = self.max_tokens
+            if temperature_default_only:
+                completion_params["temperature"] = 1.0
+            else:
                 completion_params["temperature"] = temperature
             
             response = await self.client.chat.completions.create(**completion_params)
@@ -1106,34 +1114,63 @@ class OpenAIResponsesClient(BaseModelClient):
             payload["max_output_tokens"] = self.max_tokens
             
             # Only add temperature for models that support it
-            models_without_temp = ['o3', 'o4-mini', 'gpt-5-reasoning-alpha-2025-07-19', 'nectarine-alpha-2025-07-25', 'nectarine-alpha-new-reasoning-effort-2025-07-25']
-            if self.model_name not in models_without_temp:
+            models_without_temp = [
+                "o3",
+                "o4-mini",
+                "gpt-5-reasoning-alpha-2025-07-19",
+                "nectarine-alpha-2025-07-25",
+                "nectarine-alpha-new-reasoning-effort-2025-07-25",
+            ]
+            if not (self.model_name.startswith("gpt-5") or self.model_name in models_without_temp):
                 payload["temperature"] = temperature
 
             # Add reasoning effort for models that support it
-            reasoning_models = ['gpt-5-reasoning-alpha-2025-07-19', 'o4-mini', 'nectarine-alpha-2025-07-25', 'o4-mini-alpha-2025-07-11', 'nectarine-alpha-new-reasoning-effort-2025-07-25']
-            if self.reasoning_effort and self.model_name in reasoning_models:
+            reasoning_models = [
+                'gpt-5-reasoning-alpha-2025-07-19',
+                'o4-mini',
+                'nectarine-alpha-2025-07-25',
+                'o4-mini-alpha-2025-07-11',
+                'nectarine-alpha-new-reasoning-effort-2025-07-25',
+            ]
+            if self.model_name.startswith("gpt-5"):
+                payload["reasoning"] = {"effort": self.reasoning_effort or "minimal"}
+            elif self.reasoning_effort and self.model_name in reasoning_models:
                 payload["reasoning"] = {"effort": self.reasoning_effort}
 
             headers = {"Content-Type": "application/json", "Authorization": f"Bearer {self.api_key}"}
 
-            # Make the API call using the pooled session
+            # Make the API call. Close the session each time to avoid unclosed-session warnings.
             session = await self._get_session()
-            async with session.post(self.base_url, json=payload, headers=headers) as response:
-                response.raise_for_status()  # Will raise for non-2xx responses
-                response_data = await response.json()
+            try:
+                async with session.post(self.base_url, json=payload, headers=headers) as response:
+                    response.raise_for_status()  # Will raise for non-2xx responses
+                    response_data = await response.json()
+            finally:
+                await session.close()
+                self._session = None
 
                 # Extract the text from the nested response structure
                 try:
-                    outputs = response_data.get("output", [])
-                    if len(outputs) < 2:
-                        # Log the actual response for debugging
-                        logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
-                        raise ValueError(f"[{self.model_name}] Unexpected output structure: 'output' list has < 2 items.")
+                    if "output_text" in response_data and isinstance(response_data["output_text"], str):
+                        return response_data["output_text"].strip()
 
-                    message_output = outputs[1]
-                    if message_output.get("type") != "message":
-                        raise ValueError(f"[{self.model_name}] Expected 'message' type in output[1], got '{message_output.get('type')}'.")
+                    outputs = response_data.get("output", [])
+                    if not outputs:
+                        logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
+                        raise ValueError(f"[{self.model_name}] Unexpected output structure: empty 'output' list.")
+
+                    # Some models return output_text directly in output items.
+                    for output_item in outputs:
+                        if isinstance(output_item, dict):
+                            if output_item.get("type") in ("output_text", "text") and isinstance(output_item.get("text"), str):
+                                return output_item["text"].strip()
+                            if isinstance(output_item.get("content"), str):
+                                return output_item["content"].strip()
+
+                    message_output = next((o for o in outputs if o.get("type") == "message"), None)
+                    if not message_output:
+                        logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
+                        raise ValueError(f"[{self.model_name}] No 'message' output item found.")
 
                     content_list = message_output.get("content", [])
                     if not content_list:
@@ -1141,12 +1178,13 @@ class OpenAIResponsesClient(BaseModelClient):
 
                     text_content = ""
                     for content_item in content_list:
-                        if content_item.get("type") == "output_text":
+                        if content_item.get("type") in ("output_text", "text"):
                             text_content = content_item.get("text", "")
-                            break
+                            if text_content:
+                                break
 
                     if not text_content:
-                        raise ValueError(f"[{self.model_name}] No 'output_text' found in content or it was empty.")
+                        raise ValueError(f"[{self.model_name}] No text content found in message output.")
 
                     return text_content.strip()
 
@@ -1365,11 +1403,22 @@ class RequestsOpenAIClient(BaseModelClient):
             "temperature": temperature,
         }
         
-        # Use max_completion_tokens for o4-mini, o3-mini, o3, gpt-4.1 models and nectarine models
-        if self.model_name in ["o4-mini", "o3-mini", "o3", "gpt-4.1"] or self.model_name.startswith("nectarine"):
+        # Use max_completion_tokens for newer OpenAI models
+        model_id = self.model_name.lower()
+        if (
+            model_id.startswith("gpt-5")
+            or model_id.startswith("gpt-4.1")
+            or model_id.startswith("o3")
+            or model_id.startswith("o4")
+            or model_id.startswith("nectarine")
+        ):
             payload["max_completion_tokens"] = self.max_tokens
         else:
             payload["max_tokens"] = self.max_tokens
+
+        # gpt-5 models only support the default temperature (1.0)
+        if model_id.startswith("gpt-5"):
+            payload["temperature"] = 1.0
 
         #if self.model_name == "qwen/qwen3-235b-a22b" and self.base_url == "https://openrouter.ai/api/v1":
         #    payload["provider"] = {
@@ -1377,7 +1426,7 @@ class RequestsOpenAIClient(BaseModelClient):
         #        "allow_fallbacks": False,
         #    }
 
-        if (self.model_name == 'o3' or self.model_name == 'o4-mini'):
+        if model_id in ["o3", "o4-mini"]:
             del payload["temperature"]
             if "max_tokens" in payload:
                 del payload["max_tokens"]
@@ -1864,6 +1913,10 @@ def load_model_client(model_id: str, prompts_dir: Optional[str] = None) -> BaseM
     reasoning_models_requiring_responses = ['gpt-5-reasoning-alpha-2025-07-19', 'o4-mini', 'nectarine-alpha-2025-07-25', 'nectarine-alpha-new-reasoning-effort-2025-07-25']
     if spec.model in reasoning_models_requiring_responses:
         logger.info(f"[load_model_client] Selected OpenAIResponsesClient for reasoning model '{spec.model}'")
+        return OpenAIResponsesClient(spec.model, prompts_dir, api_key=inline_key, reasoning_effort=reasoning_effort)
+
+    if lower_id.startswith("gpt-5"):
+        logger.info(f"[load_model_client] Selected OpenAIResponsesClient for '{spec.model}'")
         return OpenAIResponsesClient(spec.model, prompts_dir, api_key=inline_key, reasoning_effort=reasoning_effort)
 
     if lower_id == "o3-pro":

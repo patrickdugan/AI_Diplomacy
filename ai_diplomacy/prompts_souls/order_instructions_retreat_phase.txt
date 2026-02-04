@@ -14,17 +14,17 @@ Control 18 supply centers. Nothing else will do.
   - Only fleet retreat orders need coast specification.
 
 Your Task:
-1. Reason
-  - comprehensive reasoning about your retreat decisions
-2. Output Moves in JSON
-  - provide a retreat or disband order for each dislodged unit
+1. Output Moves in JSON (first)
+  - provide a retreat or disband order for each dislodged unit.
+2. Reason (brief)
+  - 1-2 sentences max.
 
 Respond with this exact format:
-
-Reasoning:
-(Your reasoning goes here)
 
 PARSABLE OUTPUT:
 {{
   "orders": ["order1", "order2", ...]
 }}
+
+Reasoning:
+(1-2 short sentences)

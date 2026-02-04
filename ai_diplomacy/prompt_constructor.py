@@ -3,6 +3,7 @@ Module for constructing prompts for LLM interactions in the Diplomacy game.
 """
 
 import logging
+from pathlib import Path
 from typing import Dict, List, Optional, Any  # Added Any for game type placeholder
 
 from config import config
@@ -195,12 +196,16 @@ def construct_order_generation_prompt(
     
     # Check if country-specific prompts are enabled
     if config.COUNTRY_SPECIFIC_PROMPTS:
-        # Try to load country-specific version first
-        country_specific_file = get_prompt_path(f"{base_instruction_file}_{power_name.lower()}.txt")
-        instructions = load_prompt(country_specific_file, prompts_dir=prompts_dir)
-        
-        # Fall back to generic if country-specific not found
-        if not instructions:
+        # Try to load country-specific version first, but fall back safely
+        country_specific_name = f"{base_instruction_file}_{power_name.lower()}.txt"
+        country_specific_path = (
+            Path(prompts_dir) / get_prompt_path(country_specific_name)
+            if prompts_dir is not None
+            else Path(__file__).resolve().parent / "prompts" / get_prompt_path(country_specific_name)
+        )
+        if country_specific_path.exists():
+            instructions = load_prompt(get_prompt_path(country_specific_name), prompts_dir=prompts_dir)
+        else:
             instructions_file = get_prompt_path(f"{base_instruction_file}.txt")
             instructions = load_prompt(instructions_file, prompts_dir=prompts_dir)
     else:

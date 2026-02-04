@@ -12,17 +12,17 @@ Control 18 supply centers. Nothing else will do.
 5. Aim to issue an order for all of your units. Holds tend to be wasted orders.
 
 Your Task:
-1. Reason
-  - comprehensive reasoning about your move decisions
-2. Output Moves in JSON
-  - aim to return an order for each of your units.
+1. Output Moves in JSON (first)
+  - return an order for each of your units.
+2. Reason (brief)
+  - 1-2 sentences max.
 
 Respond with this exact format:
-
-Reasoning:
-(Your reasoning goes here)
 
 PARSABLE OUTPUT:
 {{
   "orders": ["order1", "order2", ...]
 }}
+
+Reasoning:
+(1-2 short sentences)

@@ -31,7 +31,7 @@ async def run_diary_consolidation(
     prompts_dir : Optional[str]
     """
     logger.info(
-        f"[{agent.power_name}] CONSOLIDATION START — "
+        f"[{agent.power_name}] CONSOLIDATION START ? "
         f"{len(agent.full_private_diary)} total full entries"
     )
 
@@ -47,13 +47,13 @@ async def run_diary_consolidation(
         return
 
     # Extract years by scanning from newest to oldest
-    year_re = re.compile(r"\[[SFWRAB]\s*(\d{4})")  # matches “[S1901”, “[F1902”…”
+    year_re = re.compile(r"\[[SFWRAB]\s*(\d{4})")  # matches ?[S1901?, ?[F1902???
     recent_years: list[int] = []
 
     for entry in reversed(full_entries):            # newest last
         match = year_re.search(entry)
         if not match:
-            # Lines without a year tag are considered “dateless”; keep them
+            # Lines without a year tag are considered ?dateless?; keep them
             continue
         yr = int(match.group(1))
         if yr not in recent_years:
@@ -70,8 +70,8 @@ async def run_diary_consolidation(
     if len(all_years - set(recent_years)) == 0:
         agent.private_diary = list(agent.full_private_diary)
         logger.info(
-            f"[{agent.power_name}] ≤ {years_to_keep_unsummarised} distinct years "
-            "— skipping consolidation"
+            f"[{agent.power_name}] ? {years_to_keep_unsummarised} distinct years "
+            "? skipping consolidation"
         )
         return
 
@@ -99,7 +99,7 @@ async def run_diary_consolidation(
 
     prompt_template = load_prompt("diary_consolidation_prompt.txt", prompts_dir=prompts_dir)
     if not prompt_template:
-        logger.error(f"[{agent.power_name}] diary_consolidation_prompt.txt missing — aborting")
+        logger.error(f"[{agent.power_name}] diary_consolidation_prompt.txt missing ? aborting")
         return
 
     prompt = prompt_template.format(
@@ -128,7 +128,7 @@ async def run_diary_consolidation(
         agent.private_diary = [new_summary_entry] + entries_to_keep
         success_flag = "TRUE"
         logger.info(
-            f"[{agent.power_name}] Consolidation complete — "
+            f"[{agent.power_name}] Consolidation complete ? "
             f"{len(agent.private_diary)} context entries now"
         )
 

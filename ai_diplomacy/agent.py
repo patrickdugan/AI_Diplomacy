@@ -371,8 +371,10 @@ class DiplomacyAgent:
         # Also add to the context diary, which will be periodically rebuilt
         self.private_diary.append(formatted_entry)
 
+        # Avoid Windows console encoding errors from non-ASCII diary text
+        safe_preview = entry[:100].encode("cp1252", errors="replace").decode("cp1252")
         logger.info(
-            f"[{self.power_name}] DIARY ENTRY ADDED for {phase}. Total full entries: {len(self.full_private_diary)}. New entry: {entry[:100]}..."
+            f"[{self.power_name}] DIARY ENTRY ADDED for {phase}. Total full entries: {len(self.full_private_diary)}. New entry: {safe_preview}..."
         )
 
     def get_latest_phase_diary_entries(
@@ -454,8 +456,9 @@ class DiplomacyAgent:
         if not formatted_diary:
             return "(No diary entries to show)"
 
+        safe_preview = formatted_diary[:250].encode("cp1252", errors="replace").decode("cp1252")
         logger.info(
-            f"[{self.power_name}] Formatted diary with {1 if consolidated_entry else 0} consolidated and {len(recent_entries)} recent entries. Preview: {formatted_diary[:250]}..."
+            f"[{self.power_name}] Formatted diary with {1 if consolidated_entry else 0} consolidated and {len(recent_entries)} recent entries. Preview: {safe_preview}..."
         )
         return formatted_diary
 
