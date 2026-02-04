@@ -17,7 +17,10 @@ import asyncio
 import requests
 from enum import StrEnum
 
-import google.generativeai as genai
+try:
+    import google.generativeai as genai
+except Exception:
+    genai = None
 from together import AsyncTogether
 from together.error import APIError as TogetherAPIError  # For specific error handling
 
@@ -938,6 +941,8 @@ class GeminiClient(BaseModelClient):
     def __init__(self, model_name: str, prompts_dir: Optional[str] = None):
         super().__init__(model_name, prompts_dir=prompts_dir)
         # Configure and get the model (corrected initialization)
+        if genai is None:
+            raise ImportError("google-generativeai is not installed. Install it or avoid Gemini models.")
         api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
             raise ValueError("GEMINI_API_KEY environment variable is required")
