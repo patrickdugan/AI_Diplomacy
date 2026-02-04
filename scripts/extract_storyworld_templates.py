@@ -1,22 +1,34 @@
 ﻿import json
-import re
 from pathlib import Path
 
 SRC_DIR = Path(r"C:\projects\GPTStoryworld\storyworlds")
 OUT_DIR = Path(r"C:\projects\AI_Diplomacy\ai_diplomacy\storyworld_bank_extracted")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-files = [
-    SRC_DIR / "england_to_france_honest.json",
-    SRC_DIR / "france_germany_machiavellian_extended.json",
-    SRC_DIR / "france_to_germany_machiavellian.json",
-    SRC_DIR / "russia_to_austria_grudger.json",
-]
+# Include diplomacy subfolder by default
+files = []
+for path in SRC_DIR.rglob("*.json"):
+    if "diplomacy" in path.parts:
+        files.append(path)
+
+# Also include earlier nation-named examples
+for name in [
+    "england_to_france_honest.json",
+    "france_germany_machiavellian_extended.json",
+    "france_to_germany_machiavellian.json",
+    "russia_to_austria_grudger.json",
+]:
+    p = SRC_DIR / name
+    if p.exists():
+        files.append(p)
 
 archetype_map = {
     "honest": "honest_signal",
     "machiavellian": "machiavellian",
     "grudger": "grudger",
+    "backstab": "backstab",
+    "defection": "defection",
+    "coalition": "coalition",
 }
 
 def get_text(node, fallback=""):
@@ -30,8 +42,6 @@ def get_text(node, fallback=""):
     return fallback
 
 for path in files:
-    if not path.exists():
-        continue
     data = json.loads(path.read_text(encoding="utf-8"))
     name = path.stem
     archetype = "persuasion"

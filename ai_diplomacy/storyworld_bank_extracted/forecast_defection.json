@@ -1,0 +1,20 @@
+{
+  "id": "forecast_defection",
+  "title": "Forecast Defection",
+  "archetype": "defection",
+  "intent": "Defect from a coalition without direct backstab to rebalance risk.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "Defect from a coalition without direct backstab to rebalance risk.",
+    "evidence": "A forecast is presented for turn 1. The proposal ties outcomes to a coalition choice.",
+    "ask": "Accept a forecast-backed alliance proposal."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\diplomacy\\forecast_defection.json"
+}

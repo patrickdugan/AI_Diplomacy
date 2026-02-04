@@ -1,0 +1,20 @@
+{
+  "id": "forecast_coalition",
+  "title": "Forecast Coalition",
+  "archetype": "coalition",
+  "intent": "Align against a dominant threat with forecast-backed commitments.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "Align against a dominant threat with forecast-backed commitments.",
+    "evidence": "A forecast is presented for turn 1. The proposal ties outcomes to a coalition choice.",
+    "ask": "Accept a forecast-backed alliance proposal."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\diplomacy\\forecast_coalition.json"
+}
