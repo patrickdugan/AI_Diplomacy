@@ -348,6 +348,10 @@ async def initialize_new_game(
             for p in list(game.power_model_map.keys()):
                 if p not in focus_set:
                     game.power_model_map[p] = "silent"
+            for p in focus_set:
+                model_id = game.power_model_map.get(p)
+                if model_id and not model_id.lower().startswith("storyworld:") and not model_id.lower().startswith("silent"):
+                    game.power_model_map[p] = f"storyworld:{model_id}"
 
     agents: Dict[str, DiplomacyAgent] = {}
     initialization_tasks = []

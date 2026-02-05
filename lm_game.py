@@ -321,6 +321,10 @@ async def main():
             args.forecasting_state_file = os.path.join(
                 "C:\\projects\\GPTStoryworld\\states", "forecasting_1915_deathground.json"
             )
+        if not args.prompts_dir:
+            args.prompts_dir = os.path.join(
+                "C:\\projects\\AI_Diplomacy\\ai_diplomacy", "prompts_forecasting"
+            )
         logger.info(
             "Forecasting-analysis mode enabled. Focus powers: %s. State file: %s",
             args.forecasting_focus_powers,
