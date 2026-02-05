@@ -672,13 +672,18 @@ async def main():
                         "aggressive_units count orders containing ' - ' "
                         "excluding moves into own occupied provinces or home centers."
                     )
+                    threshold = 0.5
                     with open(forecast_outcomes_path, "a", encoding="utf-8") as f:
                         for pwr, agg in aggression_results.items():
+                            idx = agg.get("aggression_index")
+                            agg_event = None if idx is None else int(idx >= threshold)
                             entry = {
                                 "game_id": os.path.basename(run_dir),
                                 "phase": completed_phase,
                                 "power": pwr,
                                 "aggression_index": agg.get("aggression_index"),
+                                "aggression_event_threshold": threshold,
+                                "aggression_event": agg_event,
                                 "aggressive_unit_count": agg.get("aggressive_unit_count"),
                                 "total_units": agg.get("total_units"),
                                 "definition": aggression_def,
