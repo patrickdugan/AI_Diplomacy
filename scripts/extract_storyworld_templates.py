@@ -17,6 +17,10 @@ for name in [
     "france_germany_machiavellian_extended.json",
     "france_to_germany_machiavellian.json",
     "russia_to_austria_grudger.json",
+    "england_to_france_honest_p.json",
+    "france_germany_machiavellian_extended_p.json",
+    "france_to_germany_machiavellian_p.json",
+    "russia_to_austria_grudger_p.json",
 ]:
     p = SRC_DIR / name
     if p.exists():
