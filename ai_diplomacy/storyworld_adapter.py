@@ -366,9 +366,6 @@ async def generate_storyworld_forecast(
     storyworld_path: Optional[Path] = None,
     seed: int = 42,
 ) -> Optional[StoryworldForecast]:
-    if DiplomacyStoryworldEnv is None or load_storyworld is None:
-        return None
-
     phase = getattr(game, "current_short_phase", "")
     bank_dir = _storyworld_bank_dir()
     bank_only = os.getenv("STORYWORLD_BANK_ONLY", "0").strip() == "1"
@@ -380,13 +377,16 @@ async def generate_storyworld_forecast(
     if not world_path.exists() and not bank_dir.exists():
         return None
 
-    try:
-        data = load_storyworld(world_path) if world_path.exists() else {}
-    except Exception:
-        return None
-
-    env = DiplomacyStoryworldEnv(data, seed=seed, log_path=None)
-    state = env.reset(seed=seed)
+    state = {}
+    if not bank_only:
+        if DiplomacyStoryworldEnv is None or load_storyworld is None:
+            return None
+        try:
+            data = load_storyworld(world_path) if world_path.exists() else {}
+        except Exception:
+            return None
+        env = DiplomacyStoryworldEnv(data, seed=seed, log_path=None)
+        state = env.reset(seed=seed)
 
     chosen, mapping = _pick_storyworld_agents(active_powers, power_name)
     threat, target = _choose_threat_and_target(chosen, board_state, power_name)
