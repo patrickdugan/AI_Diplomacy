@@ -24,6 +24,7 @@ from ai_diplomacy.utils import (
     get_valid_orders,
     gather_possible_orders,
     parse_prompts_dir_arg,
+    compute_aggression_index,
 )
 from ai_diplomacy.negotiations import conduct_negotiations
 from ai_diplomacy.planning import planning_phase
@@ -601,6 +602,23 @@ async def main():
                             game, valid + invalid, llm_log_file_path
                         )
 
+            # Capture pre-processing state for forecasting outcomes
+            pre_units_by_power = {
+                p: list(power.units) for p, power in game.powers.items()
+            }
+            home_centers_by_power = {}
+            for p, power in game.powers.items():
+                homes = (
+                    getattr(power, "homes", None)
+                    or getattr(power, "home_centers", None)
+                    or getattr(power, "home", None)
+                    or []
+                )
+                if isinstance(homes, str):
+                    home_centers_by_power[p] = [homes]
+                else:
+                    home_centers_by_power[p] = list(homes)
+
             # --- 4d. Process Phase ---
             completed_phase = current_phase
             game.process()
@@ -633,6 +651,41 @@ async def main():
                         logger.debug(
                             f"Populated submitted/accepted order and result history for phase {completed_phase}."
                         )
+
+            # Forecasting outcomes (aggression index) logging
+            if getattr(run_config, "forecasting_analysis_mode", False):
+                try:
+                    forecast_outcomes_path = os.path.join(run_dir, "forecast_outcomes.jsonl")
+                    orders_for_scoring = {}
+                    if phase_history_from_game:
+                        last_phase_from_game = phase_history_from_game[-1]
+                        if last_phase_from_game and last_phase_from_game.orders:
+                            orders_for_scoring = last_phase_from_game.orders
+
+                    aggression_results = compute_aggression_index(
+                        orders_for_scoring,
+                        pre_units_by_power,
+                        home_centers_by_power,
+                    )
+                    aggression_def = (
+                        "aggression_index = aggressive_units / total_units; "
+                        "aggressive_units count orders containing ' - ' "
+                        "excluding moves into own occupied provinces or home centers."
+                    )
+                    with open(forecast_outcomes_path, "a", encoding="utf-8") as f:
+                        for pwr, agg in aggression_results.items():
+                            entry = {
+                                "game_id": os.path.basename(run_dir),
+                                "phase": completed_phase,
+                                "power": pwr,
+                                "aggression_index": agg.get("aggression_index"),
+                                "aggressive_unit_count": agg.get("aggressive_unit_count"),
+                                "total_units": agg.get("total_units"),
+                                "definition": aggression_def,
+                            }
+                            f.write(json.dumps(entry) + "\n")
+                except Exception as e:
+                    logger.warning(f"Failed to write forecast_outcomes.jsonl: {e}", exc_info=True)
 
             phase_summary = game.phase_summaries.get(
                 current_phase, "(Summary not generated)"

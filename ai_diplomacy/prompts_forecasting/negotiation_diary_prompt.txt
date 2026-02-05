@@ -40,7 +40,9 @@ Return ONLY a JSON object with this structure:
     "goal 1",
     "goal 2",
     ...
-  ]
+  ],
+  "storyworld_implications": "How any storyworld forecast should shape future negotiation/ordering",
+  "forecasting_rationale": "How the forecast(s) influenced your intent or probability estimates"
 }}
 
 Reminder: If you need to quote something, only use single quotes in the actual messages so as not to interfere with the JSON structure.

@@ -637,3 +637,68 @@ def get_board_state(board_state: dict, game: Game) -> Tuple[str, str]:
     centers_repr = "\n".join(centers_lines)
 
     return (units_repr, centers_repr)
+
+
+def _extract_unit_location(unit_str: str) -> Optional[str]:
+    if not unit_str:
+        return None
+    parts = unit_str.split()
+    if len(parts) < 2:
+        return None
+    return parts[1].strip()
+
+
+def _extract_move_destination(order: str) -> Optional[str]:
+    if not order or " - " not in order:
+        return None
+    dest = order.split(" - ")[-1].strip()
+    if not dest:
+        return None
+    return dest.split()[0].strip()
+
+
+def compute_aggression_index(
+    orders_by_power: Dict[str, List[str]],
+    units_by_power: Dict[str, List[str]],
+    home_centers_by_power: Dict[str, List[str]],
+) -> Dict[str, Dict[str, Optional[float]]]:
+    """
+    Compute a continuous aggression index per power using deterministic rules.
+
+    A unit is marked aggressive if its order contains a move destination (" - ").
+    Filters out moves into provinces already occupied by the same power
+    or into the power's home centers, to avoid counting defensive shuffles.
+    """
+    results: Dict[str, Dict[str, Optional[float]]] = {}
+
+    all_powers = set(orders_by_power.keys()) | set(units_by_power.keys())
+    for power in all_powers:
+        orders = orders_by_power.get(power, []) or []
+        units = units_by_power.get(power, []) or []
+        home_centers = set(home_centers_by_power.get(power, []) or [])
+        occupied = set(filter(None, (_extract_unit_location(u) for u in units)))
+
+        aggressive_units = 0
+        for order in orders:
+            dest = _extract_move_destination(order)
+            if not dest:
+                continue
+            if dest in occupied:
+                continue
+            if dest in home_centers:
+                continue
+            aggressive_units += 1
+
+        total_units = len(units) if units else len(orders)
+        if total_units <= 0:
+            index = None
+        else:
+            index = aggressive_units / total_units
+
+        results[power] = {
+            "aggression_index": index,
+            "aggressive_unit_count": aggressive_units,
+            "total_units": total_units,
+        }
+
+    return results

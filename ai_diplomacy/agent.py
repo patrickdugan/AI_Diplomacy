@@ -651,6 +651,8 @@ class DiplomacyAgent:
 
             diary_entry_text = "(LLM diary entry generation or parsing failed.)"  # Fallback
             relationships_updated = False
+            reasoning_log_entry = None
+            reasoning_log_error = None
 
             if parsed_data:
                 # Fix 1: Be more robust about extracting the negotiation_summary field
@@ -711,11 +713,50 @@ class DiplomacyAgent:
                 # update goals
                 if "goals" in parsed_data:
                     self.update_goals(parsed_data["goals"])
+            else:
+                reasoning_log_error = success_status
 
             # Add the generated (or fallback) diary entry
             self.add_diary_entry(diary_entry_text, game.current_short_phase)
             if relationships_updated:
                 self.add_journal_entry(f"[{game.current_short_phase}] Relationships updated after negotiation diary: {self.relationships}")
+
+            # Write structured reasoning diary log for forecasting analysis
+            try:
+                if log_file_path:
+                    log_dir = Path(log_file_path).resolve().parent
+                    reasoning_log_path = log_dir / "reasoning_diary.jsonl"
+                    if parsed_data:
+                        reasoning_log_entry = {
+                            "game_id": log_dir.name,
+                            "phase": game.current_short_phase,
+                            "power": self.power_name,
+                            "parse_success": True,
+                            "negotiation_summary": parsed_data.get("negotiation_summary"),
+                            "intent": parsed_data.get("intent"),
+                            "updated_relationships": parsed_data.get("updated_relationships")
+                            or parsed_data.get("relationship_updates")
+                            or parsed_data.get("relationships"),
+                            "goals": parsed_data.get("goals"),
+                            "storyworld_implications": parsed_data.get("storyworld_implications"),
+                            "forecasting_rationale": parsed_data.get("forecasting_rationale"),
+                        }
+                    else:
+                        reasoning_log_entry = {
+                            "game_id": log_dir.name,
+                            "phase": game.current_short_phase,
+                            "power": self.power_name,
+                            "parse_success": False,
+                            "error": reasoning_log_error or "Failed to parse negotiation diary",
+                            "raw_response_excerpt": raw_response[:500] if raw_response else "",
+                        }
+                    with open(reasoning_log_path, "a", encoding="utf-8") as f:
+                        f.write(json.dumps(reasoning_log_entry, ensure_ascii=False) + "\n")
+            except Exception as log_err:
+                logger.warning(
+                    f"[{self.power_name}] Failed to write reasoning_diary.jsonl: {log_err}",
+                    exc_info=True,
+                )
 
             # If success_status is still the default 'Parsed diary data' but no relationships were updated, refine it.
             if success_status == "Success: Parsed diary data" and not relationships_updated:
