@@ -3,6 +3,8 @@ import json
 import re
 import logging
 import ast  # For literal_eval in JSON fallback parsing
+import time
+from datetime import datetime
 import aiohttp  # For direct HTTP requests to Responses API
 from pathlib import Path
 
@@ -45,6 +47,147 @@ logger.setLevel(logging.DEBUG)  # Keep debug for now during async changes
 
 load_dotenv()
 
+##############################################################################
+# Oracle (Codex) helpers
+##############################################################################
+_ORACLE_CLIENT_CACHE: Dict[Tuple[str, str], "OpenAIClient"] = {}
+_ORACLE_CALL_GUARD: Dict[Tuple[str, str, str], bool] = {}
+
+
+def _parse_power_list(raw: Optional[str]) -> List[str]:
+    if not raw:
+        return []
+    return [p.strip().upper() for p in raw.split(",") if p.strip()]
+
+
+def _safe_json_load(raw: str) -> Optional[object]:
+    try:
+        return json.loads(raw)
+    except Exception:
+        try:
+            return ast.literal_eval(raw)
+        except Exception:
+            return None
+
+
+def _get_oracle_client() -> Optional["OpenAIClient"]:
+    model = os.environ.get("CODEX_ORACLE_MODEL")
+    if not model:
+        return None
+    base_url = os.environ.get("CODEX_ORACLE_BASE_URL") or os.environ.get("OPENAI_BASE_URL")
+    api_key = os.environ.get("CODEX_ORACLE_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        return None
+    cache_key = (model, base_url or "")
+    client = _ORACLE_CLIENT_CACHE.get(cache_key)
+    if client is None:
+        client = OpenAIClient(model_name=model, base_url=base_url, api_key=api_key)
+        max_tokens = os.environ.get("CODEX_ORACLE_MAX_OUTPUT_TOKENS")
+        if max_tokens and max_tokens.isdigit():
+            client.max_tokens = int(max_tokens)
+        _ORACLE_CLIENT_CACHE[cache_key] = client
+    return client
+
+
+def _oracle_call_allowed(power_name: str, phase: str, mode: str) -> bool:
+    key = (power_name, phase, mode)
+    if _ORACLE_CALL_GUARD.get(key):
+        return False
+    _ORACLE_CALL_GUARD[key] = True
+    return True
+
+
+def _oracle_log_path(log_file_path: str) -> Optional[Path]:
+    if not log_file_path:
+        return None
+    try:
+        return Path(log_file_path).resolve().parent / "codex_oracle_reasoning.jsonl"
+    except Exception:
+        return None
+
+
+def _build_oracle_prompt(
+    *,
+    mode: str,
+    power_name: str,
+    phase: str,
+    base_prompt: str,
+    messages_to_power: Optional[List[Dict[str, str]]] = None,
+) -> str:
+    header = (
+        "You are a negotiation reasoning oracle. Output JSON only. "
+        "Provide explicit reasoning steps in a structured, machine-readable form."
+    )
+    schema = {
+        "situation_assessment": {
+            "key_risks": ["..."],
+            "key_opportunities": ["..."],
+            "most_important_unknowns": ["..."],
+        },
+        "recommended_belief_updates": [
+            {"power": "AUSTRIA", "threat_delta": 0.1, "trust_delta": -0.2, "because": "..."}
+        ],
+        "candidate_orders": [
+            {"orders": ["F EDI-NTH"], "pros": ["..."], "cons": ["..."], "risk": 0.35}
+        ],
+        "candidate_messages": [
+            {"to": "FRANCE", "intent": "reassure", "text": "...", "expected_effect": "...", "risk": "..."}
+        ],
+        "reasoning_trace": [
+            {"step": 1, "claim": "...", "evidence": "message_id:X / board_fact:Y"}
+        ],
+        "recommendation": {"pick_orders_index": 0, "send_messages_indices": [0]},
+    }
+    if mode == "reply":
+        payload = {
+            "mode": "reply_oracle",
+            "power": power_name,
+            "phase": phase,
+            "messages_to_power": messages_to_power or [],
+        }
+        return f"{header}\n\nINPUT:\n{json.dumps(payload, ensure_ascii=True)}\n\nJSON_SCHEMA:\n{json.dumps(schema, ensure_ascii=True)}"
+    payload = {"mode": "plan_oracle", "power": power_name, "phase": phase, "context_prompt": base_prompt}
+    return f"{header}\n\nINPUT:\n{json.dumps(payload, ensure_ascii=True)}\n\nJSON_SCHEMA:\n{json.dumps(schema, ensure_ascii=True)}"
+
+
+async def _run_oracle_call(
+    *,
+    power_name: str,
+    phase: str,
+    mode: str,
+    oracle_prompt: str,
+    log_file_path: str,
+) -> Tuple[str, Optional[object]]:
+    oracle_client = _get_oracle_client()
+    if oracle_client is None:
+        return "", None
+
+    raw_oracle = await run_llm_and_log(
+        client=oracle_client,
+        prompt=oracle_prompt,
+        power_name=power_name,
+        phase=phase,
+        response_type=f"codex_oracle_{mode}",
+    )
+    parsed = _safe_json_load(raw_oracle)
+
+    log_path = _oracle_log_path(log_file_path)
+    if log_path:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        entry = {
+            "ts": datetime.utcnow().isoformat() + "Z",
+            "power": power_name,
+            "phase": phase,
+            "mode": mode,
+            "model": oracle_client.model_name,
+            "oracle_input": oracle_prompt,
+            "oracle_output_raw": raw_oracle,
+            "oracle_output_parsed": parsed if isinstance(parsed, (dict, list)) else None,
+        }
+        with log_path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=True) + "\n")
+
+    return raw_oracle, parsed
 
 ##############################################################################
 # 1) Base Interface
@@ -582,6 +725,64 @@ class BaseModelClient:
             )
 
             logger.debug(f"[{self.model_name}] Conversation prompt for {power_name}:\n{raw_input_prompt}")
+
+            # Optional Codex oracle consultation
+            oracle_plan_powers = set(_parse_power_list(os.environ.get("CODEX_ORACLE_PLAN_POWERS")))
+            oracle_reply_powers = set(_parse_power_list(os.environ.get("CODEX_ORACLE_REPLY_POWERS")))
+            power_key = power_name.upper()
+            oracle_mode = None
+
+            if power_key in oracle_plan_powers:
+                oracle_mode = "plan"
+            elif power_key in oracle_reply_powers:
+                recent_msgs = game_history.get_recent_messages_to_power(power_name, limit=3)
+                recent_msgs = [m for m in recent_msgs if m.get("phase") == game_phase]
+                if recent_msgs:
+                    oracle_mode = "reply"
+
+            if oracle_mode and _oracle_call_allowed(power_key, game_phase, oracle_mode):
+                oracle_prompt = _build_oracle_prompt(
+                    mode=oracle_mode,
+                    power_name=power_name,
+                    phase=game_phase,
+                    base_prompt=raw_input_prompt,
+                    messages_to_power=recent_msgs if oracle_mode == "reply" else None,
+                )
+                oracle_raw, oracle_parsed = await _run_oracle_call(
+                    power_name=power_name,
+                    phase=game_phase,
+                    mode=oracle_mode,
+                    oracle_prompt=oracle_prompt,
+                    log_file_path=log_file_path,
+                )
+
+                oracle_insert = None
+                if isinstance(oracle_parsed, dict):
+                    oracle_insert = json.dumps(
+                        {
+                            "situation_assessment": oracle_parsed.get("situation_assessment"),
+                            "recommended_belief_updates": oracle_parsed.get("recommended_belief_updates"),
+                            "candidate_messages": oracle_parsed.get("candidate_messages"),
+                            "recommendation": oracle_parsed.get("recommendation"),
+                            "reasoning_trace": oracle_parsed.get("reasoning_trace"),
+                        },
+                        ensure_ascii=True,
+                    )
+                if oracle_insert:
+                    raw_input_prompt = f"{raw_input_prompt}\n\n# ORACLE CONSULTATION\n{oracle_insert}"
+
+                log_path = _oracle_log_path(log_file_path)
+                if log_path:
+                    entry = {
+                        "ts": datetime.utcnow().isoformat() + "Z",
+                        "power": power_name,
+                        "phase": game_phase,
+                        "mode": oracle_mode,
+                        "model": _get_oracle_client().model_name if _get_oracle_client() else None,
+                        "oracle_used_in_prompt": bool(oracle_insert),
+                    }
+                    with log_path.open("a", encoding="utf-8") as f:
+                        f.write(json.dumps(entry, ensure_ascii=True) + "\n")
 
             raw_response = await run_llm_and_log(
                 client=self,
@@ -1645,6 +1846,8 @@ class StoryworldPersuasionClient(BaseModelClient):
         raw_response = ""
         success_status = "Failure: Initialized"
         messages_to_return: List[Dict[str, str]] = []
+        forecast = None
+        storyworld_log_path = None
 
         try:
             raw_input_prompt = self.base_client.build_conversation_prompt(
@@ -1660,6 +1863,7 @@ class StoryworldPersuasionClient(BaseModelClient):
 
             log_dir = Path(log_file_path).parent if log_file_path else None
             forecast_log = (log_dir / "storyworld_forecasts.jsonl") if log_dir else None
+            storyworld_log_path = (log_dir / "storyworld_impact.jsonl") if log_dir else None
 
             forecast = await generate_storyworld_forecast(
                 power_name=power_name,
@@ -1764,6 +1968,50 @@ class StoryworldPersuasionClient(BaseModelClient):
             success_status = f"Failure: Exception ({type(e).__name__})"
             messages_to_return = []
         finally:
+            # Log storyworld impact heuristics (best-effort)
+            if forecast and storyworld_log_path:
+                try:
+                    contents = " ".join(
+                        m.get("content", "")
+                        for m in messages_to_return
+                        if isinstance(m, dict)
+                    ).lower()
+                    matches = []
+                    for term in [
+                        "forecast",
+                        "probab",
+                        "likelihood",
+                        "odds",
+                        str(forecast.storyworld_id).lower(),
+                        str(forecast.target_power).lower(),
+                    ]:
+                        if term and term in contents:
+                            matches.append(term)
+                    impact_flag = "explicit" if matches else "implicit"
+                    recipients = [
+                        m.get("recipient", "")
+                        for m in messages_to_return
+                        if isinstance(m, dict) and m.get("message_type") == "private"
+                    ]
+                    event = {
+                        "ts": time.time(),
+                        "phase": game_phase,
+                        "power": power_name,
+                        "storyworld_id": forecast.storyworld_id,
+                        "target_power": forecast.target_power,
+                        "confidence": forecast.confidence,
+                        "forecast": forecast.forecast,
+                        "reasoning": forecast.reasoning,
+                        "message_count": len(messages_to_return),
+                        "recipients": recipients,
+                        "matches": matches,
+                        "impact_flag": impact_flag,
+                    }
+                    storyworld_log_path.parent.mkdir(parents=True, exist_ok=True)
+                    with storyworld_log_path.open("a", encoding="utf-8") as f:
+                        f.write(json.dumps(event, ensure_ascii=False) + "\n")
+                except Exception:
+                    pass
             if log_file_path:
                 await log_llm_response_async(
                     log_file_path=log_file_path,
