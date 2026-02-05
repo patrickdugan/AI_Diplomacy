@@ -162,14 +162,23 @@ async def _run_oracle_call(
     if oracle_client is None:
         return "", None
 
-    raw_oracle = await run_llm_and_log(
-        client=oracle_client,
-        prompt=oracle_prompt,
-        power_name=power_name,
-        phase=phase,
-        response_type=f"codex_oracle_{mode}",
-    )
-    parsed = _safe_json_load(raw_oracle)
+    raw_oracle = ""
+    parsed: Optional[object] = None
+    error: Optional[str] = None
+    try:
+        raw_oracle = await run_llm_and_log(
+            client=oracle_client,
+            prompt=oracle_prompt,
+            power_name=power_name,
+            phase=phase,
+            response_type=f"codex_oracle_{mode}",
+        )
+        parsed = _safe_json_load(raw_oracle)
+    except Exception as e:
+        error = f"{type(e).__name__}: {e}"
+        logger.warning(
+            f"[oracle] Failed for {power_name} in {phase} ({mode}): {error}"
+        )
 
     log_path = _oracle_log_path(log_file_path)
     if log_path:
@@ -183,6 +192,7 @@ async def _run_oracle_call(
             "oracle_input": oracle_prompt,
             "oracle_output_raw": raw_oracle,
             "oracle_output_parsed": parsed if isinstance(parsed, (dict, list)) else None,
+            "error": error,
         }
         with log_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(entry, ensure_ascii=True) + "\n")
