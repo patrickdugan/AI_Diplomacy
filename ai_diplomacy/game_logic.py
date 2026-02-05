@@ -237,22 +237,38 @@ def load_game_state(
 
     if saved_game_data.get("phases"):
         last_phase_data = saved_game_data["phases"][-2] if len(saved_game_data["phases"]) > 1 else {}
-        if "state_agents" not in last_phase_data:
-            raise ValueError("Cannot resume: 'state_agents' key missing in last completed phase.")
-
-        for power_name, agent_data in last_phase_data["state_agents"].items():
-            override_id = power_model_map.get(power_name)
-            prompts_dir_from_config = (
-                run_config.prompts_dir_map.get(power_name)
-                if getattr(run_config, "prompts_dir_map", None)
-                else run_config.prompts_dir
-            )
-            agents[power_name] = deserialize_agent(
-                agent_data,
-                prompts_dir=prompts_dir_from_config,
-                override_model_id=override_id,
-                override_max_tokens=model_max_tokens.get(power_name),
-            )
+        if "state_agents" in last_phase_data:
+            for power_name, agent_data in last_phase_data["state_agents"].items():
+                override_id = power_model_map.get(power_name)
+                prompts_dir_from_config = (
+                    run_config.prompts_dir_map.get(power_name)
+                    if getattr(run_config, "prompts_dir_map", None)
+                    else run_config.prompts_dir
+                )
+                agents[power_name] = deserialize_agent(
+                    agent_data,
+                    prompts_dir=prompts_dir_from_config,
+                    override_model_id=override_id,
+                    override_max_tokens=model_max_tokens.get(power_name),
+                )
+        else:
+            logger.warning("Missing state_agents in save; building fresh agents without LLM initialization.")
+            for power_name in powers_order:
+                if game.powers[power_name].is_eliminated():
+                    continue
+                model_id = power_model_map.get(power_name)
+                prompts_dir_from_config = (
+                    run_config.prompts_dir_map.get(power_name)
+                    if getattr(run_config, "prompts_dir_map", None)
+                    else run_config.prompts_dir
+                )
+                client = load_model_client(model_id, prompts_dir=prompts_dir_from_config)
+                client.max_tokens = model_max_tokens.get(power_name, default_max_tokens)
+                agents[power_name] = DiplomacyAgent(
+                    power_name=power_name,
+                    client=client,
+                    prompts_dir=prompts_dir_from_config,
+                )
 
     # --- Rebuild GameHistory --------------------------------------------------
     game_history = GameHistory()
@@ -376,16 +392,19 @@ async def initialize_new_game(
                     prompts_dir=prompts_dir_for_power,
                 )
                 agents[power_name] = agent
-                logger.info(f"Preparing initialization task for {power_name} with model {model_id}")
-                initialization_tasks.append(
-                    initialize_agent_state_ext(
-                        agent,
-                        game,
-                        game_history,
-                        llm_log_file_path,
-                        prompts_dir=prompts_dir_for_power,
+                if model_id.lower().startswith("silent"):
+                    logger.info(f"Skipping initialization for {power_name} (silent client)")
+                else:
+                    logger.info(f"Preparing initialization task for {power_name} with model {model_id}")
+                    initialization_tasks.append(
+                        initialize_agent_state_ext(
+                            agent,
+                            game,
+                            game_history,
+                            llm_log_file_path,
+                            prompts_dir=prompts_dir_for_power,
+                        )
                     )
-                )
             except Exception as e:
                 logger.error(
                     f"Failed to create agent or client for {power_name} with model {model_id}: {e}",

@@ -1318,6 +1318,7 @@ class OpenAIResponsesClient(BaseModelClient):
             await self._session.close()
 
     async def generate_response(self, prompt: str, temperature: float = 0.0, inject_random_seed: bool = True) -> str:
+        response_data = None
         try:
             # The Responses API uses a different format than chat completions
             # Combine system prompt and user prompt into a single input
@@ -1373,48 +1374,51 @@ class OpenAIResponsesClient(BaseModelClient):
                 await session.close()
                 self._session = None
 
-                # Extract the text from the nested response structure
-                try:
-                    if "output_text" in response_data and isinstance(response_data["output_text"], str):
-                        return response_data["output_text"].strip()
+            # Extract the text from the nested response structure
+            try:
+                if response_data is None:
+                    raise ValueError(f"[{self.model_name}] No response data received.")
 
-                    outputs = response_data.get("output", [])
-                    if not outputs:
-                        logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
-                        raise ValueError(f"[{self.model_name}] Unexpected output structure: empty 'output' list.")
+                if "output_text" in response_data and isinstance(response_data["output_text"], str):
+                    return response_data["output_text"].strip()
 
-                    # Some models return output_text directly in output items.
-                    for output_item in outputs:
-                        if isinstance(output_item, dict):
-                            if output_item.get("type") in ("output_text", "text") and isinstance(output_item.get("text"), str):
-                                return output_item["text"].strip()
-                            if isinstance(output_item.get("content"), str):
-                                return output_item["content"].strip()
+                outputs = response_data.get("output", [])
+                if not outputs:
+                    logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
+                    raise ValueError(f"[{self.model_name}] Unexpected output structure: empty 'output' list.")
 
-                    message_output = next((o for o in outputs if o.get("type") == "message"), None)
-                    if not message_output:
-                        logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
-                        raise ValueError(f"[{self.model_name}] No 'message' output item found.")
+                # Some models return output_text directly in output items.
+                for output_item in outputs:
+                    if isinstance(output_item, dict):
+                        if output_item.get("type") in ("output_text", "text") and isinstance(output_item.get("text"), str):
+                            return output_item["text"].strip()
+                        if isinstance(output_item.get("content"), str):
+                            return output_item["content"].strip()
 
-                    content_list = message_output.get("content", [])
-                    if not content_list:
-                        raise ValueError(f"[{self.model_name}] Empty 'content' list in message output.")
+                message_output = next((o for o in outputs if o.get("type") == "message"), None)
+                if not message_output:
+                    logger.error(f"[{self.model_name}] Response structure: {json.dumps(response_data, indent=2)}")
+                    raise ValueError(f"[{self.model_name}] No 'message' output item found.")
 
-                    text_content = ""
-                    for content_item in content_list:
-                        if content_item.get("type") in ("output_text", "text"):
-                            text_content = content_item.get("text", "")
-                            if text_content:
-                                break
+                content_list = message_output.get("content", [])
+                if not content_list:
+                    raise ValueError(f"[{self.model_name}] Empty 'content' list in message output.")
 
-                    if not text_content:
-                        raise ValueError(f"[{self.model_name}] No text content found in message output.")
+                text_content = ""
+                for content_item in content_list:
+                    if content_item.get("type") in ("output_text", "text"):
+                        text_content = content_item.get("text", "")
+                        if text_content:
+                            break
 
-                    return text_content.strip()
+                if not text_content:
+                    raise ValueError(f"[{self.model_name}] No text content found in message output.")
 
-                except (KeyError, IndexError, TypeError) as e:
-                    # Wrap parsing error in a more informative exception
-                    raise ValueError(f"[{self.model_name}] Error parsing response structure: {e}") from e
+                return text_content.strip()
+
+            except (KeyError, IndexError, TypeError) as e:
+                # Wrap parsing error in a more informative exception
+                raise ValueError(f"[{self.model_name}] Error parsing response structure: {e}") from e
 
         except aiohttp.ClientError as e:
             logger.error(f"[{self.model_name}] HTTP client error in generate_response: {e}")
@@ -1758,7 +1762,7 @@ class SilentClient(BaseModelClient):
         super().__init__(model_name, prompts_dir=prompts_dir)
 
     async def generate_response(self, prompt: str, temperature: float = 0.0, inject_random_seed: bool = True) -> str:
-        return ""
+        return "{}"
 
     async def get_orders(
         self,
