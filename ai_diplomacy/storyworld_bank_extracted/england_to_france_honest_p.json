@@ -1,0 +1,20 @@
+{
+  "id": "england_to_france_honest_p",
+  "title": "An Honest Proposal: Anglo-French Cooperation (p)",
+  "archetype": "honest_signal",
+  "intent": "A storyworld projection from England to France using NO_LIES_COALITION strategy. Transparently presents both pros and cons, admits uncertainties, offers verifiable commitments. Reputation-based trust building.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "A storyworld projection from England to France using NO_LIES_COALITION strategy. Transparently presents both pros and cons, admits uncertainties, offers verifiable commitments. Reputation-based trust building.",
+    "evidence": "ENGLAND'S TRANSPARENT APPROACH: France, I will not deceive you. I am proposing an alliance because it serves English interests. I will also tell you honestly what risks you face and what I am uncertain about. My word, once given, I keep - this is my only currency.",
+    "ask": "France appreciates the direct approach."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\england_to_france_honest_p.json"
+}

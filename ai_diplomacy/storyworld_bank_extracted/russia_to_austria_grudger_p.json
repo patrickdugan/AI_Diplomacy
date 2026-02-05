@@ -1,0 +1,20 @@
+{
+  "id": "russia_to_austria_grudger_p",
+  "title": "The Price of Betrayal: A Warning to Austria (p)",
+  "archetype": "grudger",
+  "intent": "A storyworld projection from Russia to Austria, warning about Turkish treachery. Uses GRUDGER framing - perfect memory of betrayal, permanent consequences, revenge as deterrent.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "A storyworld projection from Russia to Austria, warning about Turkish treachery. Uses GRUDGER framing - perfect memory of betrayal, permanent consequences, revenge as deterrent.",
+    "evidence": "RUSSIA'S MEMORY: I do not forget. In Turn 4, Turkey promised to support my move to Rumania. Instead, they attacked. This is not opinion. This is recorded fact. Austria should know who they are considering as an ally.",
+    "ask": "Examine the order history. Turkey's words versus Turkey's actions."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\russia_to_austria_grudger_p.json"
+}
