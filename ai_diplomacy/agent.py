@@ -526,9 +526,10 @@ class DiplomacyAgent:
                     "\n- Include a `forecasting_rationale` field explaining how the forecast shaped your intent."
                 )
                 if storyworld_artifact:
+                    artifact_str = json.dumps(storyworld_artifact, ensure_ascii=False, indent=2)
+                    artifact_str = artifact_str.replace("{", "{{").replace("}", "}}")
                     prompt_template_content += (
-                        "\n\nSTORYWORLD_FORECAST_REFERENCE:\n"
-                        + json.dumps(storyworld_artifact, ensure_ascii=False, indent=2)
+                        "\n\nSTORYWORLD_FORECAST_REFERENCE:\n" + artifact_str
                     )
 
             # Prepare context for the prompt
