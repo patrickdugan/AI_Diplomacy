@@ -689,6 +689,52 @@ async def main():
                                 "definition": aggression_def,
                             }
                             f.write(json.dumps(entry) + "\n")
+
+                    # Score storyworld forecasts against aggression_event (binary)
+                    forecast_scores_path = os.path.join(run_dir, "forecast_scores.jsonl")
+                    forecasts_path = os.path.join(run_dir, "storyworld_forecasts.jsonl")
+                    if os.path.exists(forecasts_path):
+                        with open(forecasts_path, "r", encoding="utf-8") as f_in, open(
+                            forecast_scores_path, "a", encoding="utf-8"
+                        ) as f_out:
+                            for line in f_in:
+                                line = line.strip()
+                                if not line:
+                                    continue
+                                try:
+                                    forecast_entry = json.loads(line)
+                                except Exception:
+                                    continue
+                                if forecast_entry.get("phase") != completed_phase:
+                                    continue
+                                artifact = forecast_entry.get("artifact") or {}
+                                target = artifact.get("target_power")
+                                probs = (artifact.get("forecast") or {}).get("probabilities") or {}
+                                p_aggr = probs.get("aggression")
+                                if target is None or p_aggr is None:
+                                    continue
+                                # Resolve outcome from aggression_results
+                                agg = aggression_results.get(target)
+                                if not agg:
+                                    continue
+                                idx = agg.get("aggression_index")
+                                y = None if idx is None else int(idx >= threshold)
+                                if y is None:
+                                    continue
+                                brier = (p_aggr - y) ** 2
+                                score_entry = {
+                                    "game_id": os.path.basename(run_dir),
+                                    "phase": completed_phase,
+                                    "power": forecast_entry.get("power"),
+                                    "target_power": target,
+                                    "event": "aggression_event",
+                                    "threshold": threshold,
+                                    "p_aggression": p_aggr,
+                                    "outcome": y,
+                                    "brier": brier,
+                                    "storyworld_id": artifact.get("storyworld_id"),
+                                }
+                                f_out.write(json.dumps(score_entry) + "\n")
                 except Exception as e:
                     logger.warning(f"Failed to write forecast_outcomes.jsonl: {e}", exc_info=True)
 
