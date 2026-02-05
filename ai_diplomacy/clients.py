@@ -74,14 +74,19 @@ def _get_oracle_client() -> Optional["OpenAIClient"]:
     model = os.environ.get("CODEX_ORACLE_MODEL")
     if not model:
         return None
-    base_url = os.environ.get("CODEX_ORACLE_BASE_URL") or os.environ.get("OPENAI_BASE_URL")
-    api_key = os.environ.get("CODEX_ORACLE_API_KEY") or os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        return None
-    cache_key = (model, base_url or "")
+    base_url = os.environ.get("CODEX_ORACLE_BASE_URL")
+    api_key = os.environ.get("CODEX_ORACLE_API_KEY")
+    # Build a model spec with optional inline base/key, so load_model_client can pick the right client
+    model_spec = model
+    if base_url:
+        model_spec = f"{model_spec}@{base_url}"
+    if api_key:
+        model_spec = f"{model_spec}#{api_key}"
+
+    cache_key = (model_spec, base_url or "")
     client = _ORACLE_CLIENT_CACHE.get(cache_key)
     if client is None:
-        client = OpenAIClient(model_name=model, base_url=base_url, api_key=api_key)
+        client = load_model_client(model_spec, prompts_dir=None)
         max_tokens = os.environ.get("CODEX_ORACLE_MAX_OUTPUT_TOKENS")
         if max_tokens and max_tokens.isdigit():
             client.max_tokens = int(max_tokens)
