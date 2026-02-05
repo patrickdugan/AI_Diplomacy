@@ -434,6 +434,18 @@ class BaseModelClient:
 
             # Attempt to parse the final "orders" from the formatted response
             move_list = self._extract_moves(formatted_response, power_name)
+            if isinstance(move_list, list):
+                cleaned_moves = []
+                for move in move_list:
+                    if isinstance(move, str):
+                        move = move.strip()
+                        if move:
+                            cleaned_moves.append(move)
+                    else:
+                        logger.debug(
+                            f"[{self.model_name}] Dropping non-string move for {power_name}: {move}"
+                        )
+                move_list = cleaned_moves
 
             if not move_list:
                 logger.warning(f"[{self.model_name}] Could not extract moves for {power_name}. Using fallback.")
