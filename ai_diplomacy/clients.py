@@ -5,6 +5,8 @@ import logging
 import ast  # For literal_eval in JSON fallback parsing
 import time
 from datetime import datetime
+import subprocess
+import shutil
 import aiohttp  # For direct HTTP requests to Responses API
 from pathlib import Path
 
@@ -68,6 +70,31 @@ def _safe_json_load(raw: str) -> Optional[object]:
             return ast.literal_eval(raw)
         except Exception:
             return None
+
+
+def _extract_json_candidate(raw: str) -> Optional[str]:
+    if not raw:
+        return None
+    fence = "```"
+    idx = raw.find(fence)
+    while idx != -1:
+        lang_end = raw.find("\n", idx + len(fence))
+        if lang_end == -1:
+            break
+        lang = raw[idx + len(fence) : lang_end].strip().lower()
+        end = raw.find(fence, lang_end + 1)
+        if end == -1:
+            break
+        content = raw[lang_end + 1 : end].strip()
+        if lang in ("json", "jsonl") and content:
+            return content
+        idx = raw.find(fence, end + len(fence))
+    # fallback: try to grab a simple object block
+    start = raw.find("{")
+    end = raw.rfind("}")
+    if start != -1 and end != -1 and end > start:
+        return raw[start : end + 1]
+    return None
 
 
 def _get_oracle_client() -> Optional["OpenAIClient"]:
@@ -171,6 +198,14 @@ async def _run_oracle_call(
     oracle_prompt: str,
     log_file_path: str,
 ) -> Tuple[str, Optional[object]]:
+    if os.environ.get("CODEX_ORACLE_CLI", "").strip().lower() in {"1", "true", "yes"}:
+        return await _run_oracle_cli_call(
+            power_name=power_name,
+            phase=phase,
+            mode=mode,
+            oracle_prompt=oracle_prompt,
+            log_file_path=log_file_path,
+        )
     oracle_client = _get_oracle_client()
     if oracle_client is None:
         return "", None
@@ -205,6 +240,91 @@ async def _run_oracle_call(
             "oracle_input": oracle_prompt,
             "oracle_output_raw": raw_oracle,
             "oracle_output_parsed": parsed if isinstance(parsed, (dict, list)) else None,
+            "error": error,
+        }
+        with log_path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=True) + "\n")
+
+    return raw_oracle, parsed
+
+
+async def _run_oracle_cli_call(
+    *,
+    power_name: str,
+    phase: str,
+    mode: str,
+    oracle_prompt: str,
+    log_file_path: str,
+) -> Tuple[str, Optional[object]]:
+    raw_oracle = ""
+    parsed: Optional[object] = None
+    error: Optional[str] = None
+    log_path = _oracle_log_path(log_file_path)
+    last_message_path = None
+
+    try:
+        cli_path = os.environ.get(
+            "CODEX_ORACLE_CLI_PATH",
+            r"C:\projects\node_modules\@openai\codex\vendor\x86_64-pc-windows-msvc\codex\codex.exe",
+        )
+        resolved = shutil.which(cli_path) if not os.path.isabs(cli_path) else cli_path
+        if not resolved or not os.path.exists(resolved):
+            raise FileNotFoundError(f"Codex CLI not found: {cli_path}")
+
+        if log_path:
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            last_message_path = log_path.parent / f"codex_oracle_last_message_{power_name}_{phase}_{mode}.txt"
+        else:
+            last_message_path = Path.cwd() / f"codex_oracle_last_message_{power_name}_{phase}_{mode}.txt"
+
+        timeout_seconds = int(os.environ.get("CODEX_ORACLE_CLI_TIMEOUT", "120"))
+        sandbox = os.environ.get("CODEX_ORACLE_CLI_SANDBOX", "").strip()
+
+        cmd = [resolved, "exec"]
+        if sandbox:
+            cmd.extend(["--sandbox", sandbox])
+        if last_message_path:
+            cmd.extend(["--output-last-message", str(last_message_path)])
+        cmd.append(oracle_prompt)
+
+        def _run():
+            return subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=timeout_seconds,
+            )
+
+        result = await asyncio.to_thread(_run)
+        if result.returncode != 0:
+            raise RuntimeError(f"Codex CLI exited {result.returncode}: {result.stderr[:200]}")
+
+        if last_message_path and last_message_path.exists():
+            raw_oracle = last_message_path.read_text(encoding="utf-8", errors="ignore")
+        else:
+            raw_oracle = result.stdout or ""
+
+        candidate = _extract_json_candidate(raw_oracle)
+        if candidate:
+            parsed = _safe_json_load(candidate)
+        else:
+            parsed = _safe_json_load(raw_oracle)
+    except Exception as e:
+        error = f"{type(e).__name__}: {e}"
+        logger.warning(f"[oracle-cli] Failed for {power_name} in {phase} ({mode}): {error}")
+
+    if log_path:
+        entry = {
+            "ts": datetime.utcnow().isoformat() + "Z",
+            "power": power_name,
+            "phase": phase,
+            "mode": mode,
+            "model": "codex-cli",
+            "transport": "cli",
+            "oracle_input": oracle_prompt,
+            "oracle_output_raw": raw_oracle,
+            "oracle_output_parsed": parsed if isinstance(parsed, (dict, list)) else None,
+            "oracle_output_path": str(last_message_path) if last_message_path else None,
             "error": error,
         }
         with log_path.open("a", encoding="utf-8") as f:
