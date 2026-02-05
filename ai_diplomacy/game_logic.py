@@ -340,6 +340,15 @@ async def initialize_new_game(
     else:
         game.power_model_map = assign_models_to_powers()
 
+    # Forecasting-analysis focus: default non-focus powers to silent
+    if getattr(args, "forecasting_analysis_mode", False):
+        focus_raw = getattr(args, "forecasting_focus_powers", "") or ""
+        focus_set = {p.strip().upper() for p in focus_raw.split(",") if p.strip()}
+        if focus_set:
+            for p in list(game.power_model_map.keys()):
+                if p not in focus_set:
+                    game.power_model_map[p] = "silent"
+
     agents: Dict[str, DiplomacyAgent] = {}
     initialization_tasks = []
     logger.info("Initializing Diplomacy Agents for each power...")

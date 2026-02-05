@@ -3,6 +3,7 @@ Module for constructing prompts for LLM interactions in the Diplomacy game.
 """
 
 import logging
+import os
 from pathlib import Path
 from typing import Dict, List, Optional, Any  # Added Any for game type placeholder
 
@@ -146,6 +147,13 @@ def build_context_prompt(
         agent_relationships="\n".join(f"- {p}: {s}" for p, s in agent_relationships.items()) if agent_relationships else "None specified",
         agent_private_diary=agent_private_diary if agent_private_diary else "(No diary entries yet)",
     )
+
+    if os.environ.get("FORECASTING_ANALYSIS_MODE") == "1":
+        scenario_note = ""
+        if isinstance(board_state, dict):
+            scenario_note = board_state.get("note") or ""
+        if scenario_note:
+            context = f"{context}\n\nSCENARIO BRIEFING:\n{scenario_note}"
 
     return context
 

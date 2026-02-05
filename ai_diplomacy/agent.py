@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 from typing import List, Dict, Optional
 import json
 import re
@@ -25,6 +26,28 @@ logger = logging.getLogger(__name__)
 # == Best Practice: Define constants at module level ==
 ALL_POWERS = frozenset({"AUSTRIA", "ENGLAND", "FRANCE", "GERMANY", "ITALY", "RUSSIA", "TURKEY"})
 ALLOWED_RELATIONSHIPS = ["Enemy", "Unfriendly", "Neutral", "Friendly", "Ally"]
+
+def _load_latest_storyworld_forecast(log_file_path: str, power_name: str, phase: str) -> Optional[dict]:
+    if not log_file_path:
+        return None
+    try:
+        log_dir = Path(log_file_path).resolve().parent
+        forecast_path = log_dir / "storyworld_forecasts.jsonl"
+        if not forecast_path.exists():
+            return None
+        lines = forecast_path.read_text(encoding="utf-8").splitlines()
+        for line in reversed(lines):
+            if not line.strip():
+                continue
+            try:
+                entry = json.loads(line)
+            except Exception:
+                continue
+            if entry.get("power") == power_name and entry.get("phase") == phase:
+                return entry.get("artifact") or entry
+    except Exception:
+        return None
+    return None
 
 class DiplomacyAgent:
     """
@@ -94,6 +117,14 @@ class DiplomacyAgent:
             system_prompt_content = load_prompt(default_prompt_path)
 
         if system_prompt_content:  # Ensure we actually have content before setting
+            if os.environ.get("FORECASTING_ANALYSIS_MODE") == "1":
+                system_prompt_content = (
+                    system_prompt_content
+                    + "\n\nFORECASTING ANALYSIS MODE:"
+                    + "\n- Treat any STORYWORLD_FORECAST_ARTIFACT as evidence that must be reflected in your reasoning."
+                    + "\n- When negotiating, include at least one explicit forecast implication if a storyworld artifact is present."
+                    + "\n- In negotiation diaries, explicitly state storyworld implications and how they shaped your intent."
+                )
             self.client.set_system_prompt(system_prompt_content)
         else:
             logger.error(f"Could not load default system prompt either! Agent {power_name} may not function correctly.")
@@ -484,6 +515,21 @@ class DiplomacyAgent:
                 logger.error(f"[{self.power_name}] Could not load {get_prompt_path('negotiation_diary_prompt.txt')}. Skipping diary entry.")
                 success_status = "Failure: Prompt file not loaded"
                 return  # Exit early if prompt can't be loaded
+
+            if os.environ.get("FORECASTING_ANALYSIS_MODE") == "1":
+                storyworld_artifact = _load_latest_storyworld_forecast(
+                    log_file_path, self.power_name, game.current_short_phase
+                )
+                prompt_template_content += (
+                    "\n\nFORECASTING ANALYSIS REQUIREMENT:"
+                    "\n- Include a `storyworld_implications` field in your JSON."
+                    "\n- Include a `forecasting_rationale` field explaining how the forecast shaped your intent."
+                )
+                if storyworld_artifact:
+                    prompt_template_content += (
+                        "\n\nSTORYWORLD_FORECAST_REFERENCE:\n"
+                        + json.dumps(storyworld_artifact, ensure_ascii=False, indent=2)
+                    )
 
             # Prepare context for the prompt
             board_state_dict = game.get_state()

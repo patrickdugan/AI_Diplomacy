@@ -140,6 +140,24 @@ def parse_arguments():
         help="Number of negotiation rounds per phase.",
     )
     parser.add_argument(
+        "--forecasting_analysis_mode",
+        type=_str2bool,
+        default=False,
+        help="Enable forecasting-analysis mode with tightened logging and prompts.",
+    )
+    parser.add_argument(
+        "--forecasting_focus_powers",
+        type=str,
+        default="",
+        help="Comma-separated list of focus powers for forecasting-analysis mode (defaults to ENGLAND,FRANCE).",
+    )
+    parser.add_argument(
+        "--forecasting_state_file",
+        type=str,
+        default="",
+        help="Path to a fixed game state file (lmvsgame.json format) for forecasting-analysis mode.",
+    )
+    parser.add_argument(
         "--models",
         type=str,
         default="",
@@ -295,6 +313,20 @@ async def main():
         config.COUNTRY_SPECIFIC_PROMPTS = False
         logger.info("Using generic prompts for all powers")
 
+    if args.forecasting_analysis_mode:
+        os.environ["FORECASTING_ANALYSIS_MODE"] = "1"
+        if not args.forecasting_focus_powers:
+            args.forecasting_focus_powers = "ENGLAND,FRANCE"
+        if not args.forecasting_state_file:
+            args.forecasting_state_file = os.path.join(
+                "C:\\projects\\GPTStoryworld\\states", "forecasting_1915_deathground.json"
+            )
+        logger.info(
+            "Forecasting-analysis mode enabled. Focus powers: %s. State file: %s",
+            args.forecasting_focus_powers,
+            args.forecasting_state_file,
+        )
+
     if args.max_year == None:
         if args.end_at_phase:
             # infer the max year
@@ -342,6 +374,15 @@ async def main():
 
     os.makedirs(run_dir, exist_ok=True)
     logger.info(f"Using result directory: {run_dir}")
+
+    if args.forecasting_state_file:
+        src = args.forecasting_state_file
+        dst = os.path.join(run_dir, "lmvsgame.json")
+        if not os.path.exists(src):
+            raise FileNotFoundError(f"Forecasting state file not found: {src}")
+        shutil.copy2(src, dst)
+        is_resuming = True
+        logger.info("Loaded forecasting state file into run_dir: %s", dst)
 
     # --- 2. Setup Logging and File Paths ---
     general_log_file_path = os.path.join(run_dir, "general_game.log")

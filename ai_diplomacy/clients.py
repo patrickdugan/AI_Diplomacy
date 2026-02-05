@@ -118,10 +118,13 @@ def _build_oracle_prompt(
     phase: str,
     base_prompt: str,
     messages_to_power: Optional[List[Dict[str, str]]] = None,
+    storyworld_artifact: Optional[Dict[str, object]] = None,
 ) -> str:
     header = (
         "You are a negotiation reasoning oracle. Output JSON only. "
-        "Provide explicit reasoning steps in a structured, machine-readable form."
+        "Provide explicit reasoning steps in a structured, machine-readable form. "
+        "If STORYWORLD_FORECAST_ARTIFACT is provided, you MUST include a "
+        "`storyworld_implications` field and reference it in `reasoning_trace`."
     )
     schema = {
         "situation_assessment": {
@@ -129,6 +132,7 @@ def _build_oracle_prompt(
             "key_opportunities": ["..."],
             "most_important_unknowns": ["..."],
         },
+        "storyworld_implications": "If storyworld artifact provided, summarize its implications in 1-3 sentences.",
         "recommended_belief_updates": [
             {"power": "AUSTRIA", "threat_delta": 0.1, "trust_delta": -0.2, "because": "..."}
         ],
@@ -150,8 +154,12 @@ def _build_oracle_prompt(
             "phase": phase,
             "messages_to_power": messages_to_power or [],
         }
+        if storyworld_artifact:
+            payload["storyworld_forecast_artifact"] = storyworld_artifact
         return f"{header}\n\nINPUT:\n{json.dumps(payload, ensure_ascii=True)}\n\nJSON_SCHEMA:\n{json.dumps(schema, ensure_ascii=True)}"
     payload = {"mode": "plan_oracle", "power": power_name, "phase": phase, "context_prompt": base_prompt}
+    if storyworld_artifact:
+        payload["storyworld_forecast_artifact"] = storyworld_artifact
     return f"{header}\n\nINPUT:\n{json.dumps(payload, ensure_ascii=True)}\n\nJSON_SCHEMA:\n{json.dumps(schema, ensure_ascii=True)}"
 
 
@@ -1904,6 +1912,68 @@ class StoryworldPersuasionClient(BaseModelClient):
                     + "\n\nSTORYWORLD_FORECAST_ARTIFACT (Use this as evidence for persuasion):\n"
                     + json.dumps(artifact, ensure_ascii=False, indent=2)
                 )
+
+            # Optional Codex oracle consultation (storyworld-aware)
+            oracle_plan_powers = set(_parse_power_list(os.environ.get("CODEX_ORACLE_PLAN_POWERS")))
+            oracle_reply_powers = set(_parse_power_list(os.environ.get("CODEX_ORACLE_REPLY_POWERS")))
+            power_key = power_name.upper()
+            oracle_mode = None
+            recent_msgs = None
+
+            if power_key in oracle_plan_powers:
+                oracle_mode = "plan"
+            elif power_key in oracle_reply_powers:
+                recent_msgs = game_history.get_recent_messages_to_power(power_name, limit=3)
+                recent_msgs = [m for m in recent_msgs if m.get("phase") == game_phase]
+                if recent_msgs:
+                    oracle_mode = "reply"
+
+            if oracle_mode and _oracle_call_allowed(power_key, game_phase, oracle_mode):
+                oracle_prompt = _build_oracle_prompt(
+                    mode=oracle_mode,
+                    power_name=power_name,
+                    phase=game_phase,
+                    base_prompt=raw_input_prompt,
+                    messages_to_power=recent_msgs if oracle_mode == "reply" else None,
+                    storyworld_artifact=artifact if forecast else None,
+                )
+                oracle_raw, oracle_parsed = await _run_oracle_call(
+                    power_name=power_name,
+                    phase=game_phase,
+                    mode=oracle_mode,
+                    oracle_prompt=oracle_prompt,
+                    log_file_path=log_file_path,
+                )
+
+                oracle_insert = None
+                if isinstance(oracle_parsed, dict):
+                    oracle_insert = json.dumps(
+                        {
+                            "situation_assessment": oracle_parsed.get("situation_assessment"),
+                            "storyworld_implications": oracle_parsed.get("storyworld_implications"),
+                            "recommended_belief_updates": oracle_parsed.get("recommended_belief_updates"),
+                            "candidate_messages": oracle_parsed.get("candidate_messages"),
+                            "recommendation": oracle_parsed.get("recommendation"),
+                            "reasoning_trace": oracle_parsed.get("reasoning_trace"),
+                        },
+                        ensure_ascii=True,
+                    )
+                if oracle_insert:
+                    raw_input_prompt = f"{raw_input_prompt}\n\n# ORACLE CONSULTATION\n{oracle_insert}"
+
+                log_path = _oracle_log_path(log_file_path)
+                if log_path:
+                    entry = {
+                        "ts": datetime.utcnow().isoformat() + "Z",
+                        "power": power_name,
+                        "phase": game_phase,
+                        "mode": oracle_mode,
+                        "model": _get_oracle_client().model_name if _get_oracle_client() else None,
+                        "oracle_used_in_prompt": bool(oracle_insert),
+                        "storyworld_id": forecast.storyworld_id if forecast else None,
+                    }
+                    with log_path.open("a", encoding="utf-8") as f:
+                        f.write(json.dumps(entry, ensure_ascii=True) + "\n")
 
             raw_response = await run_llm_and_log(
                 client=self.base_client,
