@@ -234,6 +234,21 @@ def load_game_state(
             power_model_map = dict(zip(powers_order, provided * len(powers_order)))
         else:
             raise ValueError(f"Invalid --models argument: expected 1 or {len(powers_order)} items, got {len(provided)}.")
+    else:
+        power_model_map = assign_models_to_powers()
+
+    # Forecasting-analysis focus: default non-focus powers to silent, wrap focus in storyworld
+    if getattr(run_config, "forecasting_analysis_mode", False):
+        focus_raw = getattr(run_config, "forecasting_focus_powers", "") or ""
+        focus_set = {p.strip().upper() for p in focus_raw.split(",") if p.strip()}
+        if focus_set:
+            for p in list(power_model_map.keys()):
+                if p not in focus_set:
+                    power_model_map[p] = "silent"
+            for p in focus_set:
+                model_id = power_model_map.get(p)
+                if model_id and not model_id.lower().startswith("storyworld:") and not model_id.lower().startswith("silent"):
+                    power_model_map[p] = f"storyworld:{model_id}"
 
     if saved_game_data.get("phases"):
         last_phase_data = saved_game_data["phases"][-2] if len(saved_game_data["phases"]) > 1 else {}
