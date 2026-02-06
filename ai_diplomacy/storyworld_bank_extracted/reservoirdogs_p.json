@@ -1,0 +1,20 @@
+{
+  "id": "reservoirdogs_p",
+  "title": "Reservoir Dogs_p",
+  "archetype": "persuasion",
+  "intent": "Persuasive alignment using projected social dynamics.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "White: 'You're gonna be okay. Say the goddamn words, you're gonna be okay!'",
+    "evidence": "White: 'You're gonna be okay. Say the goddamn words, you're gonna be okay!'",
+    "ask": "Keep pressure on Orange"
+  },
+  "source": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\storyworld_sources\\reservoirdogs_p.json"
+}

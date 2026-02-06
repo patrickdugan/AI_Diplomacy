@@ -1,0 +1,20 @@
+{
+  "id": "hamlet_p",
+  "title": "Hamlet_p",
+  "archetype": "persuasion",
+  "intent": "An adaptation of Hamlet: ghostly demands, staged truth, and a court that eats its own. Five acts of doubt, betrayal, and duty in a late?medieval court.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "An adaptation of Hamlet: ghostly demands, staged truth, and a court that eats its own. Five acts of doubt, betrayal, and duty in a late?medieval court.",
+    "evidence": "In the cold hall of Elsinore, a rumor moves faster than steel, and each vow turns against its speaker. You weigh grief against duty, honor against cunning, and the court measures every pause. The moment demands a choice, and that choice will echo through witnesses, letters, and the next scene. In the cold hall of Elsinore, a rumor moves faster than steel, and each vow turns against its speaker. You",
+    "ask": "Question the witness."
+  },
+  "source": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\storyworld_sources\\hamlet_p.json"
+}
