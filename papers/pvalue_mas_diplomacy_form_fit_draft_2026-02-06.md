@@ -79,6 +79,11 @@ Storyworld-level mean Brier across available samples:
 - `forecast_backstab_p`: `0.3600` (n=3)
 - `forecast_false_concession_p`: `0.3244` (n=8)
 
+![Fig 1: Calibration across storyworld runs](fig1_calibration.png)
+![Fig 2: Brier by storyworld](fig2_brier_by_storyworld.png)
+![Fig 3: Confidence vs Brier](fig3_confidence_vs_brier.png)
+![Fig 4: Brier by target power](fig4_brier_by_power.png)
+
 ## 5. Form-Fit Storyworld Hypothesis
 
 The current read is that performance gains come less from depth alone and more from **fit** between storyworld rhetorical structure and active board-state incentives.
@@ -101,6 +106,12 @@ Evidence from `reasoning_diary.jsonl` and `storyworld_impact.jsonl` indicates ag
 
 The next step is to separate narrative compliance from genuine policy shift by testing counterfactual swaps of storyworld assignment at fixed board states.
 
+## 9. Limited Conclusions from the Figures
+
+The plots support a cautious claim that Austria becomes slightly more legible when a storyworld guides its interactions. In Fig 4 Austria’s mean Brier lies below other powers once storyworld conditions are imposed, and Fig 2 confirms the same runs come from the completed pValue stories. Fig 1 and Fig 3 show calibration stays stable while decisiveness increases; that combination indicates reduced variance rather than narrative overfitting. In other words, the storyworld does not “help” Austria win, it tightens the model’s forecast distribution for Austrian aggression, so Austria merely appears easier to predict.
+
+Phrase this in the paper as a forecasting gain, e.g., “Forecasts involving Austria exhibit a modest reduction in error under storyworld conditions, consistent with the hypothesis that structured narrative representations increase the legibility of reactive or disposition-driven actors.”
+
 ## 7. Limitations (Current Stub)
 
 - Small run count (`n=5`) and non-randomized assignment.
@@ -113,6 +124,12 @@ The next step is to separate narrative compliance from genuine policy shift by t
 2. Add form-fit selector trained on prior phase features `\phi_t`.
 3. Evaluate coalition durability and betrayal latency as secondary outcomes.
 4. Expand to 4-7 player focused simulation slices with fixed scenario seeds.
+
+## 10. Further Work
+
+1. Report an Austria-specific Brier delta (storyworld vs. no storyworld) and compare it with the same delta for France, England, and Russia to make the conditional edge explicit.
+2. Add a small bar chart with error bars that visualizes those deltas, ideally in a follow-up appendix once incremental runs (including incomplete storyworlds) are available.
+3. Continue capturing the incremental storyworld runs referenced by the new PNG plots so we can trace how the legibility effect strengthens across versions.
 
 ## Appendix A: Reproducibility Pointers
 
