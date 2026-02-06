@@ -6,6 +6,7 @@ This pack tees up a low-waste 1915 run that emphasizes negotiation reasoning wit
 
 - Scenario: `ai_diplomacy/scenarios/forecasting_1915_press.json`
 - Storyworld bank (pinned):
+  - `forecast_false_concession_p.json`
   - `forecast_backstab_p.json`
   - `forecast_coalition_p.json`
   - `forecast_defection_p.json`
@@ -37,8 +38,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\focused_1915\run_preflight.ps
 Optional knobs:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\focused_1915\run_preflight.ps1 -Execute -Model gpt-5-mini -MaxTokens 700
+powershell -ExecutionPolicy Bypass -File .\scripts\focused_1915\run_preflight.ps1 -Execute -Model gpt-5-mini -MaxTokens 1200 -EndAtPhase W1915A -TemplateMap ENGLAND:forecast_false_concession_p
 ```
+
+Default behavior:
+- One extra turn is included (`S1915M` plus `F1915M`) because `-EndAtPhase` defaults to `W1915A`.
+- The first focus power is automatically mapped to the fresh storyworld template `forecast_false_concession_p`.
+- Storyworld play uses `model` mode and logs per-step play + per-step reasoning traces.
 
 ## Summarize Negotiation Reasoning
 
@@ -58,6 +64,8 @@ Outputs:
 - `storyworld_forecasts.jsonl`
 - `storyworld_impact.jsonl`
 - `forecast_scores.jsonl`
+- `storyworld_play_steps.jsonl`
+- `storyworld_play_reasoning_steps.jsonl`
 - `llm_responses.csv`
 - `lmvsgame.json`
 - `overview.jsonl`

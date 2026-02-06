@@ -2,6 +2,8 @@
     [string]$Model = "gpt-5-mini",
     [int]$MaxTokens = 700,
     [string]$FocusPowers = "ENGLAND,FRANCE,GERMANY",
+    [string]$EndAtPhase = "W1915A",
+    [string]$TemplateMap = "",
     [string]$RunDir = "",
     [switch]$Execute
 )
@@ -29,12 +31,30 @@ if (-not $RunDir) {
     $RunDir = Join-Path $repoRoot ("results\focused_1915_pvalue_{0}" -f $stamp)
 }
 
+# Default: force first focus power to use the fresh storyworld template.
+if (-not $TemplateMap) {
+    $firstFocusPower = ($FocusPowers -split ",")[0].Trim().ToUpper()
+    if ($firstFocusPower) {
+        $TemplateMap = "${firstFocusPower}:forecast_false_concession_p"
+    }
+}
+
+$maxYear = 1915
+if ($EndAtPhase.Length -ge 5) {
+    $phaseYear = $EndAtPhase.Substring(1, 4)
+    if ($phaseYear -match "^\d{4}$") {
+        $maxYear = [int]$phaseYear
+    }
+}
+
 $env:GPT_STORYWORLD_DIR = "C:\projects\GPTStoryworld"
 $env:STORYWORLD_BANK_DIR = $bankDir
 $env:STORYWORLD_BANK_ONLY = "1"
 $env:STORYWORLD_PLAYBACK = "1"
-$env:STORYWORLD_PLAY_MODE = "heuristic"
-$env:STORYWORLD_PLAY_MAX_STEPS = "4"
+$env:STORYWORLD_PLAY_MODE = "model"
+$env:STORYWORLD_PLAY_MAX_STEPS = "8"
+$env:STORYWORLD_PLAY_REASONING = "1"
+$env:STORYWORLD_TEMPLATE_MAP = $TemplateMap
 $env:PYTHONUTF8 = "1"
 
 $modelList = ((1..7 | ForEach-Object { $Model }) -join ",")
@@ -47,8 +67,8 @@ $arguments = @(
     "--forecasting_state_file", $stateFile,
     "--prompts_dir", $promptsDir,
     "--models", $modelList,
-    "--max_year", "1915",
-    "--end_at_phase", "F1915M",
+    "--max_year", "$maxYear",
+    "--end_at_phase", $EndAtPhase,
     "--num_negotiation_rounds", "1",
     "--max_tokens", "$MaxTokens",
     "--simple_prompts", "false",
@@ -63,12 +83,14 @@ function Quote-Arg([string]$arg) {
 }
 
 $preview = @("python") + ($arguments | ForEach-Object { Quote-Arg $_ })
-$estimatedCalls = 30
+$estimatedCalls = 60
 $estimatedOutputTokenCeiling = $estimatedCalls * $MaxTokens
 
 Write-Output "Focused 1915 preflight is ready."
 Write-Output "Run dir: $RunDir"
 Write-Output "Focus powers: $FocusPowers"
+Write-Output "End phase: $EndAtPhase"
+Write-Output "Forced template map: $TemplateMap"
 Write-Output "Pinned storyworld bank: $bankDir"
 Write-Output "Estimated output-token ceiling (rough): $estimatedOutputTokenCeiling"
 Write-Output "Command:"

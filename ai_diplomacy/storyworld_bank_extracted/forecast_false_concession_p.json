@@ -1,0 +1,20 @@
+﻿{
+  "id": "forecast_false_concession_p",
+  "title": "Forecast False Concession (p)",
+  "archetype": "defection",
+  "intent": "Offer a limited concession to lure a rival into overextension, then pivot with coalition cover.",
+  "forecast": {
+    "question": "Will the named rival over-commit if offered a low-risk concession?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.62,
+      "restraint": 0.38
+    }
+  },
+  "message_frame": {
+    "claim": "A controlled concession now increases the chance the rival over-extends next phase.",
+    "evidence": "The trace shows commitment pressure and delayed downside when the rival accepts easy gains.",
+    "ask": "Accept a narrow concession this turn and reserve force for a coordinated pivot next turn."
+  },
+  "source": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\storyworld_sources\\forecast_false_concession_p.json"
+}

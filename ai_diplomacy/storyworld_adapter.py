@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import time
@@ -78,18 +79,52 @@ def _pick_storyworld_agents(active_powers: List[str], focal_power: str) -> Tuple
     return chosen, mapping
 
 
+def _parse_template_overrides() -> Dict[str, str]:
+    raw = os.getenv("STORYWORLD_TEMPLATE_MAP", "").strip()
+    mapping: Dict[str, str] = {}
+    if not raw:
+        return mapping
+    for token in raw.split(","):
+        token = token.strip()
+        if not token or ":" not in token:
+            continue
+        power, template = token.split(":", 1)
+        power = power.strip().upper()
+        template = template.strip()
+        if power and template:
+            mapping[power] = template
+    return mapping
+
+
+def _load_template_from_path(path: Path) -> Optional[Dict[str, Any]]:
+    try:
+        return json.loads(path.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return None
+
+
 def _select_template(power_name: str, phase: str, bank_dir: Path) -> Optional[Dict[str, Any]]:
     if not bank_dir.exists():
         return None
     candidates = sorted(bank_dir.glob("*.json"))
     if not candidates:
         return None
-    key = f"{power_name}:{phase}"
-    idx = abs(hash(key)) % len(candidates)
-    try:
-        return json.loads(candidates[idx].read_text(encoding="utf-8"))
-    except Exception:
-        return None
+
+    overrides = _parse_template_overrides()
+    override_name = overrides.get(power_name.upper())
+    if override_name:
+        normalized = override_name
+        if not normalized.lower().endswith(".json"):
+            normalized = f"{normalized}.json"
+        for candidate in candidates:
+            if candidate.name == normalized or candidate.stem == override_name:
+                return _load_template_from_path(candidate)
+
+    # Use a stable hash so template selection is deterministic across processes.
+    key = f"{power_name}:{phase}".encode("utf-8")
+    digest = hashlib.sha256(key).hexdigest()
+    idx = int(digest[:8], 16) % len(candidates)
+    return _load_template_from_path(candidates[idx])
 
 
 def _choose_threat_and_target(active_powers: List[str], board_state: Dict[str, Any], power_name: str) -> Tuple[str, str]:
@@ -255,6 +290,7 @@ def _play_storyworld_path(path: Path, max_steps: int = 3) -> Dict[str, Any]:
             {
                 "encounter_id": encounter.get("id"),
                 "encounter_title": encounter.get("title", ""),
+                "choice_id": chosen.get("id") if chosen else None,
                 "choice": choice_text,
                 "next_encounter_id": next_id,
             }
@@ -355,6 +391,167 @@ async def _play_storyworld_with_model(path: Path, model_client, max_steps: int =
     }
 
 
+def _fallback_playback_reasoning(playback: Dict[str, Any]) -> Dict[str, Any]:
+    history = playback.get("history", []) if isinstance(playback, dict) else []
+    step_reasoning: List[Dict[str, Any]] = []
+    for idx, step in enumerate(history, start=1):
+        encounter = str(step.get("encounter_title", "") or step.get("encounter_id", ""))
+        choice = str(step.get("choice_text", "") or step.get("choice", "")).strip()
+        if not choice:
+            choice = str(step.get("choice_id", ""))
+        step_reasoning.append(
+            {
+                "step": idx,
+                "encounter_id": step.get("encounter_id"),
+                "choice_id": step.get("choice_id"),
+                "inference": (
+                    f"At {encounter}, the chosen option '{choice}' indicates a "
+                    "short-horizon attempt to shift trust/threat incentives."
+                ),
+            }
+        )
+    return {
+        "step_reasoning": step_reasoning,
+        "overall_inference": "Reasoning trace derived directly from the storyworld path.",
+    }
+
+
+async def _derive_playback_reasoning(
+    playback: Dict[str, Any],
+    model_client,
+    *,
+    power_name: str,
+    phase: str,
+) -> Dict[str, Any]:
+    history = playback.get("history", []) if isinstance(playback, dict) else []
+    if not history:
+        return {"step_reasoning": [], "overall_inference": ""}
+
+    prompt = {
+        "task": (
+            "Infer step-by-step negotiation reasoning from this storyworld play trace. "
+            "Ground each inference in the concrete chosen option for that step."
+        ),
+        "power": power_name,
+        "phase": phase,
+        "storyworld_playback": history,
+        "output_schema": {
+            "step_reasoning": [
+                {
+                    "step": 1,
+                    "encounter_id": "encounter_id",
+                    "choice_id": "option_id",
+                    "inference": "what this choice implies for negotiation strategy",
+                }
+            ],
+            "overall_inference": "one concise strategic synthesis",
+        },
+    }
+
+    raw = ""
+    parsed: Dict[str, Any] = {}
+    try:
+        try:
+            raw = await model_client.generate_response(json.dumps(prompt, ensure_ascii=False), temperature=0.2)
+        except TypeError:
+            raw = await model_client.generate_response(json.dumps(prompt, ensure_ascii=False))
+        maybe = _safe_json_load(raw)
+        if isinstance(maybe, dict):
+            parsed = maybe
+    except Exception:
+        parsed = {}
+
+    step_reasoning = parsed.get("step_reasoning")
+    if not isinstance(step_reasoning, list) or not step_reasoning:
+        fallback = _fallback_playback_reasoning(playback)
+        fallback["raw_model_output"] = raw[:500]
+        return fallback
+
+    cleaned_steps: List[Dict[str, Any]] = []
+    for idx, row in enumerate(step_reasoning, start=1):
+        if not isinstance(row, dict):
+            continue
+        cleaned_steps.append(
+            {
+                "step": int(row.get("step") or idx),
+                "encounter_id": row.get("encounter_id"),
+                "choice_id": row.get("choice_id"),
+                "inference": str(row.get("inference", "")).strip(),
+            }
+        )
+
+    overall = str(parsed.get("overall_inference", "")).strip()
+    if not overall:
+        overall = "Reasoning synthesized from stepwise play trace."
+
+    return {
+        "step_reasoning": cleaned_steps,
+        "overall_inference": overall,
+        "raw_model_output": raw[:500],
+    }
+
+
+def _log_playback_trace(
+    *,
+    log_path: Path,
+    phase: str,
+    power_name: str,
+    storyworld_id: str,
+    raw_artifact: Dict[str, Any],
+) -> None:
+    playback = raw_artifact.get("playback") if isinstance(raw_artifact, dict) else None
+    if not isinstance(playback, dict):
+        return
+    history = playback.get("history", [])
+    if not isinstance(history, list) or not history:
+        return
+
+    steps_path = log_path.parent / "storyworld_play_steps.jsonl"
+    with steps_path.open("a", encoding="utf-8") as f:
+        for idx, step in enumerate(history, start=1):
+            if not isinstance(step, dict):
+                continue
+            row = {
+                "ts": time.time(),
+                "phase": phase,
+                "power": power_name,
+                "storyworld_id": storyworld_id,
+                "step": idx,
+                "encounter_id": step.get("encounter_id"),
+                "encounter_title": step.get("encounter_title"),
+                "choice_id": step.get("choice_id"),
+                "choice_text": step.get("choice_text") or step.get("choice"),
+                "next_encounter_id": step.get("next_encounter_id"),
+                "raw_model_output": step.get("raw_model_output"),
+            }
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    reasoning = raw_artifact.get("playback_reasoning") if isinstance(raw_artifact, dict) else None
+    if not isinstance(reasoning, dict):
+        return
+    step_reasoning = reasoning.get("step_reasoning", [])
+    if not isinstance(step_reasoning, list) or not step_reasoning:
+        return
+
+    reasoning_path = log_path.parent / "storyworld_play_reasoning_steps.jsonl"
+    with reasoning_path.open("a", encoding="utf-8") as f:
+        for row in step_reasoning:
+            if not isinstance(row, dict):
+                continue
+            entry = {
+                "ts": time.time(),
+                "phase": phase,
+                "power": power_name,
+                "storyworld_id": storyworld_id,
+                "step": row.get("step"),
+                "encounter_id": row.get("encounter_id"),
+                "choice_id": row.get("choice_id"),
+                "inference": row.get("inference"),
+                "overall_inference": reasoning.get("overall_inference"),
+            }
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
 async def generate_storyworld_forecast(
     *,
     power_name: str,
@@ -372,6 +569,7 @@ async def generate_storyworld_forecast(
     playback_enabled = os.getenv("STORYWORLD_PLAYBACK", "0").strip() == "1"
     play_mode = os.getenv("STORYWORLD_PLAY_MODE", "heuristic").strip().lower()
     max_steps = int(os.getenv("STORYWORLD_PLAY_MAX_STEPS", "12"))
+    play_reasoning_enabled = os.getenv("STORYWORLD_PLAY_REASONING", "1").strip() == "1"
 
     world_path = storyworld_path or _default_storyworld_path()
     if not world_path.exists() and not bank_dir.exists():
@@ -409,8 +607,15 @@ async def generate_storyworld_forecast(
                 if play_mode == "model":
                     playback = await _play_storyworld_with_model(Path(template["source"]), model_client, max_steps=max_steps)
                 else:
-                    playback = _play_storyworld_path(Path(template["source"]), max_steps=3)
+                    playback = _play_storyworld_path(Path(template["source"]), max_steps=max_steps)
                 data["playback"] = playback
+                if play_reasoning_enabled:
+                    data["playback_reasoning"] = await _derive_playback_reasoning(
+                        playback,
+                        model_client,
+                        power_name=power_name,
+                        phase=phase,
+                    )
             except Exception:
                 pass
         raw = json.dumps(data)
@@ -453,9 +658,10 @@ async def generate_storyworld_forecast(
 
     if log_path:
         log_path.parent.mkdir(parents=True, exist_ok=True)
+        phase_name = getattr(game, "current_short_phase", "")
         record = {
             "ts": time.time(),
-            "phase": getattr(game, "current_short_phase", ""),
+            "phase": phase_name,
             "power": power_name,
             "storyworld_path": str(world_path),
             "artifact": {
@@ -470,5 +676,15 @@ async def generate_storyworld_forecast(
         }
         with log_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
+        try:
+            _log_playback_trace(
+                log_path=log_path,
+                phase=phase_name,
+                power_name=power_name,
+                storyworld_id=artifact.storyworld_id,
+                raw_artifact=artifact.raw,
+            )
+        except Exception:
+            pass
 
     return artifact

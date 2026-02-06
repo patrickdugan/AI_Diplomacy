@@ -74,6 +74,8 @@ def make_summary(run_dir: Path) -> Dict[str, Any]:
     forecasts = read_jsonl(run_dir / "storyworld_forecasts.jsonl")
     impacts = read_jsonl(run_dir / "storyworld_impact.jsonl")
     scores = read_jsonl(run_dir / "forecast_scores.jsonl")
+    play_steps = read_jsonl(run_dir / "storyworld_play_steps.jsonl")
+    play_reasoning_steps = read_jsonl(run_dir / "storyworld_play_reasoning_steps.jsonl")
     diary_info = parse_negotiation_diaries(run_dir / "llm_responses.csv")
 
     forecast_by_power = Counter()
@@ -111,11 +113,15 @@ def make_summary(run_dir: Path) -> Dict[str, Any]:
             "storyworld_forecasts.jsonl": (run_dir / "storyworld_forecasts.jsonl").exists(),
             "storyworld_impact.jsonl": (run_dir / "storyworld_impact.jsonl").exists(),
             "forecast_scores.jsonl": (run_dir / "forecast_scores.jsonl").exists(),
+            "storyworld_play_steps.jsonl": (run_dir / "storyworld_play_steps.jsonl").exists(),
+            "storyworld_play_reasoning_steps.jsonl": (run_dir / "storyworld_play_reasoning_steps.jsonl").exists(),
             "llm_responses.csv": (run_dir / "llm_responses.csv").exists(),
         },
         "forecast_count": len(forecasts),
         "impact_count": len(impacts),
         "score_count": len(scores),
+        "play_step_count": len(play_steps),
+        "play_reasoning_step_count": len(play_reasoning_steps),
         "explicit_impact_count": explicit_impacts,
         "mean_confidence": mean(confidences) if confidences else None,
         "mean_brier": mean(brier_values) if brier_values else None,
@@ -124,6 +130,8 @@ def make_summary(run_dir: Path) -> Dict[str, Any]:
         "total_negotiation_diaries": diary_info["total_negotiation_diaries"],
         "signal_negotiation_diaries": len(diary_info["signal_diaries"]),
         "signal_diary_examples": diary_info["signal_diaries"][:12],
+        "play_step_examples": play_steps[:12],
+        "play_reasoning_examples": play_reasoning_steps[:12],
     }
     return summary
 
@@ -145,6 +153,8 @@ def write_markdown(summary: Dict[str, Any], output_path: Path) -> None:
     lines.append(f"- Forecast score rows: {summary['score_count']}")
     lines.append(f"- Mean Brier score: {summary['mean_brier']}")
     lines.append(f"- Explicit impact rows: {summary['explicit_impact_count']}")
+    lines.append(f"- Logged play steps: {summary['play_step_count']}")
+    lines.append(f"- Logged reasoning-over-play steps: {summary['play_reasoning_step_count']}")
     lines.append("")
 
     lines.append("## Forecasts by Power")
@@ -176,6 +186,33 @@ def write_markdown(summary: Dict[str, Any], output_path: Path) -> None:
             power = row.get("power", "")
             snippet = row.get("snippet", "")
             lines.append(f"- {phase} {power}: {snippet}")
+    else:
+        lines.append("- None")
+    lines.append("")
+
+    lines.append("## Play Trace Examples")
+    play_examples = summary["play_step_examples"]
+    if play_examples:
+        for row in play_examples:
+            phase = row.get("phase", "")
+            power = row.get("power", "")
+            step = row.get("step", "")
+            enc = row.get("encounter_id", "")
+            choice = short_text(str(row.get("choice_text", "")), limit=120)
+            lines.append(f"- {phase} {power} step {step} {enc}: {choice}")
+    else:
+        lines.append("- None")
+    lines.append("")
+
+    lines.append("## Reasoning Trace Examples")
+    reasoning_examples = summary["play_reasoning_examples"]
+    if reasoning_examples:
+        for row in reasoning_examples:
+            phase = row.get("phase", "")
+            power = row.get("power", "")
+            step = row.get("step", "")
+            inference = short_text(str(row.get("inference", "")), limit=160)
+            lines.append(f"- {phase} {power} step {step}: {inference}")
     else:
         lines.append("- None")
     lines.append("")

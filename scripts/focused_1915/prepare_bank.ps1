@@ -12,6 +12,7 @@ if (-not $TargetDir) {
 }
 
 $selectedFiles = @(
+    "forecast_false_concession_p.json",
     "forecast_backstab_p.json",
     "forecast_coalition_p.json",
     "forecast_defection_p.json"
