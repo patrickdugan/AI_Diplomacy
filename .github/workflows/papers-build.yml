@@ -1,0 +1,31 @@
+name: Build Papers
+
+on:
+  push:
+    paths:
+      - "papers/**/*.md"
+      - ".github/workflows/papers-build.yml"
+  workflow_dispatch:
+
+jobs:
+  build-paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build PDF from Markdown (Pandoc + LaTeX container)
+        uses: docker://pandoc/latex:3.8
+        with:
+          args: >-
+            --from=gfm
+            --pdf-engine=xelatex
+            papers/pvalue_mas_diplomacy_form_fit_draft_2026-02-06.md
+            -o papers/pvalue_mas_diplomacy_form_fit_draft_2026-02-06.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pvalue-mas-diplomacy-pdf
+          path: papers/pvalue_mas_diplomacy_form_fit_draft_2026-02-06.pdf
