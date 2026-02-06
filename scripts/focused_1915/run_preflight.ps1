@@ -13,11 +13,15 @@ $prepareScript = Join-Path $PSScriptRoot "prepare_bank.ps1"
 & $prepareScript
 
 $bankDir = Join-Path $repoRoot "ai_diplomacy\storyworld_bank_focus_1915"
+$templateBankDir = Join-Path $bankDir "templates"
 $stateFile = Join-Path $repoRoot "ai_diplomacy\scenarios\forecasting_1915_press.json"
 $promptsDir = Join-Path $repoRoot "ai_diplomacy\prompts_forecasting"
 
 if (-not (Test-Path $bankDir)) {
     throw "Focused storyworld bank not found: $bankDir"
+}
+if (-not (Test-Path $templateBankDir)) {
+    throw "Focused template bank not found: $templateBankDir"
 }
 if (-not (Test-Path $stateFile)) {
     throw "1915 scenario file not found: $stateFile"
@@ -48,7 +52,7 @@ if ($EndAtPhase.Length -ge 5) {
 }
 
 $env:GPT_STORYWORLD_DIR = "C:\projects\GPTStoryworld"
-$env:STORYWORLD_BANK_DIR = $bankDir
+$env:STORYWORLD_BANK_DIR = $templateBankDir
 $env:STORYWORLD_BANK_ONLY = "1"
 $env:STORYWORLD_PLAYBACK = "1"
 $env:STORYWORLD_PLAY_MODE = "model"
@@ -91,7 +95,8 @@ Write-Output "Run dir: $RunDir"
 Write-Output "Focus powers: $FocusPowers"
 Write-Output "End phase: $EndAtPhase"
 Write-Output "Forced template map: $TemplateMap"
-Write-Output "Pinned storyworld bank: $bankDir"
+Write-Output "Pinned storyworld template bank: $templateBankDir"
+Write-Output "Focused full storyworld bank (editor): $bankDir"
 Write-Output "Estimated output-token ceiling (rough): $estimatedOutputTokenCeiling"
 Write-Output "Command:"
 Write-Output ($preview -join " ")
