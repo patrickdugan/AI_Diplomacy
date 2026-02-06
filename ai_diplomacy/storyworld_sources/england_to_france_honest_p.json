@@ -265,6 +265,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.03
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.02
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -273,40 +343,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.08
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.05
                   }
                 ]
               },
@@ -402,6 +499,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.08
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.05
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -410,40 +577,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.2
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pCooperation_Level",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pCooperation_Level",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pCooperation_Level",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pCooperation_Level",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pCooperation_Level",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.28
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pCooperation_Level",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.18
                   }
                 ]
               },
@@ -641,6 +835,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.08
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.05
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -649,40 +913,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.28
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.18
                   }
                 ]
               },
@@ -815,6 +1106,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.03
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.02
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -823,40 +1184,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.08
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.05
                   }
                 ]
               },
@@ -1017,6 +1405,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": -0.09
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": -0.06
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -1025,40 +1483,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": -0.3
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": -0.2
                   }
                 ]
               },
@@ -1154,6 +1639,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.08
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.05
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -1162,40 +1717,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.2
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pCooperation_Level",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pCooperation_Level",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pCooperation_Level",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pCooperation_Level",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pCooperation_Level",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.28
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pCooperation_Level",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.18
                   }
                 ]
               },
@@ -1356,6 +1938,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.03
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.02
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -1364,40 +2016,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.08
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.05
                   }
                 ]
               },
@@ -1595,6 +2274,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.08
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.05
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "enc_trust_building",
@@ -1603,40 +2352,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.28
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.18
                   }
                 ]
               },
@@ -1769,6 +2545,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.03
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.02
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -1777,40 +2623,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.08
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.05
                   }
                 ]
               },
@@ -1988,6 +2861,76 @@
                       }
                     ]
                   }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.08
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Set",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
+                    "keyring": [
+                      "Honesty_Rating",
+                      "power_france",
+                      "power_germany"
+                    ],
+                    "coefficient": 1.0
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer",
+                        "character": "power_england",
+                        "keyring": [
+                          "Honesty_Rating",
+                          "power_france",
+                          "power_germany"
+                        ],
+                        "coefficient": 1.0
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.05
+                      }
+                    ]
+                  }
                 }
               ],
               "consequence_id": "wild",
@@ -1996,40 +2939,67 @@
                 "operator_type": "Addition",
                 "operands": [
                   {
-                    "pointer_type": "Bounded Number Constant",
-                    "script_element_type": "Pointer",
-                    "value": 0.35
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.35
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_england",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_france"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      },
+                      {
+                        "character": "power_france",
+                        "keyring": [
+                          "pHonesty_Rating",
+                          "power_england",
+                          "power_germany"
+                        ],
+                        "coefficient": 1,
+                        "pointer_type": "Bounded Number Property",
+                        "script_element_type": "Pointer"
+                      }
+                    ]
                   },
                   {
-                    "character": "power_france",
-                    "keyring": [
-                      "pHonesty_Rating",
-                      "power_england"
-                    ],
-                    "coefficient": 1,
                     "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
-                  },
-                  {
+                    "script_element_type": "Pointer",
                     "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
+                      "Honesty_Rating",
                       "power_france"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.28
                   },
                   {
-                    "character": "power_france",
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "power_england",
                     "keyring": [
-                      "pHonesty_Rating",
-                      "power_england",
+                      "Honesty_Rating",
+                      "power_france",
                       "power_germany"
                     ],
-                    "coefficient": 1,
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer"
+                    "coefficient": 0.18
                   }
                 ]
               },
