@@ -39,7 +39,7 @@ $$
 
 ## 3. Experimental Setup
 
-Data source: `C:\projects\AI_Diplomacy\results\focused_1915_pvalue_*`  
+Data source: `https://github.com/patrickdugan/AI_Diplomacy/tree/main/results/focused_1915_pvalue_*`  
 Window: 2026-02-05 to 2026-02-06  
 Runs analyzed: 5
 
@@ -118,12 +118,23 @@ The next step is to separate narrative compliance from genuine policy shift by t
 
 Primary run directories:
 
-- `C:\projects\AI_Diplomacy\results\focused_1915_pvalue_20260205_233410`
-- `C:\projects\AI_Diplomacy\results\focused_1915_pvalue_20260205_233554`
-- `C:\projects\AI_Diplomacy\results\focused_1915_pvalue_20260206_000333`
-- `C:\projects\AI_Diplomacy\results\focused_1915_pvalue_20260206_000643`
-- `C:\projects\AI_Diplomacy\results\focused_1915_pvalue_20260206_112347`
+- `https://github.com/patrickdugan/AI_Diplomacy/tree/main/results/focused_1915_pvalue_20260205_233410`
+- `https://github.com/patrickdugan/AI_Diplomacy/tree/main/results/focused_1915_pvalue_20260205_233554`
+- `https://github.com/patrickdugan/AI_Diplomacy/tree/main/results/focused_1915_pvalue_20260206_000333`
+- `https://github.com/patrickdugan/AI_Diplomacy/tree/main/results/focused_1915_pvalue_20260206_000643`
+- `https://github.com/patrickdugan/AI_Diplomacy/tree/main/results/focused_1915_pvalue_20260206_112347`
 
 Related storyworld bank (current working set):
 
-- `C:\projects\AI_Diplomacy\ai_diplomacy\storyworld_bank_focus_1915`
+- `https://github.com/patrickdugan/AI_Diplomacy/tree/main/ai_diplomacy/storyworld_bank_focus_1915`
+
+## Appendix B: Related Literature
+
+- GoodStartLabs diplomacy research and forecasting playbooks – https://goodstartlabs.com.  
+- Sarah Paine, *The War for India (Pactomania & The Continental Dilemma)* – see https://www.dwarkesh.com/p/sarah-paine-india.  
+- Sarah Paine, *The Chinese Civil War (Insurgency & Strategic Success)* – https://www.dwarkesh.com/p/sarah-paine-china.  
+- Sarah Paine, *World War II (Maritime vs. Continental Strategy)* – https://www.dwarkesh.com/p/sarah-paine-japan.  
+- Meta's Cicero AI Diplomacy work – https://ai.meta.com/research/cicero/.  
+- *Generative Agents* (Stanford/Google Simulacra) – https://arxiv.org/abs/2304.03442.  
+- *Recursive Mentalizing* (Theory of Mind in agents) – https://arxiv.org/abs/2402.04464.  
+- *Game Theory & Large Language Models* – https://arxiv.org/abs/2305.10142.
