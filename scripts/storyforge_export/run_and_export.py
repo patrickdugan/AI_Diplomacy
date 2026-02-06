@@ -11,6 +11,7 @@ import sys
 import time
 from pathlib import Path
 from typing import Dict, Iterable, List
+from ai_diplomacy.redaction import redact_data, redact_text
 
 
 def default_output_dir() -> Path:
@@ -24,7 +25,7 @@ def run_game(lm_game: Path, run_dir: Path, max_year: int, extra_args: List[str])
     cmd = [sys.executable, str(lm_game), "--run_dir", str(run_dir), "--max_year", str(max_year)]
     cmd.extend(extra_args)
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
-    (run_dir / "console.log").write_text(result.stdout, encoding="utf-8")
+    (run_dir / "console.log").write_text(redact_text(result.stdout), encoding="utf-8")
     if result.returncode != 0:
         raise RuntimeError(f"lm_game failed with code {result.returncode}")
 
@@ -46,7 +47,7 @@ def emit_event(out_fh, episode_id: str, t: int, phase: str, power: str, event_ty
         "event_type": event_type,
         "payload": payload,
     }
-    out_fh.write(json.dumps(row) + "\n")
+    out_fh.write(json.dumps(redact_data(row)) + "\n")
     return t + 1
 
 

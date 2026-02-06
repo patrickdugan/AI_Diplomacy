@@ -27,6 +27,7 @@ from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Iterable, List
+from ai_diplomacy.redaction import redact_data, redact_text
 
 # --------------------------------------------------------------------------- #
 #  Logging                                                                    #
@@ -422,10 +423,12 @@ def _launch_one(args) -> _RunInfo:
         lm_game_script, base_cli, run_dir, seed, critical_base, resume_phase
     )
     start = time.perf_counter()
-    log.debug("Run %05d: CMD = %s", idx, " ".join(cmd))
+    cmd_line = " ".join(cmd)
+    safe_cmd_line = redact_text(cmd_line)
+    log.debug("Run %05d: CMD = %s", idx, safe_cmd_line)
 
     # Write out full command for traceability
-    (run_dir / "command.txt").write_text(" ".join(cmd))
+    (run_dir / "command.txt").write_text(safe_cmd_line, encoding="utf-8")
 
     try:
         result = subprocess.run(
@@ -435,14 +438,17 @@ def _launch_one(args) -> _RunInfo:
             text=True,
             check=False,
         )
-        (run_dir / "console.log").write_text(result.stdout)
+        (run_dir / "console.log").write_text(redact_text(result.stdout), encoding="utf-8")
         rc = result.returncode
     except Exception as exc:  # noqa: broad-except
-        (run_dir / "console.log").write_text(f"Exception launching run:\n{exc}\n")
+        (run_dir / "console.log").write_text(
+            f"Exception launching run:\n{redact_text(str(exc))}\n",
+            encoding="utf-8",
+        )
         rc = 1
 
     elapsed = time.perf_counter() - start
-    return _RunInfo(idx, run_dir, seed, " ".join(cmd), rc, elapsed)
+    return _RunInfo(idx, run_dir, seed, safe_cmd_line, rc, elapsed)
 
 
 def _load_analysis_fns(module_names: Iterable[str]):
@@ -493,9 +499,13 @@ def main() -> None:
     if not cfg_path.exists():                     # ← new guard
         with cfg_path.open("w", encoding="utf-8") as fh:
             json.dump(
-                {"experiment": vars(exp_args),
-                "lm_game": vars(game_args),
-                "forwarded_cli": leftover_cli},
+                redact_data(
+                    {
+                        "experiment": vars(exp_args),
+                        "lm_game": vars(game_args),
+                        "forwarded_cli": leftover_cli,
+                    }
+                ),
                 fh, indent=2, default=str,
             )
         log.info("Config saved to %s", cfg_path)
@@ -550,7 +560,7 @@ def main() -> None:
     # Persist per-run status summary
     summary_path = exp_dir / "runs_summary.json"
     with open(summary_path, "w", encoding="utf-8") as fh:
-        json.dump([res._asdict() for res in runs_meta], fh, indent=2, default=str)
+        json.dump(redact_data([res._asdict() for res in runs_meta]), fh, indent=2, default=str)
     log.info("Run summary written → %s", summary_path)
 
     # ------------------------------------------------------------------

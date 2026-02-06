@@ -16,6 +16,7 @@ from .clients import load_model_client
 from .game_history import GameHistory
 from .initialization import initialize_agent_state_ext
 from .utils import atomic_write_json, atomic_write_json_async, assign_models_to_powers
+from .redaction import redact_data, redact_text
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +27,7 @@ def serialize_agent(agent: DiplomacyAgent) -> dict:
     """Converts an agent object to a JSON-serializable dictionary."""
     return {
         "power_name": agent.power_name,
-        "model_id": agent.client.model_name,
+        "model_id": redact_text(agent.client.model_name),
         "max_tokens": agent.client.max_tokens,
         "goals": agent.goals,
         "relationships": agent.relationships,
@@ -147,6 +148,7 @@ async def save_game_state(
                 cfg["prompts_dir"] = str(cfg["prompts_dir"])
             if "prompts_dir_map" in cfg and isinstance(cfg["prompts_dir_map"], dict):
                 cfg["prompts_dir_map"] = {p: str(v) for p, v in cfg["prompts_dir_map"].items()}
+            cfg = redact_data(cfg)
 
             phase_block["config"] = cfg
             phase_block["state_agents"] = current_state_agents
@@ -410,7 +412,7 @@ async def initialize_new_game(
                 if model_id.lower().startswith("silent"):
                     logger.info(f"Skipping initialization for {power_name} (silent client)")
                 else:
-                    logger.info(f"Preparing initialization task for {power_name} with model {model_id}")
+                    logger.info(f"Preparing initialization task for {power_name} with model {redact_text(model_id)}")
                     initialization_tasks.append(
                         initialize_agent_state_ext(
                             agent,
@@ -422,7 +424,7 @@ async def initialize_new_game(
                     )
             except Exception as e:
                 logger.error(
-                    f"Failed to create agent or client for {power_name} with model {model_id}: {e}",
+                    f"Failed to create agent or client for {power_name} with model {redact_text(model_id)}: {redact_text(str(e))}",
                     exc_info=True,
                 )
 

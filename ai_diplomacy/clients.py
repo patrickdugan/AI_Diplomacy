@@ -40,6 +40,7 @@ from .utils import load_prompt, run_llm_and_log, log_llm_response, log_llm_respo
 from .prompt_constructor import construct_order_generation_prompt, build_context_prompt
 # Moved formatter imports to avoid circular import - imported locally where needed
 from .storyworld_adapter import generate_storyworld_forecast
+from .redaction import redact_data, redact_text
 
 # set logger back to just info
 logger = logging.getLogger("client")
@@ -225,7 +226,7 @@ async def _run_oracle_call(
     except Exception as e:
         error = f"{type(e).__name__}: {e}"
         logger.warning(
-            f"[oracle] Failed for {power_name} in {phase} ({mode}): {error}"
+            f"[oracle] Failed for {power_name} in {phase} ({mode}): {redact_text(error)}"
         )
 
     log_path = _oracle_log_path(log_file_path)
@@ -243,7 +244,7 @@ async def _run_oracle_call(
             "error": error,
         }
         with log_path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(entry, ensure_ascii=True) + "\n")
+            f.write(json.dumps(redact_data(entry), ensure_ascii=True) + "\n")
 
     return raw_oracle, parsed
 
@@ -311,7 +312,7 @@ async def _run_oracle_cli_call(
             parsed = _safe_json_load(raw_oracle)
     except Exception as e:
         error = f"{type(e).__name__}: {e}"
-        logger.warning(f"[oracle-cli] Failed for {power_name} in {phase} ({mode}): {error}")
+        logger.warning(f"[oracle-cli] Failed for {power_name} in {phase} ({mode}): {redact_text(error)}")
 
     if log_path:
         entry = {
@@ -328,7 +329,7 @@ async def _run_oracle_cli_call(
             "error": error,
         }
         with log_path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(entry, ensure_ascii=True) + "\n")
+            f.write(json.dumps(redact_data(entry), ensure_ascii=True) + "\n")
 
     return raw_oracle, parsed
 
@@ -2319,7 +2320,10 @@ def load_model_client(model_id: str, prompts_dir: Optional[str] = None) -> BaseM
                 break
     
     spec = _parse_model_spec(actual_model_id)
-    logger.info(f"[load_model_client] Loading client for model_id='{model_id}', parsed spec: prefix={spec.prefix}, model={spec.model}, reasoning_effort={reasoning_effort}")
+    logger.info(
+        f"[load_model_client] Loading client for model_id='{redact_text(model_id)}', "
+        f"parsed spec: prefix={spec.prefix}, model={spec.model}, reasoning_effort={reasoning_effort}"
+    )
 
     # Inline key overrides env; otherwise fall back as usual *per client*
     inline_key = spec.key

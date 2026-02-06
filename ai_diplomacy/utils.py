@@ -16,6 +16,7 @@ from pathlib import Path
 from config import config
 from models import POWERS_ORDER
 from datetime import datetime
+from .redaction import redact_data, redact_text
 
 # Avoid circular import for type hinting
 if TYPE_CHECKING:
@@ -33,6 +34,7 @@ load_dotenv()
 def atomic_write_json(data: dict, filepath: str):
     """Writes a dictionary to a JSON file atomically."""
     try:
+        safe_data = redact_data(data)
         # Ensure the directory exists
         dir_name = os.path.dirname(filepath)
         if dir_name:
@@ -41,7 +43,7 @@ def atomic_write_json(data: dict, filepath: str):
         # Write to a temporary file in the same directory
         temp_filepath = f"{filepath}.tmp.{os.getpid()}"
         with open(temp_filepath, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=4)
+            json.dump(safe_data, f, indent=4)
 
         # Atomically replace the temporary file to the final destination
         os.replace(temp_filepath, filepath)
@@ -356,6 +358,11 @@ def log_llm_response(
 ):
     """Appends a raw LLM response to a CSV log file."""
     try:
+        safe_model_name = redact_text(model_name)
+        safe_raw_input = redact_text(raw_input_prompt)
+        safe_raw_response = redact_text(raw_response)
+        safe_success = redact_text(success)
+
         # Ensure the directory exists
         log_dir = os.path.dirname(log_file_path)
         if log_dir:  # Ensure log_dir is not empty (e.g., if path is just a filename)
@@ -380,13 +387,13 @@ def log_llm_response(
             writer.writerow(
                 {
                     "timestamp": datetime.now().isoformat(),  # Add current timestamp in ISO format
-                    "model": model_name,
+                    "model": safe_model_name,
                     "power": power_name if power_name else "game",  # Use 'game' if no specific power
                     "phase": phase,
                     "response_type": response_type,
-                    "raw_input": raw_input_prompt,  # Added raw_input to the row
-                    "raw_response": raw_response,
-                    "success": success,
+                    "raw_input": safe_raw_input,  # Added raw_input to the row
+                    "raw_response": safe_raw_response,
+                    "success": safe_success,
                 }
             )
     except Exception as e:
@@ -450,14 +457,14 @@ async def run_llm_and_log(
             # Calculate exponential backoff with jitter
             delay = backoff_base * (backoff_factor**attempt) + random.uniform(0, jitter)
             logger.warning(
-                f"LLM call failed for {client.model_name}/{power_name} (Attempt {attempt + 1}/{attempts}). "
-                f"Error: {type(e).__name__}('{e}'). Retrying in {delay:.2f} seconds."
+                f"LLM call failed for {redact_text(client.model_name)}/{power_name} (Attempt {attempt + 1}/{attempts}). "
+                f"Error: {type(e).__name__}('{redact_text(str(e))}'). Retrying in {delay:.2f} seconds."
             )
             await asyncio.sleep(delay)
 
         except (KeyboardInterrupt, asyncio.CancelledError):
             # If the user hits Ctrl-C or the task is cancelled, stop immediately.
-            logger.warning(f"LLM call for {client.model_name}/{power_name} was cancelled or interrupted by user.")
+            logger.warning(f"LLM call for {redact_text(client.model_name)}/{power_name} was cancelled or interrupted by user.")
             raise  # Re-raise to allow the application to exit cleanly.
 
         except Exception as e:
@@ -469,17 +476,17 @@ async def run_llm_and_log(
             # Calculate exponential backoff with jitter
             delay = backoff_base * (backoff_factor**attempt) + random.uniform(0, jitter)
             logger.error(
-                f"An unexpected error occurred during LLM call for {client.model_name}/{power_name}: {e}"
-                f"LLM call failed for {client.model_name}/{power_name} (Attempt {attempt + 1}/{attempts}). "
-                f"Error: {type(e).__name__}('{e}'). Retrying in {delay:.2f} seconds.",
+                f"An unexpected error occurred during LLM call for {redact_text(client.model_name)}/{power_name}: {redact_text(str(e))}"
+                f"LLM call failed for {redact_text(client.model_name)}/{power_name} (Attempt {attempt + 1}/{attempts}). "
+                f"Error: {type(e).__name__}('{redact_text(str(e))}'). Retrying in {delay:.2f} seconds.",
                 exc_info=True,
             )
             await asyncio.sleep(delay)
 
     # This part of the code is only reached if all retry attempts have failed.
     final_error_message = (
-        f"API Error after {attempts} attempts for {client.model_name}/{power_name}/{response_type} "
-        f"in phase {phase}. Final error: {type(last_exception).__name__}('{last_exception}')"
+        f"API Error after {attempts} attempts for {redact_text(client.model_name)}/{power_name}/{response_type} "
+        f"in phase {phase}. Final error: {type(last_exception).__name__}('{redact_text(str(last_exception))}')"
     )
     logger.error(final_error_message, exc_info=last_exception)
 

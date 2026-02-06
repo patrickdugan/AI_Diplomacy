@@ -26,6 +26,7 @@ from ai_diplomacy.utils import (
     parse_prompts_dir_arg,
     compute_aggression_index,
 )
+from ai_diplomacy.redaction import redact_data, redact_text
 from ai_diplomacy.negotiations import conduct_negotiations
 from ai_diplomacy.planning import planning_phase
 from ai_diplomacy.game_history import GameHistory
@@ -450,7 +451,7 @@ async def main():
     # Log power-to-model mapping
     if hasattr(game, "power_model_map"):
         for power, model in game.power_model_map.items():
-            mlflow.log_param(f"model_{power}", model)
+            mlflow.log_param(f"model_{power}", redact_text(model))
 
     if _detect_victory(game):
         game.is_game_done = True  # short-circuit the main loop
@@ -688,7 +689,7 @@ async def main():
                                 "total_units": agg.get("total_units"),
                                 "definition": aggression_def,
                             }
-                            f.write(json.dumps(entry) + "\n")
+                            f.write(json.dumps(redact_data(entry)) + "\n")
 
                     # Score storyworld forecasts against aggression_event (binary)
                     forecast_scores_path = os.path.join(run_dir, "forecast_scores.jsonl")
@@ -734,9 +735,9 @@ async def main():
                                     "brier": brier,
                                     "storyworld_id": artifact.get("storyworld_id"),
                                 }
-                                f_out.write(json.dumps(score_entry) + "\n")
+                                f_out.write(json.dumps(redact_data(score_entry)) + "\n")
                 except Exception as e:
-                    logger.warning(f"Failed to write forecast_outcomes.jsonl: {e}", exc_info=True)
+                    logger.warning(f"Failed to write forecast_outcomes.jsonl: {redact_text(str(e))}", exc_info=True)
 
             phase_summary = game.phase_summaries.get(
                 current_phase, "(Summary not generated)"
@@ -828,9 +829,10 @@ async def main():
             cfg["prompts_dir_map"] = {
                 p: str(path) for p, path in cfg["prompts_dir_map"].items()
             }
+        cfg = redact_data(cfg)
         # ----------------------------------------------------------------
-        overview_file.write(json.dumps(model_error_stats) + "\n")
-        overview_file.write(json.dumps(getattr(game, "power_model_map", {})) + "\n")
+        overview_file.write(json.dumps(redact_data(model_error_stats)) + "\n")
+        overview_file.write(json.dumps(redact_data(getattr(game, "power_model_map", {}))) + "\n")
         overview_file.write(json.dumps(cfg) + "\n")
 
     # End the parent MLflow run
