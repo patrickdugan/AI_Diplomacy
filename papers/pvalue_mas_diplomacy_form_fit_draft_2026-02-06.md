@@ -112,6 +112,12 @@ The plots support a cautious claim that Austria becomes slightly more legible wh
 
 Phrase this in the paper as a forecasting gain, e.g., “Forecasts involving Austria exhibit a modest reduction in error under storyworld conditions, consistent with the hypothesis that structured narrative representations increase the legibility of reactive or disposition-driven actors.”
 
+## 11. Narrative Injection Feedback
+
+The `focused_1915_mix_gpt5_mini` run logs show the `forecast_false_concession_p` storyworld acting as a hyper-object that placed a 62% aggression forecast into the agents’ reasoning manifold. Austria interpreted that forecast as a signal that concessions must be backed by verifiable unit-level commitments, England hardened into a maritime-first posture, and Germany justified a “Bait and Bleed” move that aligns with the Paine-style continental trap described earlier (the `storyworld_impact.jsonl` labels it `impact_flag: "explicit"`).
+
+This narrative injection left a Brier score of approximately 0.37—“calibrated but paranoid”—which supports the idea that storyworlds increase epistemic clarity without shifting game strength. The injected forecast created a high-tension Nash equilibrium: concessions could no longer be trusted, so the board paused in defensive deadlock while the agents aligned on the shared storyworld physics.
+
 ## 7. Limitations (Current Stub)
 
 - Small run count (`n=5`) and non-randomized assignment.
