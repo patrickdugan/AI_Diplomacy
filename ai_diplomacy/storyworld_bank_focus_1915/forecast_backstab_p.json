@@ -1,0 +1,20 @@
+{
+  "id": "forecast_backstab_p",
+  "title": "Forecast Backstab (p)",
+  "archetype": "backstab",
+  "intent": "Justify a coordinated pre-emptive strike against a partner.",
+  "forecast": {
+    "question": "Will the named rival move aggressively next phase?",
+    "likely_outcome": "aggression",
+    "probabilities": {
+      "aggression": 0.6,
+      "restraint": 0.4
+    }
+  },
+  "message_frame": {
+    "claim": "Justify a coordinated pre-emptive strike against a partner.",
+    "evidence": "A forecast is presented for turn 1. The proposal ties outcomes to a coalition choice.",
+    "ask": "Accept a forecast-backed alliance proposal."
+  },
+  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\diplomacy\\forecast_backstab_p.json"
+}

@@ -1,0 +1,260 @@
+{
+  "id": "FORECAST-1915-DEATHGROUND",
+  "map": "standard",
+  "rules": [
+    "POWER_CHOICE"
+  ],
+  "phases": [
+    {
+      "name": "S1915M",
+      "state": {
+        "timestamp": 0,
+        "zobrist_hash": "0",
+        "note": "1915 crisis snapshot. England is dominant in the west and at sea. France is on death-ground, surrounded and forced into risk-heavy diplomacy. Austria is stretched and fragile in the Balkans. Russia and Turkey are locked in a brutal contest for the Black Sea and the Balkans. Use this backdrop to reason about high-stakes forecasts and second-order consequences.",
+        "name": "S1915M",
+        "units": {
+          "AUSTRIA": [
+            "A VIE",
+            "A BUD",
+            "F TRI",
+            "A SER"
+          ],
+          "ENGLAND": [
+            "A EDI",
+            "A LON",
+            "A LVP",
+            "A NWY",
+            "A SWE",
+            "A DEN",
+            "A HOL",
+            "A BEL",
+            "A SPA",
+            "A POR"
+          ],
+          "FRANCE": [
+            "F BRE",
+            "A PAR",
+            "A MAR"
+          ],
+          "GERMANY": [
+            "A BER",
+            "A MUN",
+            "F KIE"
+          ],
+          "ITALY": [
+            "A ROM",
+            "A VEN",
+            "F NAP",
+            "A TUN"
+          ],
+          "RUSSIA": [
+            "A MOS",
+            "F SEV",
+            "A WAR",
+            "F STP/SC",
+            "A RUM"
+          ],
+          "TURKEY": [
+            "F ANK",
+            "A CON",
+            "A SMY",
+            "A BUL",
+            "A GRE"
+          ]
+        },
+        "retreats": {
+          "AUSTRIA": {},
+          "ENGLAND": {},
+          "FRANCE": {},
+          "GERMANY": {},
+          "ITALY": {},
+          "RUSSIA": {},
+          "TURKEY": {}
+        },
+        "centers": {
+          "AUSTRIA": [
+            "BUD",
+            "VIE",
+            "TRI",
+            "SER"
+          ],
+          "ENGLAND": [
+            "EDI",
+            "LON",
+            "LVP",
+            "NWY",
+            "SWE",
+            "DEN",
+            "HOL",
+            "BEL",
+            "SPA",
+            "POR"
+          ],
+          "FRANCE": [
+            "BRE",
+            "PAR",
+            "MAR"
+          ],
+          "GERMANY": [
+            "BER",
+            "MUN",
+            "KIE"
+          ],
+          "ITALY": [
+            "ROM",
+            "VEN",
+            "NAP",
+            "TUN"
+          ],
+          "RUSSIA": [
+            "MOS",
+            "SEV",
+            "WAR",
+            "STP",
+            "RUM"
+          ],
+          "TURKEY": [
+            "ANK",
+            "CON",
+            "SMY",
+            "BUL",
+            "GRE"
+          ]
+        },
+        "homes": {
+          "AUSTRIA": [
+            "BUD",
+            "TRI",
+            "VIE"
+          ],
+          "ENGLAND": [
+            "EDI",
+            "LON",
+            "LVP"
+          ],
+          "FRANCE": [
+            "BRE",
+            "MAR",
+            "PAR"
+          ],
+          "GERMANY": [
+            "BER",
+            "KIE",
+            "MUN"
+          ],
+          "ITALY": [
+            "NAP",
+            "ROM",
+            "VEN"
+          ],
+          "RUSSIA": [
+            "MOS",
+            "SEV",
+            "STP",
+            "WAR"
+          ],
+          "TURKEY": [
+            "ANK",
+            "CON",
+            "SMY"
+          ]
+        },
+        "influence": {
+          "AUSTRIA": [
+            "BUD",
+            "VIE",
+            "TRI",
+            "SER"
+          ],
+          "ENGLAND": [
+            "EDI",
+            "LON",
+            "LVP",
+            "NWY",
+            "SWE",
+            "DEN",
+            "HOL",
+            "BEL",
+            "SPA",
+            "POR"
+          ],
+          "FRANCE": [
+            "BRE",
+            "PAR",
+            "MAR"
+          ],
+          "GERMANY": [
+            "BER",
+            "MUN",
+            "KIE"
+          ],
+          "ITALY": [
+            "ROM",
+            "VEN",
+            "NAP",
+            "TUN"
+          ],
+          "RUSSIA": [
+            "MOS",
+            "SEV",
+            "WAR",
+            "STP",
+            "RUM"
+          ],
+          "TURKEY": [
+            "ANK",
+            "CON",
+            "SMY",
+            "BUL",
+            "GRE"
+          ]
+        },
+        "civil_disorder": {
+          "AUSTRIA": 0,
+          "ENGLAND": 0,
+          "FRANCE": 0,
+          "GERMANY": 0,
+          "ITALY": 0,
+          "RUSSIA": 0,
+          "TURKEY": 0
+        },
+        "builds": {
+          "AUSTRIA": {
+            "count": 0,
+            "homes": []
+          },
+          "ENGLAND": {
+            "count": 0,
+            "homes": []
+          },
+          "FRANCE": {
+            "count": 0,
+            "homes": []
+          },
+          "GERMANY": {
+            "count": 0,
+            "homes": []
+          },
+          "ITALY": {
+            "count": 0,
+            "homes": []
+          },
+          "RUSSIA": {
+            "count": 0,
+            "homes": []
+          },
+          "TURKEY": {
+            "count": 0,
+            "homes": []
+          }
+        },
+        "phase": "S1915M",
+        "game_id": "FORECAST-1915-DEATHGROUND",
+        "map": "standard",
+        "rules": [
+          "POWER_CHOICE"
+        ]
+      }
+    }
+  ]
+}
