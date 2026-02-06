@@ -459,38 +459,208 @@ def build_desirability_ast(
 ) -> Dict[str, Any]:
     trust_p = ast_bnumber_property(focal, trust_prop, target, "")
     trust_p2 = ast_bnumber_property(focal, trust_prop, target, witness)
-
-    if kind == "aggressive":
-        trust_blend_weight = 0.35
-        threat_weight = 0.45
-    elif kind == "cooperative":
-        trust_blend_weight = 0.55
-        threat_weight = 0.25
-    else:
-        trust_blend_weight = 0.45
-        threat_weight = 0.35
-
-    trust_mix = {
+    trust_mean = {"type": "Average", "left": trust_p, "right": trust_p2}
+    trust_alignment = {"type": "Proximity", "left": trust_p, "right": trust_p2}
+    trust_logic = {
         "type": "Blend",
-        "left": trust_p,
-        "right": trust_p2,
-        "weight": ast_constant(trust_blend_weight),
+        "left": trust_mean,
+        "right": trust_alignment,
+        "weight": ast_constant(0.35),
     }
 
     if not threat_prop:
-        return trust_mix
+        return trust_logic
 
     threat_p = ast_bnumber_property(focal, threat_prop, target, "")
+    safety = {"type": "ArithmeticNegation", "child": threat_p}
+
+    if kind == "cooperative":
+        # Cooperative choices value high trust, coherent beliefs, and low threat.
+        return {
+            "type": "Blend",
+            "left": trust_logic,
+            "right": safety,
+            "weight": ast_constant(0.28),
+        }
+
     if kind == "aggressive":
-        threat_signal: Dict[str, Any] = threat_p
+        # Aggressive choices model suspicion + threat salience + belief volatility.
+        suspicion = {
+            "type": "Blend",
+            "left": {"type": "ArithmeticNegation", "child": trust_mean},
+            "right": threat_p,
+            "weight": ast_constant(0.62),
+        }
+        volatility = {"type": "ArithmeticNegation", "child": trust_alignment}
+        return {
+            "type": "Blend",
+            "left": suspicion,
+            "right": volatility,
+            "weight": ast_constant(0.36),
+        }
+
+    balanced = {
+        "type": "Blend",
+        "left": trust_logic,
+        "right": safety,
+        "weight": ast_constant(0.45),
+    }
+    return {
+        "type": "Blend",
+        "left": balanced,
+        "right": trust_alignment,
+        "weight": ast_constant(0.2),
+    }
+
+
+def ast_from_keyring(character: str, keyring: List[str]) -> Dict[str, Any]:
+    property_id = keyring[0]
+    perceived_1 = keyring[1] if len(keyring) > 1 else ""
+    perceived_2 = keyring[2] if len(keyring) > 2 else ""
+    return ast_bnumber_property(
+        character_id=character,
+        property_id=property_id,
+        perceived_1=perceived_1,
+        perceived_2=perceived_2,
+    )
+
+
+def extract_delta_from_set_effect(entry: Dict[str, Any]) -> float:
+    to_expr = entry.get("to")
+    if not isinstance(to_expr, dict):
+        return 0.0
+    pointer_type = str(to_expr.get("pointer_type", ""))
+    if pointer_type == "Bounded Number Constant":
+        value = to_expr.get("value", to_expr.get("coefficient", 0.0))
+        if isinstance(value, (int, float)):
+            return float(value)
+        return 0.0
+
+    script_element_type = str(to_expr.get("script_element_type", ""))
+    operator_type = str(to_expr.get("operator_type", "")).lower()
+    if script_element_type != "Bounded Number Operator" or operator_type not in {"addition", "bounded sum"}:
+        return 0.0
+
+    delta = 0.0
+    for operand in to_expr.get("operands", []) or []:
+        if not isinstance(operand, dict):
+            continue
+        if str(operand.get("pointer_type", "")) != "Bounded Number Constant":
+            continue
+        value = operand.get("value", operand.get("coefficient", 0.0))
+        if isinstance(value, (int, float)):
+            delta += float(value)
+    return delta
+
+
+def build_effect_signals(
+    focal: str,
+    target: str,
+    witness: str,
+    trust_prop: str,
+    threat_prop: Optional[str],
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    trust_p = ast_bnumber_property(focal, trust_prop, target, "")
+    trust_p2 = ast_bnumber_property(focal, trust_prop, target, witness)
+    trust_mean = {"type": "Average", "left": trust_p, "right": trust_p2}
+    trust_alignment = {"type": "Proximity", "left": trust_p, "right": trust_p2}
+    trust_signal: Dict[str, Any] = {
+        "type": "Blend",
+        "left": trust_mean,
+        "right": trust_alignment,
+        "weight": ast_constant(0.35),
+    }
+
+    if threat_prop:
+        threat_p = ast_bnumber_property(focal, threat_prop, target, "")
+        threat_signal: Dict[str, Any] = {
+            "type": "Blend",
+            "left": threat_p,
+            "right": {"type": "ArithmeticNegation", "child": trust_alignment},
+            "weight": ast_constant(0.45),
+        }
     else:
-        threat_signal = {"type": "ArithmeticNegation", "child": threat_p}
+        threat_signal = {"type": "ArithmeticNegation", "child": trust_signal}
+    return trust_signal, threat_signal
+
+
+def select_effect_signal(
+    property_id: str,
+    kind: str,
+    trust_signal: Dict[str, Any],
+    threat_signal: Dict[str, Any],
+) -> Dict[str, Any]:
+    prop_lower = property_id.lower()
+    is_threat = "threat" in prop_lower
+
+    if kind == "aggressive":
+        return threat_signal if is_threat else {"type": "ArithmeticNegation", "child": trust_signal}
+    if kind == "cooperative":
+        return {"type": "ArithmeticNegation", "child": threat_signal} if is_threat else trust_signal
+
+    if is_threat:
+        return {
+            "type": "Blend",
+            "left": threat_signal,
+            "right": {"type": "ArithmeticNegation", "child": trust_signal},
+            "weight": ast_constant(0.5),
+        }
+    return {
+        "type": "Blend",
+        "left": trust_signal,
+        "right": {"type": "ArithmeticNegation", "child": threat_signal},
+        "weight": ast_constant(0.3),
+    }
+
+
+def build_effect_value_ast(
+    base: Dict[str, Any],
+    signal: Dict[str, Any],
+    delta: float,
+    kind: str,
+) -> Dict[str, Any]:
+    magnitude = max(0.03, min(0.4, abs(delta)))
+    if delta < -1e-6:
+        # Negative deltas are rendered as explicit reversals.
+        reversal = {
+            "type": "Blend",
+            "left": {"type": "ArithmeticNegation", "child": base},
+            "right": {"type": "ArithmeticNegation", "child": signal},
+            "weight": ast_constant(0.4),
+        }
+        return {
+            "type": "Blend",
+            "left": base,
+            "right": reversal,
+            "weight": ast_constant(magnitude),
+        }
+
+    if kind == "cooperative":
+        blended = {
+            "type": "Blend",
+            "left": base,
+            "right": signal,
+            "weight": ast_constant(min(0.65, magnitude + 0.15)),
+        }
+        return {
+            "type": "Nudge",
+            "base": blended,
+            "nudge": ast_constant(min(0.6, magnitude + 0.05)),
+        }
+
+    if kind == "aggressive":
+        return {
+            "type": "Blend",
+            "left": base,
+            "right": signal,
+            "weight": ast_constant(min(0.75, magnitude + 0.2)),
+        }
 
     return {
         "type": "Blend",
-        "left": trust_mix,
-        "right": threat_signal,
-        "weight": ast_constant(threat_weight),
+        "left": base,
+        "right": signal,
+        "weight": ast_constant(min(0.55, magnitude + 0.1)),
     }
 
 
@@ -510,6 +680,8 @@ def convert_after_effects_to_effects(
     target: str,
     witness: str,
     trust_prop: str,
+    threat_prop: Optional[str],
+    kind: str,
     profile: Dict[str, float],
 ) -> List[Dict[str, Any]]:
     effects: List[Dict[str, Any]] = []
@@ -517,6 +689,14 @@ def convert_after_effects_to_effects(
     after_effects = reaction.get("after_effects")
     if not isinstance(after_effects, list):
         after_effects = []
+
+    trust_signal, threat_signal = build_effect_signals(
+        focal=focal,
+        target=target,
+        witness=witness,
+        trust_prop=trust_prop,
+        threat_prop=threat_prop,
+    )
 
     for entry in after_effects:
         if not isinstance(entry, dict):
@@ -534,10 +714,19 @@ def convert_after_effects_to_effects(
         if not character:
             continue
         property_id = keyring[0]
-        value_ast = legacy_to_ast(
-            entry.get("to"),
-            fallback_character=character,
-            fallback_property=property_id,
+        base = ast_from_keyring(character, keyring)
+        delta = extract_delta_from_set_effect(entry)
+        signal = select_effect_signal(
+            property_id=property_id,
+            kind=kind,
+            trust_signal=trust_signal,
+            threat_signal=threat_signal,
+        )
+        value_ast = build_effect_value_ast(
+            base=base,
+            signal=signal,
+            delta=delta,
+            kind=kind,
         )
         fingerprint = (character, property_id, json.dumps(value_ast, sort_keys=True))
         if fingerprint in seen:
@@ -553,17 +742,19 @@ def convert_after_effects_to_effects(
         seen.add(fingerprint)
 
     if not effects:
-        fallback_mix = {
-            "type": "Blend",
-            "left": ast_bnumber_property(focal, trust_prop, target, ""),
-            "right": ast_bnumber_property(focal, trust_prop, target, witness),
-            "weight": ast_constant(0.5),
-        }
-        fallback_value = {
-            "type": "Nudge",
-            "base": fallback_mix,
-            "nudge": ast_constant(abs(profile["eff_p"]) or 0.05),
-        }
+        fallback_base = ast_bnumber_property(focal, trust_prop, target, "")
+        fallback_signal = select_effect_signal(
+            property_id=trust_prop,
+            kind=kind,
+            trust_signal=trust_signal,
+            threat_signal=threat_signal,
+        )
+        fallback_value = build_effect_value_ast(
+            base=fallback_base,
+            signal=fallback_signal,
+            delta=float(profile["eff_p"]),
+            kind=kind,
+        )
         effects.append(
             {
                 "type": "SetBNumberProperty",
@@ -574,11 +765,19 @@ def convert_after_effects_to_effects(
         )
 
     if not any(ast_has_p2(effect.get("value")) for effect in effects):
-        p2_value = {
-            "type": "Nudge",
-            "base": ast_bnumber_property(focal, trust_prop, target, witness),
-            "nudge": ast_constant(abs(profile["eff_p2"]) or 0.04),
-        }
+        p2_base = ast_bnumber_property(focal, trust_prop, target, witness)
+        p2_signal = select_effect_signal(
+            property_id=trust_prop,
+            kind=kind,
+            trust_signal=trust_signal,
+            threat_signal=threat_signal,
+        )
+        p2_value = build_effect_value_ast(
+            base=p2_base,
+            signal=p2_signal,
+            delta=float(profile["eff_p2"]),
+            kind=kind,
+        )
         effects.append(
             {
                 "type": "SetBNumberProperty",
@@ -668,6 +867,8 @@ def update_reaction(
         target=target,
         witness=witness,
         trust_prop=trust_prop,
+        threat_prop=threat_prop,
+        kind=kind,
         profile=profile,
     )
     if reaction.get("effects") != effects:
