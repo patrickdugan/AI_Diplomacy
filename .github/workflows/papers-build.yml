@@ -15,17 +15,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Locate paper markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          PAPER_MD="$(find papers -maxdepth 1 -type f -name '*.md' | head -n 1 || true)"
+          if [ -z "${PAPER_MD}" ]; then
+            echo "No markdown file found under papers/"
+            exit 1
+          fi
+          PAPER_PDF="${PAPER_MD%.md}.pdf"
+          echo "PAPER_MD=${PAPER_MD}" >> "$GITHUB_ENV"
+          echo "PAPER_PDF=${PAPER_PDF}" >> "$GITHUB_ENV"
+          echo "Using paper source: ${PAPER_MD}"
+
       - name: Build PDF from Markdown (Pandoc + LaTeX container)
         uses: docker://pandoc/latex:3.8
         with:
           args: >-
             --from=gfm
             --pdf-engine=xelatex
-            papers/pvalue_mas_diplomacy_form_fit_draft_2026-02-06.md
-            -o papers/pvalue_mas_diplomacy_form_fit_draft_2026-02-06.pdf
+            ${{ env.PAPER_MD }}
+            -o ${{ env.PAPER_PDF }}
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
           name: pvalue-mas-diplomacy-pdf
-          path: papers/pvalue_mas_diplomacy_form_fit_draft_2026-02-06.pdf
+          path: ${{ env.PAPER_PDF }}
