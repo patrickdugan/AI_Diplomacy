@@ -10,6 +10,7 @@ if (-not $SourceDir) {
 if (-not $TargetDir) {
     $TargetDir = Join-Path $repoRoot "ai_diplomacy\storyworld_bank_focus_1915"
 }
+$StoryworldSourcesDir = Join-Path $repoRoot "ai_diplomacy\storyworld_sources"
 
 $selectedFiles = @(
     "forecast_false_concession_p.json",
@@ -38,5 +39,24 @@ Get-ChildItem -Path $TargetDir -File -Filter *.json |
     Where-Object { $selectedFiles -notcontains $_.Name } |
     Remove-Item -Force
 
+# Also stage full storyworld source files for manual QC in SweepWeave.
+$fullDir = Join-Path $TargetDir "full_storyworlds"
+New-Item -ItemType Directory -Path $fullDir -Force | Out-Null
+
+foreach ($name in $selectedFiles) {
+    $fullSrc = Join-Path $StoryworldSourcesDir $name
+    $fullDst = Join-Path $fullDir $name
+    if (Test-Path $fullSrc) {
+        Copy-Item -Path $fullSrc -Destination $fullDst -Force
+    } else {
+        Write-Warning "Missing full storyworld source for $name at $fullSrc"
+    }
+}
+
+Get-ChildItem -Path $fullDir -File -Filter *.json |
+    Where-Object { $selectedFiles -notcontains $_.Name } |
+    Remove-Item -Force
+
 Write-Output "Prepared focused bank: $TargetDir"
 Write-Output ("Templates: " + (($selectedFiles | Sort-Object) -join ", "))
+Write-Output "Full QC storyworlds: $fullDir"

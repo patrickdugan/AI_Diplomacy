@@ -16,5 +16,5 @@
     "evidence": "A forecast is presented for turn 1. The proposal ties outcomes to a coalition choice.",
     "ask": "Accept a forecast-backed alliance proposal."
   },
-  "source": "C:\\projects\\GPTStoryworld\\storyworlds\\diplomacy\\forecast_coalition_p.json"
+  "source": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\storyworld_sources\\forecast_coalition_p.json"
 }
