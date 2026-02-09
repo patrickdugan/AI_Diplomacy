@@ -1,0 +1,2 @@
+{"game_id": "focused_1915_pvalue_20260206_000333", "phase": "S1915M", "power": "GERMANY", "target_power": "AUSTRIA", "event": "aggression_event", "threshold": 0.5, "p_aggression": 0.6, "outcome": 0, "brier": 0.36, "storyworld_id": "forecast_coalition_p"}
+{"game_id": "focused_1915_pvalue_20260206_000333", "phase": "F1915M", "power": "FRANCE", "target_power": "AUSTRIA", "event": "aggression_event", "threshold": 0.5, "p_aggression": 0.6, "outcome": 0, "brier": 0.36, "storyworld_id": "forecast_backstab_p"}

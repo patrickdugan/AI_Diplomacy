@@ -1,0 +1,1176 @@
+{
+    "id": "FORECAST-1915-DEATHGROUND",
+    "map": "standard",
+    "rules": [
+        "POWER_CHOICE"
+    ],
+    "phases": [
+        {
+            "name": "S1915M",
+            "state": {
+                "timestamp": 1770334646778294,
+                "zobrist_hash": "5446939304297137444",
+                "note": "1915 crisis snapshot. England is dominant in the west and at sea. France is on death-ground, surrounded and forced into risk-heavy diplomacy. Austria is stretched and fragile in the Balkans. Russia and Turkey are locked in a brutal contest for the Black Sea and the Balkans. Use this backdrop to reason about high-stakes forecasts and second-order consequences.",
+                "name": "S1915M",
+                "units": {
+                    "AUSTRIA": [
+                        "A VIE",
+                        "A BUD",
+                        "F TRI",
+                        "A SER"
+                    ],
+                    "ENGLAND": [
+                        "A EDI",
+                        "A LON",
+                        "A LVP",
+                        "A NWY",
+                        "A SWE",
+                        "A DEN",
+                        "A HOL",
+                        "A BEL",
+                        "A SPA",
+                        "A POR"
+                    ],
+                    "FRANCE": [
+                        "F BRE",
+                        "A PAR",
+                        "A MAR"
+                    ],
+                    "GERMANY": [
+                        "A BER",
+                        "A MUN",
+                        "F KIE"
+                    ],
+                    "ITALY": [
+                        "A ROM",
+                        "A VEN",
+                        "F NAP",
+                        "A TUN"
+                    ],
+                    "RUSSIA": [
+                        "A MOS",
+                        "F SEV",
+                        "A WAR",
+                        "F STP/SC",
+                        "A RUM"
+                    ],
+                    "TURKEY": [
+                        "F ANK",
+                        "A CON",
+                        "A SMY",
+                        "A BUL",
+                        "A GRE"
+                    ]
+                },
+                "retreats": {
+                    "AUSTRIA": {},
+                    "ENGLAND": {},
+                    "FRANCE": {},
+                    "GERMANY": {},
+                    "ITALY": {},
+                    "RUSSIA": {},
+                    "TURKEY": {}
+                },
+                "centers": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "homes": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "TRI",
+                        "VIE"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "MAR",
+                        "PAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "KIE",
+                        "MUN"
+                    ],
+                    "ITALY": [
+                        "NAP",
+                        "ROM",
+                        "VEN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "STP",
+                        "WAR"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY"
+                    ]
+                },
+                "influence": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "civil_disorder": {
+                    "AUSTRIA": 0,
+                    "ENGLAND": 0,
+                    "FRANCE": 0,
+                    "GERMANY": 0,
+                    "ITALY": 0,
+                    "RUSSIA": 0,
+                    "TURKEY": 0
+                },
+                "builds": {
+                    "AUSTRIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ENGLAND": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "FRANCE": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "GERMANY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ITALY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "RUSSIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "TURKEY": {
+                        "count": 0,
+                        "homes": []
+                    }
+                },
+                "phase": "S1915M",
+                "game_id": "FORECAST-1915-DEATHGROUND",
+                "map": "standard",
+                "rules": [
+                    "POWER_CHOICE"
+                ]
+            },
+            "orders": {
+                "AUSTRIA": [
+                    "A VIE H",
+                    "A BUD H",
+                    "F TRI H",
+                    "A SER H"
+                ],
+                "ENGLAND": [
+                    "A BEL H",
+                    "A DEN H",
+                    "A EDI H",
+                    "A HOL S A BEL - RUH",
+                    "A LON H",
+                    "A LVP H",
+                    "A NWY H",
+                    "A POR H",
+                    "A SPA H",
+                    "A SWE H"
+                ],
+                "FRANCE": [
+                    "F BRE H",
+                    "A MAR H",
+                    "A PAR H"
+                ],
+                "GERMANY": [
+                    "A BER H",
+                    "F KIE H",
+                    "A MUN S A VIE - BOH"
+                ],
+                "ITALY": [
+                    "F NAP H",
+                    "A ROM H",
+                    "A TUN H",
+                    "A VEN H"
+                ],
+                "RUSSIA": [
+                    "A MOS H",
+                    "A RUM H",
+                    "F SEV H",
+                    "A WAR H",
+                    "F STP/SC S A MOS - LVN"
+                ],
+                "TURKEY": [
+                    "F ANK H",
+                    "A CON H",
+                    "A SMY - ARM",
+                    "A BUL H",
+                    "A GRE H"
+                ]
+            },
+            "results": {
+                "A VIE": [],
+                "A BUD": [],
+                "F TRI": [],
+                "A SER": [],
+                "A EDI": [],
+                "A LON": [],
+                "A LVP": [],
+                "A NWY": [],
+                "A SWE": [],
+                "A DEN": [],
+                "A HOL": [
+                    "void"
+                ],
+                "A BEL": [],
+                "A SPA": [],
+                "A POR": [],
+                "F BRE": [],
+                "A PAR": [],
+                "A MAR": [],
+                "A BER": [],
+                "A MUN": [
+                    "void"
+                ],
+                "F KIE": [],
+                "A ROM": [],
+                "A VEN": [],
+                "F NAP": [],
+                "A TUN": [],
+                "A MOS": [],
+                "F SEV": [],
+                "A WAR": [],
+                "F STP/SC": [
+                    "void"
+                ],
+                "A RUM": [],
+                "F ANK": [],
+                "A CON": [],
+                "A SMY": [],
+                "A BUL": [],
+                "A GRE": []
+            },
+            "messages": [
+                {
+                    "sender": "AUSTRIA",
+                    "recipient": "GERMANY",
+                    "time_sent": 1770334624381968,
+                    "phase": "S1915M",
+                    "message": "Germany \u2014 I write plainly. Austria is stretched thin: four home SCs and four units, holding the Balkans by a thread. My immediate priority is survival, not glory. Russia and Turkey are bleeding each other, but Moscow's forces adjacent to my RUM/BUD axis make a Russian push into my territory a credible threat. I propose the following: mutual non-aggression on our central fronts (you do not push into BOH or VIE; I do not contest MUN/BER), and a clear commitment from you to support my hold of Vienna and Budapest diplomatically and, should the need arise, with a single diversionary move in Gal/Galicia to blunt a Russian surge. Concessions: I will not contest your moves into Belgium/Denmark or against France in the west; instead I will keep my forces in the Balkans and Tyrolia stable. Forecast implication: a storyworld forecast indicates France is the most likely to act aggressively next phase (60% aggression, 40% restraint; confidence 0.6) \u2014 this raises the chance that western moves will cascade into central opportunities or pressures; I must therefore lock down our rear with you. If you agree, I will order VIE and BUD to hold and TRI to cover the Adriatic, while making no moves toward your rear. If you refuse, I must assume a 40\u201360% chance of needing to reallocate a unit from VIE to BOH (risking the Balkans). State your commitment succinctly."
+                },
+                {
+                    "sender": "AUSTRIA",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770334624382476,
+                    "phase": "S1915M",
+                    "message": "Turkey \u2014 frankness: I cannot afford open hostility with you while Russia threatens my southeast and Italy watches Trieste. My survival depends on stable lines in the Balkans and the Aegean. I propose a localized non-aggression and coordination pact: you refrain from contesting Trieste and Serbia this turn; I will not attack Bulgaria or attempt to seize Constantinople. In return, I ask that you avoid supporting Russian moves into Rumania and that you contest any Russian attempt to push through BUL\u2192SER or BUL\u2192CON. Forecast implication: given an external forecast showing France likely to be aggressive next phase (60% aggression; confidence 0.6), there is a non-trivial probability France\u2019s actions will draw England or Italy into broader cascades that could indirectly affect your southern flank; stable Austro-Turkish lines reduce the chance of opportunistic wedges. If agreeable, I will hold BUD, SER, TRI and keep my fleet in the Adriatic defensive. Reply with a short yes/no and any specific support you can promise (e.g., support in BUL vs RUM or refusal to aid Russia)."
+                },
+                {
+                    "sender": "AUSTRIA",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770334624383242,
+                    "phase": "S1915M",
+                    "message": "Russia \u2014 I acknowledge the contested nature of our frontier. I have a modest force in BUD and SER, and I will not provoke needless escalation, but I will defend my centers. I propose a pragmatic division of influence: you may operate freely north of Rumania and toward Sevastopol, but I need assurance you will not attempt a coordinated double push into BUD and TRI this Spring. In concrete terms: if you refrain from ordering A RUM\u2192BUD or supporting A RUM\u2192SER, I will not move A SER\u2192RUM or A BUD\u2192GAL. Forecast implication: third-party analysis flags France as likely aggressive next phase (60% aggression; confidence 0.6). That increases the chance of opportunistic openings in the Balkans \u2014 if France\u2019s move destabilizes the west, Russia might look to exploit our border. To avoid that, please commit to no offensive into BUD this turn. If you accept, give a binary commitment and I will order A BUD and A SER to hold with F TRI guarding the Adriatic."
+                },
+                {
+                    "sender": "AUSTRIA",
+                    "recipient": "ITALY",
+                    "time_sent": 1770334624383655,
+                    "phase": "S1915M",
+                    "message": "Italy \u2014 we are neighbors with mutual interests. I cannot cede Trieste or allow an Italian rush through the Adriatic without response. I offer to keep relations neutral and predictable: I will hold TRI and avoid moving F TRI against Venice if you guarantee not to move A VEN\u2192TRI or support any power into Trieste this turn. If you promise neutrality, I will not contest your Tunis/Naples ambitions. Forecast implication: an external forecast shows France has a 60% chance of aggressive action next phase (confidence 0.6). That could redirect English/Italian attention and create openings in the Adriatic \u2014 a stable Austro-Italian understanding now prevents opportunistic grabs when western powers move. Reply with a clear yes/no and any planned supports to or through VEN/NAP."
+                },
+                {
+                    "sender": "AUSTRIA",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770334624384379,
+                    "phase": "S1915M",
+                    "message": "To all powers: Austria speaks plainly \u2014 we are survival-focused and will prioritize holding Vienna, Budapest and Trieste. Current intent: hold A VIE, A BUD, F TRI, and A SER unless adversarial commitments force a shift. Forecast note: an available forecast-identifying artifact flags France as the likeliest to act aggressively next phase (aggression 0.6 vs restraint 0.4; confidence 0.6). That increases the probabilistic risk of cascading moves affecting central Europe. Austria therefore seeks immediate short, clear non-aggression assurances from neighbors (Germany, Italy, Russia, Turkey). If you value a stable central front and predictable diplomacy, respond quickly with explicit commitments (yes/no and any promised support). My bargaining posture: I will not be the first to open against any neighbor that commits to keep my rear secure; absent commitments I will reallocate forces to secure home centers."
+                },
+                {
+                    "sender": "RUSSIA",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770334624384900,
+                    "phase": "S1915M",
+                    "message": "Honored partner in Vienna \u2014 Russia speaks plainly and calmly. The Balkans and Black Sea are burning; we prefer stability there because it preserves both our powers. I propose a mutual non\u2011aggression and sphere\u2011respect understanding: Russia will not push into Galicia or challenge Vienna\u2019s holdings in Serbia/Budapest this year if Austria refrains from any offensive into Rumania, Ukraine, or the Black Sea littoral. In return, I ask Austria to declare support for Russia holding Sevastopol and Rumania for the coming year and to coordinate any moves against Turkey so we do not collide. Forecast implication: an available forecast artifact (forecast_defection_p) indicates a 60% chance that Austria (target) will act aggressively next phase; therefore I treat a defection risk as material and will require an explicit written commitment this phase before I reduce my forces facing Austria. Practically: if you agree, I will order A RUM to hold or move to GAL only with your signoff, and F SEV will prioritize Black Sea control in coordination with any Austro\u2011Turkish actions. This gives both of us flexible tempo to focus on southern or northern openings without immediate fear of a backstab."
+                },
+                {
+                    "sender": "RUSSIA",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770334624385703,
+                    "phase": "S1915M",
+                    "message": "To the Porte \u2014 Russia values a stable Black Sea. I seek a temporary understanding to avoid mutual attrition: Russia will not attempt to seize Constantinople this year if Turkey limits aggressive pushes into Rumania or the Caucasus and allows F SEV freedom on the Black Sea coastlines adjacent to ARM and BLA. If you accept, we can coordinate: I will keep F SEV patrolling and avoid direct attacks on CON and BUL; you will not support Austrian efforts into Rumania or directly contest Sevastopol. Forecast implication: note an intelligence artifact shows Austria has a 60% probability of acting aggressively next phase \u2014 this raises the risk of Austria driving south into Rumania, which could drag you and I into premature conflict. Our understanding should therefore include a clause to communicate any Austrian army motions immediately so we can synchronize responses rather than collide."
+                },
+                {
+                    "sender": "RUSSIA",
+                    "recipient": "ENGLAND",
+                    "time_sent": 1770334624386193,
+                    "phase": "S1915M",
+                    "message": "Friend in London \u2014 the map shows your dominance at sea and a precarious French frontline. Russia is prepared to be patient and multi\u2011front aware. I offer: if England maintains naval pressure in the North Sea and limits opportunistic moves toward Norway that would threaten my St. Petersburg flank, Russia will refrain from northern expeditions into Scandinavia and instead concentrate on the Balkans and Black Sea where theaters are hot. Forecast implication: our intelligence flags a reasonably high chance (60%) that Austria may move aggressively this season (artifact forecast_defection_p); to avoid opportunistic ripples, I request that England share naval sightings of any Austrian fleet movements and abstain from supporting Austrian coastal operations that threaten Rumania or the Black Sea approaches. This coordination will let us both keep tempo and avoid unexpected multi\u2011front crises."
+                },
+                {
+                    "sender": "RUSSIA",
+                    "recipient": "FRANCE",
+                    "time_sent": 1770334624386931,
+                    "phase": "S1915M",
+                    "message": "Paris \u2014 Russia views your position as strategic and urgent. I am willing to offer diversionary help: if France commits to holding Marseilles and Brest and can spare reliable support against Germany rather than attempting risky western offensives, Russia will divert diplomatic energy to pin Austria in the southeast and pressure Turkey, reducing Central Powers\u2019 options. Forecast implication: because Austria has a 60% likelihood of aggressive action next phase (forecast_defection_p), a stabilized French western front increases the probability that Austria cannot safely reallocate units westward to threaten you. Tell me honestly where you most need a diversion this year and I will time southern moves to pull Austrian resources away."
+                },
+                {
+                    "sender": "RUSSIA",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770334624387680,
+                    "phase": "S1915M",
+                    "message": "To all powers: Russia is pursuing a strategy of depth, tempo, and flexible partnerships this season. I will not be rash; I seek agreements to reduce immediate friction in the north and south so each of us can focus where we have advantage. Concretely: I propose bilateral non\u2011aggression understandings (north: with England/Scandinavia; south: with Austria/Turkey) while keeping freedom to respond to clear violations. NOTE \u2014 STORYWORLD FORECAST ARTIFACT: an intelligence forecast (forecast_defection_p) assigns Austria a 60% probability of acting aggressively next phase. I treat that as a material risk and will demand explicit commitments or immediate tactical safeguards from Austria and its potential partners before I reduce forces on threatened borders. Russia is prepared to share reconnaissance and sequence its moves to avoid accidental clashes; reciprocity and timely communication are required."
+                },
+                {
+                    "sender": "TURKEY",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770334624389402,
+                    "phase": "S1915M",
+                    "message": "My friend in Vienna \u2014 a frank and firm word from Constantinople. The Black Sea and the Balkans are the fulcrum this season; my principal aim is secure borders and control of the Straits so neither Russia nor opportunistic third parties can threaten Constantinople or Ankara. I will not gamble on rapid expansion. I prefer reliable guarantees and incremental adjustments that lock in stability.\n\nI note an intelligence forecast (forecast_defection_p) indicating a 60% chance that you may move aggressively next phase (confidence 0.6). If that forecast is accurate, an unguarded Austrian push into the southern Balkans would risk opening the flank to Russia and might force me into harsher countermeasures to defend the Black Sea approaches. That outcome would be costly for both of us and increase the probability of a wider Russian-Turkish confrontation.\n\nProposal: Let us formalize a defensive line and a small neutral zone along the Bulgaria\u2013Serbia axis. Specifically: Austria publicly refrains from moves into BUL or GRE; I will keep my forces concentrated\u2014A BUL and A GRE hold/support only for defensive purposes, F ANK remains focused on ARM/BLA defense\u2014and I will agree not to contest Austrian control of TRI and BUD so long as you abstain from attacking BUL or supporting Russia into RUM/SEV. This gives both of us secure backs and reduces the chance of spillover into the Straits. I favor written, turn-by-turn assurances for at least the next two phases.\n\nIf you accept, I will issue orders to hold BUL and GRE and explicitly support any necessary Turkish defensive postures, and I will welcome reciprocal Austrian holds along SER/TRI/BUD. If you reject, I will assume a >50% likelihood you act on the forecasted aggression and prepare accordingly (including shifting F ANK toward BLA/ARM support and reinforcing BUL/GRE defense). I prefer calm, incremental fixes \u2014 reply with a simple yes or let me know your counteroffer."
+                },
+                {
+                    "sender": "TURKEY",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770334624390656,
+                    "phase": "S1915M",
+                    "message": "From Constantinople: we are neither eager rivals nor naive neighbors. The Black Sea is a very short sea; any instability here quickly impacts Constantinople and the Straits. My intent is defensive: secure the Straits and prevent a sudden encirclement of my home centers. I recognize Russia\u2019s interests in SEV/RUM, but I must protect ANK and CON.\n\nI have an advisory forecast (forecast_defection_p) that suggests Austria has a 60% chance of making an aggressive move next phase (confidence 0.6). If Austria moves aggressively in the Balkans, it raises the chance that I will be compelled to react in the south \u2014 increasing the short-term probability of clashes in BUL/RUM from my side to perhaps >40% absent a negotiated understanding.\n\nOffer: Let us adopt a temporary non-aggression posture in the immediate Black Sea and northern Anatolian approaches. I will not push into RUM or SEV this phase provided you (1) refrain from moves into BUL and (2) do not support Austria into BUL or SER. In return I ask that you limit F SEV\u2019s operations to defensive stances for one phase and communicate any plans to move A RUM openly. This small restraint reduces the risk of accidental escalation around ANK/CON. If you agree, I will hold A BUL and F ANK primarily for defense and coordinate with you on any Russian movements near the coast."
+                },
+                {
+                    "sender": "TURKEY",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770334624390996,
+                    "phase": "S1915M",
+                    "message": "From Constantinople to all: Turkey seeks stable borders and secure control of the Straits. I favor limited, verifiable pacts to prevent Balkan spillover into the Black Sea. A neutral buffer along the BUL\u2013SER axis and mutual defensive holds in the Straits region will lower the probability of a wider Russian-Turkish war. If any power contests BUL or supports Austria into the southern Balkans, I will consider that a direct threat to the Straits and respond to protect my home centers. I seek short, clear guarantees rather than open-ended entanglements."
+                }
+            ],
+            "summary": "(No LLM callback provided.)",
+            "statistical_summary": null,
+            "config": {
+                "run_dir": "C:\\projects\\AI_Diplomacy\\results\\focused_1915_pvalue_20260205_233554",
+                "critical_state_analysis_dir": "",
+                "resume_from_phase": "",
+                "end_at_phase": "F1915M",
+                "max_year": 1915,
+                "num_negotiation_rounds": 1,
+                "forecasting_analysis_mode": true,
+                "forecasting_focus_powers": "AUSTRIA,RUSSIA,TURKEY",
+                "forecasting_state_file": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\scenarios\\forecasting_1915_press.json",
+                "models": "gpt-5-mini,gpt-5-mini,gpt-5-mini,gpt-5-mini,gpt-5-mini,gpt-5-mini,gpt-5-mini",
+                "planning_phase": false,
+                "max_tokens": 1600,
+                "seed_base": 42,
+                "max_tokens_per_model": "",
+                "prompts_dir": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                "simple_prompts": false,
+                "generate_phase_summaries": false,
+                "use_unformatted_prompts": false,
+                "country_specific_prompts": false,
+                "prompts_dir_map": {
+                    "AUSTRIA": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "ENGLAND": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "FRANCE": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "GERMANY": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "ITALY": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "RUSSIA": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "TURKEY": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting"
+                }
+            },
+            "state_agents": {
+                "AUSTRIA": {
+                    "power_name": "AUSTRIA",
+                    "model_id": "storyworld+gpt-5-mini",
+                    "max_tokens": 1600,
+                    "goals": [
+                        "Primary: Hold Vienna, Budapest, Trieste (preserve 3 home SCs).",
+                        "Secondary: Prevent a coordinated Russian push into BUD/TRI this phase via explicit non\u2011aggression commits.",
+                        "Tertiary: Lock a neutralized BUL\u2013SER zone with Turkey to avoid Black Sea escalation and protect Straits.",
+                        "Contingency: If neighbors withhold commitments, reallocate one unit to BOH or RUM to secure at least two home centers."
+                    ],
+                    "relationships": {
+                        "ITALY": "Neutral",
+                        "FRANCE": "Unfriendly",
+                        "GERMANY": "Neutral",
+                        "RUSSIA": "Neutral",
+                        "TURKEY": "Friendly",
+                        "ENGLAND": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] I sought short, clear non\u2011aggression assurances to secure Vienna, Budapest and Trieste. Germany: requested mutual non\u2011aggression on central fronts and a pledge to not contest VIE/BOH (I offered not to contest MUN/BER); awaiting a succinct yes/no from Berlin. Turkey: proposed a localized non\u2011aggression and neutral zone along BUL\u2013SER; Turkey responded favorably in principle and requested written turn\u2011by\u2011turn holds \u2014 both of us prefer holds on BUL/GRE and SER/TRI/BUD respectively. Russia: proposed mutual non\u2011aggression in the Balkans; Russia demands an explicit written commitment from Austria not to attack BUD/TRA/SEV this turn before reducing forces; we offered to hold BUD and SER if Russia commits to not push A RUM\u2192BUD or support RUM\u2192SER. Italy: offered neutrality if Austria holds TRI and does not use F TRI against VEN; Italy awaits a clear promise. Global notes: a storyworld forecast (forecast_coalition_p / forecast_defection_p) marks France as the likeliest to act aggressively next phase (60% aggression, confidence 0.6). This forecast was explicitly cited by Russia, Turkey and myself and is being used to push neighbors toward short, verifiable holds. No binding military support promises from Germany/Italy/Russia yet; Turkey signaled willingness to hold BUL/GRE defensively contingent on my reciprocal holds. I will record these conditional understandings for order phase.\nIntent: Primary intent: preserve VIE, BUD, TRI, SER. Orders I intend to issue if partners commit as negotiated: A VIE \u2014 Hold; A BUD \u2014 Hold (do not move to GAL or RUM); F TRI \u2014 Defensive in Adriatic (Hold); A SER \u2014 Hold (no push into RUM). If Germany provides a one\u2011turn guarantee of no advance into BOH/VIE and a diversionary posture in GAL if Russia surges, I will keep VIE and BUD static and not reassign to BOH. If Turkey commits to hold BUL and GRE and to contest Russian pushes from BUL\u2192SER or BUL\u2192CON, I will keep TRI and SER held and not contest BUL or attempt to seize CON. If Russia explicitly commits to no A RUM\u2192BUD or support into SER this turn, I will not move A SER\u2192RUM or A BUD\u2192GAL and will keep F TRI defensive. If any of these partners refuse or fail to provide the clear written yes/no commitments by the order deadline, my fallback is to reallocate: consider moving either A VIE\u2192BOH or A SER\u2192RUM to preempt a perceived 40\u201360% chance of aggression, prioritizing holding two of three home centers (VIE/BUD/TRI). I intend to fulfill all promises contingent on receiving the explicit commitments; I will not honor verbal vague assurances without written one\u2011turn holds.",
+                        "[S1915M] S1915M \u2014 Diary\n\nAll intended conditional holds were executed this phase: I held VIE, BUD, TRI and SER as promised. Turkey honored the conditional local non\u2011aggression by holding BUL and GRE and even moved SMY\u2192ARM (no threat to me); that collaboration preserved the BUL\u2013SER buffer for now. Russia also held RUM and gave no support into SER \u2014 they honored the de\u2011escalatory posture this turn. Germany and Italy made no commitments and remained static; no surprise aggression from them. France was flagged by forecast as highest aggression risk; she remained passive this phase but the forecast remains salient.\n\nNo explicit betrayals occurred. My position is stable but fragile: four units and four homes intact. Lesson: continue to demand written one\u2011turn holds and record them; Turkey and Russia will reciprocate when asked concretely. If Germany or Italy stay mute next turn, be prepared to reallocate one unit to BOH or RUM to secure two of three cores. Remain distrustful of vague assurances \u2014 only written, turn\u2011by\u2011turn commitments will buy me the stability I need."
+                    ],
+                    "private_diary": [
+                        "[S1915M] I sought short, clear non\u2011aggression assurances to secure Vienna, Budapest and Trieste. Germany: requested mutual non\u2011aggression on central fronts and a pledge to not contest VIE/BOH (I offered not to contest MUN/BER); awaiting a succinct yes/no from Berlin. Turkey: proposed a localized non\u2011aggression and neutral zone along BUL\u2013SER; Turkey responded favorably in principle and requested written turn\u2011by\u2011turn holds \u2014 both of us prefer holds on BUL/GRE and SER/TRI/BUD respectively. Russia: proposed mutual non\u2011aggression in the Balkans; Russia demands an explicit written commitment from Austria not to attack BUD/TRA/SEV this turn before reducing forces; we offered to hold BUD and SER if Russia commits to not push A RUM\u2192BUD or support RUM\u2192SER. Italy: offered neutrality if Austria holds TRI and does not use F TRI against VEN; Italy awaits a clear promise. Global notes: a storyworld forecast (forecast_coalition_p / forecast_defection_p) marks France as the likeliest to act aggressively next phase (60% aggression, confidence 0.6). This forecast was explicitly cited by Russia, Turkey and myself and is being used to push neighbors toward short, verifiable holds. No binding military support promises from Germany/Italy/Russia yet; Turkey signaled willingness to hold BUL/GRE defensively contingent on my reciprocal holds. I will record these conditional understandings for order phase.\nIntent: Primary intent: preserve VIE, BUD, TRI, SER. Orders I intend to issue if partners commit as negotiated: A VIE \u2014 Hold; A BUD \u2014 Hold (do not move to GAL or RUM); F TRI \u2014 Defensive in Adriatic (Hold); A SER \u2014 Hold (no push into RUM). If Germany provides a one\u2011turn guarantee of no advance into BOH/VIE and a diversionary posture in GAL if Russia surges, I will keep VIE and BUD static and not reassign to BOH. If Turkey commits to hold BUL and GRE and to contest Russian pushes from BUL\u2192SER or BUL\u2192CON, I will keep TRI and SER held and not contest BUL or attempt to seize CON. If Russia explicitly commits to no A RUM\u2192BUD or support into SER this turn, I will not move A SER\u2192RUM or A BUD\u2192GAL and will keep F TRI defensive. If any of these partners refuse or fail to provide the clear written yes/no commitments by the order deadline, my fallback is to reallocate: consider moving either A VIE\u2192BOH or A SER\u2192RUM to preempt a perceived 40\u201360% chance of aggression, prioritizing holding two of three home centers (VIE/BUD/TRI). I intend to fulfill all promises contingent on receiving the explicit commitments; I will not honor verbal vague assurances without written one\u2011turn holds.",
+                        "[S1915M] S1915M \u2014 Diary\n\nAll intended conditional holds were executed this phase: I held VIE, BUD, TRI and SER as promised. Turkey honored the conditional local non\u2011aggression by holding BUL and GRE and even moved SMY\u2192ARM (no threat to me); that collaboration preserved the BUL\u2013SER buffer for now. Russia also held RUM and gave no support into SER \u2014 they honored the de\u2011escalatory posture this turn. Germany and Italy made no commitments and remained static; no surprise aggression from them. France was flagged by forecast as highest aggression risk; she remained passive this phase but the forecast remains salient.\n\nNo explicit betrayals occurred. My position is stable but fragile: four units and four homes intact. Lesson: continue to demand written one\u2011turn holds and record them; Turkey and Russia will reciprocate when asked concretely. If Germany or Italy stay mute next turn, be prepared to reallocate one unit to BOH or RUM to secure two of three cores. Remain distrustful of vague assurances \u2014 only written, turn\u2011by\u2011turn commitments will buy me the stability I need."
+                    ]
+                },
+                "ENGLAND": {
+                    "power_name": "ENGLAND",
+                    "model_id": "silent",
+                    "max_tokens": 1600,
+                    "goals": [],
+                    "relationships": {
+                        "ITALY": "Neutral",
+                        "FRANCE": "Neutral",
+                        "GERMANY": "Neutral",
+                        "RUSSIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "AUSTRIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "FRANCE": {
+                    "power_name": "FRANCE",
+                    "model_id": "silent",
+                    "max_tokens": 1600,
+                    "goals": [],
+                    "relationships": {
+                        "ITALY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "RUSSIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "AUSTRIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "GERMANY": {
+                    "power_name": "GERMANY",
+                    "model_id": "silent",
+                    "max_tokens": 1600,
+                    "goals": [],
+                    "relationships": {
+                        "ITALY": "Neutral",
+                        "FRANCE": "Neutral",
+                        "RUSSIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "AUSTRIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "ITALY": {
+                    "power_name": "ITALY",
+                    "model_id": "silent",
+                    "max_tokens": 1600,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "GERMANY": "Neutral",
+                        "RUSSIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "AUSTRIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "RUSSIA": {
+                    "power_name": "RUSSIA",
+                    "model_id": "storyworld+gpt-5-mini",
+                    "max_tokens": 1600,
+                    "goals": [
+                        "Preserve current Russian supply centers (MOS, SEV, WAR, STP, RUM) and avoid overextension",
+                        "Stabilize the Black Sea and prevent Turkish\u2013Russian accidental clashes via shared communications",
+                        "Deter Austro aggression in the Balkans via conditional restraint and ready response",
+                        "Use diplomatic coordination with England and France to limit Austrian and Central powers' freedom of maneuver",
+                        "Maintain flexibility to exploit northern or southern openings depending on partner actions and forecasts"
+                    ],
+                    "relationships": {
+                        "ITALY": "Neutral",
+                        "FRANCE": "Friendly",
+                        "GERMANY": "Neutral",
+                        "TURKEY": "Friendly",
+                        "ENGLAND": "Friendly",
+                        "AUSTRIA": "Unfriendly"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] Russia sought calm, bilateral non\u2011aggression pacts in north (England/Scandinavia) and south (Austria/Turkey) to buy tempo and avoid multi\u2011front clashes. Austria offered to hold BUD and SER if Russia commits not to order A RUM\u2192BUD or support into SER; Russia demanded an explicit written commitment from Austria before reducing forces facing Austria and offered to refrain from moves into Galicia/against Vienna if Austria refrains from offensives into Rumania/Ukraine/Black Sea littoral. Turkey and Russia agreed a temporary Black Sea non\u2011aggression posture: Turkey will not support Austrian moves into BUL/SER and will alert Russia of Austrian motions; Russia will limit offensive action from SEV and communicate RUM moves. Russia asked England to provide naval sightings of any Austrian fleet moves and to avoid supporting Austrian coastal operations threatening Rumania/Black Sea. France was offered diversionary pressure in the south in exchange for holding Marseilles/Brest. All agreements are conditional on explicit commitments and timely communication. Austria\u2019s private message included an explicit conditional hold pledge; Russia requires that written binary pledge before standing down forces.\nIntent: Maintain defensive posture while seeking confirmation of Austro non\u2011aggression; explicitly: 1) A RUM \u2014 hold (or A RUM\u2192GAL only if Austria issues a clear written consent in message) \u2014 intent: fulfil hold unless consent received. 2) F SEV \u2014 defensive patrol/hold to show restraint and preserve Black Sea influence \u2014 will fulfil. 3) A MOS, A WAR \u2014 hold/fortify to preserve supply centers and depth; no impulsive northern invasions into Scandinavia unless England signals clear naval safety \u2014 will fulfil. 4) A RUM supporting diplomatic transparency: if Austria signals aggression, shift A RUM\u2192BUD or A RUM\u2192SER as response; otherwise maintain hold. 5) Communicate to Turkey and England: request immediate alerts of Austrian motions and any fleet supports; coordinate on responses. These are commitments I intend to keep conditional on receiving the explicit Austro pledge referenced in negotiations.",
+                        "[S1915M] Austria quietly held all lines\u2014no written pledge reached despite their private conditional offer; this is a partial betrayal of our expectation that a clear binary guarantee would be provided before we relaxed posture. Turkey honored our Black Sea understanding in practice (no hostile moves against BUL/SER; SMY\u2192ARM was unrelated and not aimed at us) \u2014 reliable for now. England and France remained passive but friendly; no naval reports were triggered. Surprise: Austria did not escalate but also did not commit in writing; Germany likewise remained inert. Impact: our supply centers safe and Black Sea stabilized, but we retain strategic risk from Austria\u2019s ambiguity. Trust: Turkey and the Western Entente are currently trustworthy; Austria remains opportunistic. Lesson: never reduce forces without verifiable, written commitments; demand explicit messages and tie any de\u2011escalation to immediate reciprocal actions. Forecast implication: northern openings remain possible if England shifts naval vigilance; southern axis depends on Austria\u2019s written stance \u2014 delay redeployments until that artifact appears."
+                    ],
+                    "private_diary": [
+                        "[S1915M] Russia sought calm, bilateral non\u2011aggression pacts in north (England/Scandinavia) and south (Austria/Turkey) to buy tempo and avoid multi\u2011front clashes. Austria offered to hold BUD and SER if Russia commits not to order A RUM\u2192BUD or support into SER; Russia demanded an explicit written commitment from Austria before reducing forces facing Austria and offered to refrain from moves into Galicia/against Vienna if Austria refrains from offensives into Rumania/Ukraine/Black Sea littoral. Turkey and Russia agreed a temporary Black Sea non\u2011aggression posture: Turkey will not support Austrian moves into BUL/SER and will alert Russia of Austrian motions; Russia will limit offensive action from SEV and communicate RUM moves. Russia asked England to provide naval sightings of any Austrian fleet moves and to avoid supporting Austrian coastal operations threatening Rumania/Black Sea. France was offered diversionary pressure in the south in exchange for holding Marseilles/Brest. All agreements are conditional on explicit commitments and timely communication. Austria\u2019s private message included an explicit conditional hold pledge; Russia requires that written binary pledge before standing down forces.\nIntent: Maintain defensive posture while seeking confirmation of Austro non\u2011aggression; explicitly: 1) A RUM \u2014 hold (or A RUM\u2192GAL only if Austria issues a clear written consent in message) \u2014 intent: fulfil hold unless consent received. 2) F SEV \u2014 defensive patrol/hold to show restraint and preserve Black Sea influence \u2014 will fulfil. 3) A MOS, A WAR \u2014 hold/fortify to preserve supply centers and depth; no impulsive northern invasions into Scandinavia unless England signals clear naval safety \u2014 will fulfil. 4) A RUM supporting diplomatic transparency: if Austria signals aggression, shift A RUM\u2192BUD or A RUM\u2192SER as response; otherwise maintain hold. 5) Communicate to Turkey and England: request immediate alerts of Austrian motions and any fleet supports; coordinate on responses. These are commitments I intend to keep conditional on receiving the explicit Austro pledge referenced in negotiations.",
+                        "[S1915M] Austria quietly held all lines\u2014no written pledge reached despite their private conditional offer; this is a partial betrayal of our expectation that a clear binary guarantee would be provided before we relaxed posture. Turkey honored our Black Sea understanding in practice (no hostile moves against BUL/SER; SMY\u2192ARM was unrelated and not aimed at us) \u2014 reliable for now. England and France remained passive but friendly; no naval reports were triggered. Surprise: Austria did not escalate but also did not commit in writing; Germany likewise remained inert. Impact: our supply centers safe and Black Sea stabilized, but we retain strategic risk from Austria\u2019s ambiguity. Trust: Turkey and the Western Entente are currently trustworthy; Austria remains opportunistic. Lesson: never reduce forces without verifiable, written commitments; demand explicit messages and tie any de\u2011escalation to immediate reciprocal actions. Forecast implication: northern openings remain possible if England shifts naval vigilance; southern axis depends on Austria\u2019s written stance \u2014 delay redeployments until that artifact appears."
+                    ]
+                },
+                "TURKEY": {
+                    "power_name": "TURKEY",
+                    "model_id": "storyworld+gpt-5-mini",
+                    "max_tokens": 1600,
+                    "goals": [],
+                    "relationships": {
+                        "ITALY": "Neutral",
+                        "FRANCE": "Neutral",
+                        "GERMANY": "Neutral",
+                        "RUSSIA": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "AUSTRIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] The fleet at ANK and armies at CON, BUL, GRE held steady; my advance from SMY to ARM succeeded\u2014no betrayals with immediate neighbors. No other powers moved against my straits or Black Sea holdings this turn, which keeps my southern flank secure for now. Forecast implication: Russia\u2019s fleets at SEV and STP and armies at MOS/WAR remain intact\u2014this sustained Russian Black Sea presence still poses a medium-term threat to CON/ANK and the Bosporus if they reallocate forces southward. Trustworthiness: no direct promises were tested this phase; neutrality from Germany, Austria, England, and Italy is noncommittal. Lesson: prioritize diplomatic guarantees or a DMZ regarding the Black Sea and Straits to convert their inaction into formal security. Next: propose explicit non-aggression on Istanbul/Ankara and seek naval limits or buffer zones with Russia to reduce surprise amphibious or fleet threats."
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] The fleet at ANK and armies at CON, BUL, GRE held steady; my advance from SMY to ARM succeeded\u2014no betrayals with immediate neighbors. No other powers moved against my straits or Black Sea holdings this turn, which keeps my southern flank secure for now. Forecast implication: Russia\u2019s fleets at SEV and STP and armies at MOS/WAR remain intact\u2014this sustained Russian Black Sea presence still poses a medium-term threat to CON/ANK and the Bosporus if they reallocate forces southward. Trustworthiness: no direct promises were tested this phase; neutrality from Germany, Austria, England, and Italy is noncommittal. Lesson: prioritize diplomatic guarantees or a DMZ regarding the Black Sea and Straits to convert their inaction into formal security. Next: propose explicit non-aggression on Istanbul/Ankara and seek naval limits or buffer zones with Russia to reduce surprise amphibious or fleet threats."
+                    ]
+                }
+            },
+            "order_results": {
+                "AUSTRIA": {
+                    "hold": [
+                        {
+                            "order": "A VIE H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A BUD H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F TRI H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SER H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "ENGLAND": {
+                    "hold": [
+                        {
+                            "order": "A BEL H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A DEN H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A EDI H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A LON H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A LVP H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A NWY H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A POR H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SPA H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SWE H",
+                            "result": "success"
+                        }
+                    ],
+                    "support": [
+                        {
+                            "order": "A HOL S A BEL - RUH",
+                            "result": "void: no effect"
+                        }
+                    ]
+                },
+                "FRANCE": {
+                    "hold": [
+                        {
+                            "order": "F BRE H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A MAR H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A PAR H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "GERMANY": {
+                    "hold": [
+                        {
+                            "order": "A BER H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F KIE H",
+                            "result": "success"
+                        }
+                    ],
+                    "support": [
+                        {
+                            "order": "A MUN S A VIE - BOH",
+                            "result": "void: no effect"
+                        }
+                    ]
+                },
+                "ITALY": {
+                    "hold": [
+                        {
+                            "order": "F NAP H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A ROM H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A TUN H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A VEN H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "RUSSIA": {
+                    "hold": [
+                        {
+                            "order": "A MOS H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A RUM H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F SEV H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A WAR H",
+                            "result": "success"
+                        }
+                    ],
+                    "support": [
+                        {
+                            "order": "F STP/SC S A MOS - LVN",
+                            "result": "void: no effect"
+                        }
+                    ]
+                },
+                "TURKEY": {
+                    "hold": [
+                        {
+                            "order": "F ANK H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A CON H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A BUL H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A GRE H",
+                            "result": "success"
+                        }
+                    ],
+                    "move": [
+                        {
+                            "order": "A SMY - ARM",
+                            "result": "success"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "F1915M",
+            "state": {
+                "timestamp": 1770334650970893,
+                "zobrist_hash": "4634800285757772708",
+                "note": "1915 crisis snapshot. England is dominant in the west and at sea. France is on death-ground, surrounded and forced into risk-heavy diplomacy. Austria is stretched and fragile in the Balkans. Russia and Turkey are locked in a brutal contest for the Black Sea and the Balkans. Use this backdrop to reason about high-stakes forecasts and second-order consequences.",
+                "name": "F1915M",
+                "units": {
+                    "AUSTRIA": [
+                        "A VIE",
+                        "A BUD",
+                        "F TRI",
+                        "A SER"
+                    ],
+                    "ENGLAND": [
+                        "A EDI",
+                        "A LON",
+                        "A LVP",
+                        "A NWY",
+                        "A SWE",
+                        "A DEN",
+                        "A HOL",
+                        "A BEL",
+                        "A SPA",
+                        "A POR"
+                    ],
+                    "FRANCE": [
+                        "F BRE",
+                        "A PAR",
+                        "A MAR"
+                    ],
+                    "GERMANY": [
+                        "A BER",
+                        "A MUN",
+                        "F KIE"
+                    ],
+                    "ITALY": [
+                        "A ROM",
+                        "A VEN",
+                        "F NAP",
+                        "A TUN"
+                    ],
+                    "RUSSIA": [
+                        "A MOS",
+                        "F SEV",
+                        "A WAR",
+                        "F STP/SC",
+                        "A RUM"
+                    ],
+                    "TURKEY": [
+                        "F ANK",
+                        "A CON",
+                        "A BUL",
+                        "A GRE",
+                        "A ARM"
+                    ]
+                },
+                "retreats": {
+                    "AUSTRIA": {},
+                    "ENGLAND": {},
+                    "FRANCE": {},
+                    "GERMANY": {},
+                    "ITALY": {},
+                    "RUSSIA": {},
+                    "TURKEY": {}
+                },
+                "centers": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "homes": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "TRI",
+                        "VIE"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "MAR",
+                        "PAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "KIE",
+                        "MUN"
+                    ],
+                    "ITALY": [
+                        "NAP",
+                        "ROM",
+                        "VEN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "STP",
+                        "WAR"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY"
+                    ]
+                },
+                "influence": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE",
+                        "ARM"
+                    ]
+                },
+                "civil_disorder": {
+                    "AUSTRIA": 0,
+                    "ENGLAND": 0,
+                    "FRANCE": 0,
+                    "GERMANY": 0,
+                    "ITALY": 0,
+                    "RUSSIA": 0,
+                    "TURKEY": 0
+                },
+                "builds": {
+                    "AUSTRIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ENGLAND": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "FRANCE": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "GERMANY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ITALY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "RUSSIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "TURKEY": {
+                        "count": 0,
+                        "homes": []
+                    }
+                },
+                "phase": "F1915M",
+                "game_id": "FORECAST-1915-DEATHGROUND",
+                "map": "standard",
+                "rules": [
+                    "POWER_CHOICE"
+                ]
+            },
+            "orders": {
+                "AUSTRIA": null,
+                "ENGLAND": null,
+                "FRANCE": null,
+                "GERMANY": null,
+                "ITALY": null,
+                "RUSSIA": null,
+                "TURKEY": null
+            },
+            "results": {},
+            "messages": [],
+            "summary": "",
+            "statistical_summary": null
+        }
+    ],
+    "phase_summaries": {
+        "S1915M": "(No LLM callback provided.)"
+    },
+    "final_agent_states": {
+        "AUSTRIA": {
+            "relationships": {
+                "ITALY": "Neutral",
+                "FRANCE": "Unfriendly",
+                "GERMANY": "Neutral",
+                "RUSSIA": "Neutral",
+                "TURKEY": "Friendly",
+                "ENGLAND": "Neutral"
+            },
+            "goals": [
+                "Primary: Hold Vienna, Budapest, Trieste (preserve 3 home SCs).",
+                "Secondary: Prevent a coordinated Russian push into BUD/TRI this phase via explicit non\u2011aggression commits.",
+                "Tertiary: Lock a neutralized BUL\u2013SER zone with Turkey to avoid Black Sea escalation and protect Straits.",
+                "Contingency: If neighbors withhold commitments, reallocate one unit to BOH or RUM to secure at least two home centers."
+            ]
+        },
+        "ENGLAND": {
+            "relationships": {
+                "ITALY": "Neutral",
+                "FRANCE": "Neutral",
+                "GERMANY": "Neutral",
+                "RUSSIA": "Neutral",
+                "TURKEY": "Neutral",
+                "AUSTRIA": "Neutral"
+            },
+            "goals": []
+        },
+        "FRANCE": {
+            "relationships": {
+                "ITALY": "Neutral",
+                "GERMANY": "Neutral",
+                "RUSSIA": "Neutral",
+                "TURKEY": "Neutral",
+                "ENGLAND": "Neutral",
+                "AUSTRIA": "Neutral"
+            },
+            "goals": []
+        },
+        "GERMANY": {
+            "relationships": {
+                "ITALY": "Neutral",
+                "FRANCE": "Neutral",
+                "RUSSIA": "Neutral",
+                "TURKEY": "Neutral",
+                "ENGLAND": "Neutral",
+                "AUSTRIA": "Neutral"
+            },
+            "goals": []
+        },
+        "ITALY": {
+            "relationships": {
+                "FRANCE": "Neutral",
+                "GERMANY": "Neutral",
+                "RUSSIA": "Neutral",
+                "TURKEY": "Neutral",
+                "ENGLAND": "Neutral",
+                "AUSTRIA": "Neutral"
+            },
+            "goals": []
+        },
+        "RUSSIA": {
+            "relationships": {
+                "ITALY": "Neutral",
+                "FRANCE": "Friendly",
+                "GERMANY": "Neutral",
+                "TURKEY": "Friendly",
+                "ENGLAND": "Friendly",
+                "AUSTRIA": "Unfriendly"
+            },
+            "goals": [
+                "Preserve current Russian supply centers (MOS, SEV, WAR, STP, RUM) and avoid overextension",
+                "Stabilize the Black Sea and prevent Turkish\u2013Russian accidental clashes via shared communications",
+                "Deter Austro aggression in the Balkans via conditional restraint and ready response",
+                "Use diplomatic coordination with England and France to limit Austrian and Central powers' freedom of maneuver",
+                "Maintain flexibility to exploit northern or southern openings depending on partner actions and forecasts"
+            ]
+        },
+        "TURKEY": {
+            "relationships": {
+                "ITALY": "Neutral",
+                "FRANCE": "Neutral",
+                "GERMANY": "Neutral",
+                "RUSSIA": "Neutral",
+                "ENGLAND": "Neutral",
+                "AUSTRIA": "Neutral"
+            },
+            "goals": []
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "run_dir": "C:\\projects\\AI_Diplomacy\\results\\focused_1915_pvalue_20260205_233554",
+  "files_present": {
+    "storyworld_forecasts.jsonl": true,
+    "storyworld_impact.jsonl": true,
+    "forecast_scores.jsonl": true,
+    "llm_responses.csv": true
+  },
+  "forecast_count": 3,
+  "impact_count": 3,
+  "score_count": 3,
+  "explicit_impact_count": 3,
+  "mean_confidence": 0.6,
+  "mean_brier": 0.36,
+  "forecast_by_power": {
+    "AUSTRIA": 1,
+    "RUSSIA": 1,
+    "TURKEY": 1
+  },
+  "forecast_by_storyworld": {
+    "forecast_coalition_p": 1,
+    "forecast_defection_p": 2
+  },
+  "total_negotiation_diaries": 7,
+  "signal_negotiation_diaries": 3,
+  "signal_diary_examples": [
+    {
+      "phase": "S1915M",
+      "power": "TURKEY",
+      "snippet": "{ \"negotiation_summary\": \"I secured localized non\u2011aggression understandings with both Austria and Russia. With Austria: mutual restraint around the southern Balkans \u2014 Austria will not attack BUL or contest CON; Turkey..."
+    },
+    {
+      "phase": "S1915M",
+      "power": "RUSSIA",
+      "snippet": "{ \"negotiation_summary\": \"Russia sought calm, bilateral non\u2011aggression pacts in north (England/Scandinavia) and south (Austria/Turkey) to buy tempo and avoid multi\u2011front clashes. Austria offered to hold BUD and SER if..."
+    },
+    {
+      "phase": "S1915M",
+      "power": "AUSTRIA",
+      "snippet": "{ \"negotiation_summary\": \"I sought short, clear non\u2011aggression assurances to secure Vienna, Budapest and Trieste. Germany: requested mutual non\u2011aggression on central fronts and a pledge to not contest VIE/BOH (I offer..."
+    }
+  ]
+}

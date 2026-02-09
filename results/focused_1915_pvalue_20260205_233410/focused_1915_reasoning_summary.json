@@ -1,0 +1,43 @@
+{
+  "run_dir": "C:\\projects\\AI_Diplomacy\\results\\focused_1915_pvalue_20260205_233410",
+  "files_present": {
+    "storyworld_forecasts.jsonl": true,
+    "storyworld_impact.jsonl": true,
+    "forecast_scores.jsonl": true,
+    "llm_responses.csv": true
+  },
+  "forecast_count": 3,
+  "impact_count": 3,
+  "score_count": 3,
+  "explicit_impact_count": 3,
+  "mean_confidence": 0.6,
+  "mean_brier": 0.36,
+  "forecast_by_power": {
+    "ENGLAND": 1,
+    "FRANCE": 1,
+    "GERMANY": 1
+  },
+  "forecast_by_storyworld": {
+    "forecast_coalition_p": 2,
+    "forecast_defection_p": 1
+  },
+  "total_negotiation_diaries": 7,
+  "signal_negotiation_diaries": 3,
+  "signal_diary_examples": [
+    {
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "snippet": "{ \"negotiation_summary\": \"Germany secured tentative, explicit non\u2011aggression understandings with England, France, Austria, and Russia focused on reducing two\u2011front and naval escalation risks. England agreed to refrain..."
+    },
+    {
+      "phase": "S1915M",
+      "power": "ENGLAND",
+      "snippet": "{ \"negotiation_summary\": \"England has publicly committed to holding the Channel/North Sea lines and using naval leverage to prevent any German maritime breakout. France and England have a bilateral understanding: Fran..."
+    },
+    {
+      "phase": "S1915M",
+      "power": "FRANCE",
+      "snippet": "{ \"negotiation_summary\": \"France secured conditional non\u2011aggression understandings with England, Austria, Germany, and Italy. England promises to refrain from aggressive continental moves into Picardy/Belgium in excha..."
+    }
+  ]
+}

@@ -1,0 +1,2103 @@
+{
+    "id": "FORECAST-1915-DEATHGROUND",
+    "map": "standard",
+    "rules": [
+        "POWER_CHOICE"
+    ],
+    "phases": [
+        {
+            "name": "S1915M",
+            "state": {
+                "timestamp": 1770377115653843,
+                "zobrist_hash": "5446939304297137444",
+                "note": "1915 crisis snapshot. England is dominant in the west and at sea. France is on death-ground, surrounded and forced into risk-heavy diplomacy. Austria is stretched and fragile in the Balkans. Russia and Turkey are locked in a brutal contest for the Black Sea and the Balkans. Use this backdrop to reason about high-stakes forecasts and second-order consequences.",
+                "name": "S1915M",
+                "units": {
+                    "AUSTRIA": [
+                        "A VIE",
+                        "A BUD",
+                        "F TRI",
+                        "A SER"
+                    ],
+                    "ENGLAND": [
+                        "A EDI",
+                        "A LON",
+                        "A LVP",
+                        "A NWY",
+                        "A SWE",
+                        "A DEN",
+                        "A HOL",
+                        "A BEL",
+                        "A SPA",
+                        "A POR"
+                    ],
+                    "FRANCE": [
+                        "F BRE",
+                        "A PAR",
+                        "A MAR"
+                    ],
+                    "GERMANY": [
+                        "A BER",
+                        "A MUN",
+                        "F KIE"
+                    ],
+                    "ITALY": [
+                        "A ROM",
+                        "A VEN",
+                        "F NAP",
+                        "A TUN"
+                    ],
+                    "RUSSIA": [
+                        "A MOS",
+                        "F SEV",
+                        "A WAR",
+                        "F STP/SC",
+                        "A RUM"
+                    ],
+                    "TURKEY": [
+                        "F ANK",
+                        "A CON",
+                        "A SMY",
+                        "A BUL",
+                        "A GRE"
+                    ]
+                },
+                "retreats": {
+                    "AUSTRIA": {},
+                    "ENGLAND": {},
+                    "FRANCE": {},
+                    "GERMANY": {},
+                    "ITALY": {},
+                    "RUSSIA": {},
+                    "TURKEY": {}
+                },
+                "centers": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "homes": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "TRI",
+                        "VIE"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "MAR",
+                        "PAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "KIE",
+                        "MUN"
+                    ],
+                    "ITALY": [
+                        "NAP",
+                        "ROM",
+                        "VEN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "STP",
+                        "WAR"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY"
+                    ]
+                },
+                "influence": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "civil_disorder": {
+                    "AUSTRIA": 0,
+                    "ENGLAND": 0,
+                    "FRANCE": 0,
+                    "GERMANY": 0,
+                    "ITALY": 0,
+                    "RUSSIA": 0,
+                    "TURKEY": 0
+                },
+                "builds": {
+                    "AUSTRIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ENGLAND": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "FRANCE": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "GERMANY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ITALY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "RUSSIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "TURKEY": {
+                        "count": 0,
+                        "homes": []
+                    }
+                },
+                "phase": "S1915M",
+                "game_id": "FORECAST-1915-DEATHGROUND",
+                "map": "standard",
+                "rules": [
+                    "POWER_CHOICE"
+                ]
+            },
+            "orders": {
+                "AUSTRIA": [
+                    "A BUD H",
+                    "A SER H",
+                    "F TRI H",
+                    "A VIE H"
+                ],
+                "ENGLAND": [
+                    "A BEL H",
+                    "A DEN H",
+                    "A EDI H",
+                    "A HOL H",
+                    "A LON H",
+                    "A LVP H",
+                    "A NWY H",
+                    "A POR H",
+                    "A SPA - GAS",
+                    "A SWE H"
+                ],
+                "FRANCE": [
+                    "F BRE - MAO",
+                    "A PAR - PIC",
+                    "A MAR - SPA"
+                ],
+                "GERMANY": [
+                    "F KIE H",
+                    "A BER H",
+                    "A MUN S A BER"
+                ],
+                "ITALY": [
+                    "F NAP H",
+                    "A ROM H",
+                    "A TUN H",
+                    "A VEN H"
+                ],
+                "RUSSIA": [
+                    "A MOS H",
+                    "A RUM H",
+                    "F SEV H",
+                    "F STP/SC H",
+                    "A WAR H"
+                ],
+                "TURKEY": [
+                    "F ANK H",
+                    "A BUL H",
+                    "A CON H",
+                    "A GRE H",
+                    "A SMY H"
+                ]
+            },
+            "results": {
+                "A VIE": [],
+                "A BUD": [],
+                "F TRI": [],
+                "A SER": [],
+                "A EDI": [],
+                "A LON": [],
+                "A LVP": [],
+                "A NWY": [],
+                "A SWE": [],
+                "A DEN": [],
+                "A HOL": [],
+                "A BEL": [],
+                "A SPA": [],
+                "A POR": [],
+                "F BRE": [],
+                "A PAR": [],
+                "A MAR": [],
+                "A BER": [],
+                "A MUN": [],
+                "F KIE": [],
+                "A ROM": [],
+                "A VEN": [],
+                "F NAP": [],
+                "A TUN": [],
+                "A MOS": [],
+                "F SEV": [],
+                "A WAR": [],
+                "F STP/SC": [],
+                "A RUM": [],
+                "F ANK": [],
+                "A CON": [],
+                "A SMY": [],
+                "A BUL": [],
+                "A GRE": []
+            },
+            "messages": [
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770377086352014,
+                    "phase": "S1915M",
+                    "message": "England proposes a limited western armistice to stabilize sea lanes while the continent sorts itself. I will not contest Brest this spring if France refrains from hostile moves toward Belgium, Holland, or the Channel coast. Forecast note: per a recent artifact assessing French reactions to concessions (target: France, confidence 0.6), there is a 62% chance a low-risk concession invites over-commitment; accordingly I will maintain reserves in North Sea approaches and the Low Countries while testing restraint. My aim is to preserve balance and prevent any single land power from breaking out."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "FRANCE",
+                    "time_sent": 1770377086353038,
+                    "phase": "S1915M",
+                    "message": "Quiet word from across the water. I am prepared to leave Brest untouched this spring if you keep PAR-MAR-BRE focused defensively and avoid any thrusts at BEL/HOL or the Channel coast. In return, I will keep Belgium/Holland steady and not push PIC/GAS. The point is safe lanes and time\u2014no rush for either of us to bleed. Forecast implication (artifact tags you as the target, confidence 0.6): there\u2019s a 62% risk that a concession tempts over-commitment; I\u2019m therefore keeping modest cover in the North Sea approaches. If you show restraint now, I can shift attention east and consider coordinated pressure on Kiel later. If you reach for PIC/GAS or BUR, I will answer firmly. Your call."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "GERMANY",
+                    "time_sent": 1770377086353677,
+                    "phase": "S1915M",
+                    "message": "I can offer you a narrow corridor to breathe if you keep KIE strictly defensive. Proposal: you hold in Kiel; I refrain from a supported assault this spring. In return, you angle BER/MUN south to check Austrian/Italian maneuvering, and you avoid any support to Russian gains in the north. If France breaks toward PIC/GAS, I will pivot to the Channel and leave you space around Kiel. Forecast note: my read is that a concession to France has a 62% chance to lure them into overreach\u2014if they do, I\u2019d coordinate an immediate tap on PIC/BRE while keeping the North Sea lanes secure. Confirm KIE H and no support to STP, and we\u2019re aligned."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770377086354423,
+                    "phase": "S1915M",
+                    "message": "I intend to keep Scandinavia quiet if you keep STP/SC from probing Norway or Finland. You hold STP; I hold NWY/SWE/DEN without advances on Finland or STP. If Germany wobbles, I will look at Kiel rather than your north. Should France lunge west despite my concession, I\u2019ll reweight to the Channel and leave your northern coast undisturbed. Forecast implication: artifact suggests a 62% chance France over-commits if given slack; if that triggers, I won\u2019t join a northern dogpile on you\u2014my priority will be maritime containment in the Channel."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770377086355033,
+                    "phase": "S1915M",
+                    "message": "From the North Sea: I plan to hold the western lanes steady and avoid entanglement in the Balkans this spring. If Turkey presses you hard, I can pressure France/Germany to keep your north flank clear by threatening Kiel should they meddle south. If Russia gains too freely in RUM/SEV, I\u2019ll encourage a counterweight rather than a Russian breakout to the north. Forecast signal I\u2019m watching: a 62% chance France over-extends if given leeway; if that happens, I will pin them in the west, freeing you from western interference."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "ITALY",
+                    "time_sent": 1770377086355924,
+                    "phase": "S1915M",
+                    "message": "I\u2019ll keep Iberia calm and the western seas orderly this spring. If France surges into GAS/PIC, I shall answer at once, thereby reducing pressure on your MAR/VEN axis. If you\u2019re pressing Austria or Turkey, note that I aim to keep Germany contained at Kiel rather than open a northern front for Russia. Forecast note: there\u2019s a 62% chance France over-commits when offered slack; if that fires, I\u2019ll clamp the Channel and you may find MAR less contested. Share your intentions for MAR/NAP so I can time any Channel pressure precisely."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770377086356620,
+                    "phase": "S1915M",
+                    "message": "England will not interfere in the Black Sea theatre this spring. I\u2019m watching for a western overreach by France (62% likelihood per a forecasting artifact), in which case I\u2019ll fix them in place and keep Germany honest around Kiel. If Russia pushes north from STP/SC toward Norway or Finland, I will respond by hardening Scandinavia, not by aiding a northern Russian breakout. If you keep your fleets focused east and avoid any foray into the western Med that threatens Iberia, I can assure you no English pressure against you this season."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770377086357467,
+                    "phase": "S1915M",
+                    "message": "To all powers: England holds 10 and sits on my Spanish coast. A stable balance requires Iberia not be a permanent English bastion. I seek coordinated pressure that reopens Belgium/Spain and checks a Channel surge without handing Germany an easy rebound. I can pivot north or south this spring; if I see concrete support to contest Spain/Portugal or Belgium, I\u2019ll commit my fleet to ENG/MAO accordingly."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "ENGLAND",
+                    "time_sent": 1770377086358304,
+                    "phase": "S1915M",
+                    "message": "We both know your tenth center is built on Iberian sand. If I throw BRE to ENG and PAR to PIC/GAS, I can either block you or enable you; your call depends on whether you want a quick, low-friction path to 12 via Belgium/Munich turbulence, or a costly slog in Iberia that invites a continental coalition. Offer: You vacate SPA to MAO this spring while I walk MAR\u2013SPA; in exchange I avoid ENG and keep BRE\u2013MAO to help you pressure POR or the Mid. You get tempo east without a Western quagmire, and I live. If you decline and hold SPA, I\u2019m 90% to order F BRE\u2013ENG with army pressure on GAS/PIE to pull Italy and Germany into a stop-the-leader. Choose efficiency over hubris."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "GERMANY",
+                    "time_sent": 1770377086358909,
+                    "phase": "S1915M",
+                    "message": "England at 10 is your existential problem. I can put F BRE\u2013ENG or \u2013MAO this spring. If you commit A BER\u2013KIE/MUN\u2013BUR defense while hinting BEL pressure (HOL\u2013BEL S by DEN?), I\u2019ll aim north: PAR\u2013PIC, BRE\u2013ENG to cut English support, and MAR\u2013BUR to screen Munich. If you instead turtle, I\u2019ll pivot south and let England keep Belgium uncontested. Give me one concrete piece\u2014support against BEL or a promise to cover MUN if I occupy BUR\u2014and I\u2019ll commit to anti-English moves this phase."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "ITALY",
+                    "time_sent": 1770377086359704,
+                    "phase": "S1915M",
+                    "message": "You don\u2019t want an English Gibraltar. If I move MAR\u2013PIE and BRE\u2013MAO, can you pressure WMS/NAf to make POR/SPA untenable for England? I\u2019ll avoid ENG if you help me retake SPA this year (MAR\u2013SPA with your tacit non-interference in PIE, then WMS cuts MAO support). If England vacates, we stabilize; if he refuses, we form a short-term Iberian pact to roll him back. Your upside: leverage in the Med without gifting Austria/Turkey tempo."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770377086360409,
+                    "phase": "S1915M",
+                    "message": "England\u2019s growth opens you to northern spillover if Germany collapses. I propose a quiet understanding: I contain England in the west while you keep Italy honest. If I demonstrate anti-English orders (BRE\u2013ENG or \u2013MAO; PAR\u2013PIC), can you nudge VEN to watch WMS rather than Tyrolia/Burgundy? STORYWORLD_FORECAST_ARTIFACT implication: The forecast_false_concession_p artifact targets Austria and estimates a 0.62 probability that offering you a low-risk concession induces over-commitment; I\u2019m therefore offering transparency instead of a trap\u2014no Burg incursion if VEN doesn\u2019t poke PIE/TYR. Forecast implication: if you overextend west, you risk English opportunism via North Sea\u2013Denmark this year."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770377086361404,
+                    "phase": "S1915M",
+                    "message": "If England keeps Iberia, your north stays pinned. I can push ENG/MAO to cut English supports while you press Nwy/Den leverage. If I move BRE\u2013ENG and PAR\u2013PIC, can you posture STP(SC)\u2013BAR/GoB to threaten Nwy? Even a feint raises England\u2019s defensive cost by 1\u20132 units. I\u2019ll signal intent with BRE off the French coast this spring; a synchronized demonstration lifts both our odds of survival by ~30% versus piecemeal plays."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770377086362163,
+                    "phase": "S1915M",
+                    "message": "Your win path improves if England is checked before he converts Iberia into a naval springboard to the Mid. I can commit BRE\u2013MAO and ask Italy to face west; in return, a little diplomatic pressure on Italy to avoid Tyrolia/GoL frees me to fight England. If I show MAO/PIE pressure, can you hint to Italy that Balkans friction returns if he aids England in WMS? Small signals from you now can prevent an English fleet cascade later."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770377086363258,
+                    "phase": "S1915M",
+                    "message": "Austria \u2014 this is Germany. We have no hostility between us and should coordinate tightly given the present pressures. Forecast note: intelligence (forecast_coalition_p) indicates a 60% probability that a named rival will act aggressively next phase; this raises the near-term risk to our shared eastern flank and argues for a binding, defensive posture between us. I propose the following immediate understandings: (1) You hold VIE and BUD; I will keep MUN and BER secure \u2014 no surprise attacks on each other. (2) You commit your forces to stabilise the Balkans; I will refrain from moves into BOH or TYR this phase and instead keep MUN available to support or cover your eastern flank if Russia presses (I estimate a >=50% chance Russia advances through BOH/PRU corridors). (3) We exchange notifications of any third\u2011party negotiations and agree rapid mutual aid if England or Russia opens aggression. If you accept, reply with confirmation and any unit moves you need covered. This coordination secures our centers and reduces two\u2011front risk \u2014 I expect it will increase our combined survival probability by a meaningful margin."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "ENGLAND",
+                    "time_sent": 1770377086364199,
+                    "phase": "S1915M",
+                    "message": "England \u2014 Germany here. We face a dangerous European balance with your naval dominance evident. I wish to avoid inadvertent escalation in the North/Heligoland area. Proposal: a simple maritime understanding for the coming season \u2014 my Kiel fleet will avoid aggressive moves into DEN/HOL provided your armies do not threaten KIE or BER. This preserves status quo and lets both of us secure home centers. Note on forecasts: our shared artifact indicates increased probability (60%) of a named rival acting aggressively next phase; this makes predictability between us valuable. Please confirm you will not support any move against KIE or BER this turn and I will order F KIE to hold or shift to BAL only with prior notice."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "FRANCE",
+                    "time_sent": 1770377086365102,
+                    "phase": "S1915M",
+                    "message": "France \u2014 Germany. You are under severe pressure; a stable western front matters to European order and to Germany\u2019s need to avoid overextension. I propose a temporary non\u2011aggression and communication channel: you maintain F BRE/PAR/MAR; I will hold MUN/BER and not push into BUR or SIL this season. If you are willing, we can coordinate to prevent England from exploiting any sudden gains \u2014 I assess at least a 40% chance England will attempt opportunistic expansion in the low countries if France weakens. Reply if you accept and state any urgent unit needs."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770377086365894,
+                    "phase": "S1915M",
+                    "message": "Russia \u2014 Germany. The eastern situation is volatile and forecasted risks are non\u2011trivial. I intend to keep MUN and BER as secure pivots; I will not move into PRU or SIL this phase absent clear Russian aggression. However, an allied Austria is likely to face aggression (forecast_coalition_p places 60% probability of aggression toward Austria next phase), which could cascade into our border. To reduce chance of miscalculation, I propose mutual notification of any moves toward PRU/BOH and limited information sharing for one season. This lowers the chance of accidental two\u2011front escalation \u2014 I estimate it reduces eastern conflict probability by ~20%. Please state whether you accept."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770377086366647,
+                    "phase": "S1915M",
+                    "message": "Turkey \u2014 Germany. The Balkans and Black Sea are burning; stability there matters to us both. I propose Germany will not interfere with your operations in the Aegean/Anatolian coasts provided you do not attempt moves into Bulgaria or the Adriatic that threaten Austria or Italy. Given current forecasts (see message to Austria), an aggressive action against Austria is moderately likely (60%); avoiding such actions will help keep Central Europe intact. If you accept, I will order MUN to remain defensive and be ready to support Austria diplomatically."
+                }
+            ],
+            "summary": "(No LLM callback provided.)",
+            "statistical_summary": null,
+            "state_agents": {
+                "AUSTRIA": {
+                    "power_name": "AUSTRIA",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "ENGLAND": {
+                    "power_name": "ENGLAND",
+                    "model_id": "storyworld+gpt-5-2025-08-07",
+                    "max_tokens": 1200,
+                    "goals": [
+                        "Preserve naval control of Channel/North Sea and safe lanes around Low Countries",
+                        "Deter French overreach while retaining Iberia",
+                        "Keep Germany contained at Kiel without provoking a northern coalition",
+                        "Keep Scandinavia quiet and non-hostile with Russia",
+                        "Shape a flexible anti-hegemon balance; be ready to pivot east if France lunges",
+                        "Avoid giving any land power an easy rebound via my overextension"
+                    ],
+                    "relationships": {
+                        "FRANCE": "Unfriendly",
+                        "AUSTRIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Friendly"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] West: I offered France a limited armistice (no hit on Brest if they avoid Channel/Low Countries). France countered: I vacate SPA to MAO so they take MAR\u2013SPA; they\u2019d avoid ENG and use BRE\u2013MAO to help vs POR/Mid. They threatened ENG/GAS/BUR pressure if I refuse. Germany proposed status quo: F KIE holds/only BAL with notice; I not support attacks on KIE/BER; I proposed KIE H and no northern Russian supports. Russia: mutual quiet in Scandinavia; I won\u2019t press STP if they don\u2019t probe NWY/Fin. Others received assurances I\u2019d stabilize west and contain Kiel; all were told I expect a 62% chance France over-commits if given slack and I\u2019ll clamp the Channel if so.\nIntent: Maintain western naval leverage while testing French restraint without yielding Iberia. Orders intent: hold/cover North Sea approaches (NTH/HEL/ENG coverage via adjacent armies/fleets), keep Belgium/Holland secure (A BEL/HOL H), keep Scandinavia quiet (A NWY/SWE/DEN H), do not attack Brest this spring, do not support on KIE or BER this turn, keep pressure option on KIE via adjacency but no execution, do not vacate SPA (decline French MAR\u2013SPA swap), keep POR and SPA held, maintain A EDI/LON/LVP as Channel/North Sea reserves. Fulfilments: honour no-attack on KIE/BER and no move on Brest; honour quiet with Russia in the north; do not enter ENG unless France lunges into PIC/GAS/BUR or F BRE\u2013ENG appears, in which case immediate clamp: cover ENG/NTH and tap PIC/BRE if feasible.",
+                        "[S1915M] France partially honored the armistice: they avoided the Channel and took MAO via BRE\u2013MAO, but they did push MAR\u2013SPA, forcing my SPA\u2013GAS retreat to keep Iberia contested. Germany matched the status quo: KIE/BER/MUN held, no northern probes. Russia kept Scandinavia quiet. No one lunged at the North Sea or Low Countries.\n\nSurprises: France did execute the Iberian squeeze despite my refusal to vacate\u2014predictable but still a firm test. No covert support to Germany appeared.\n\nImpact: Naval lanes remain secure (ENG/NTH uncontested), Belgium/Holland safe, Kiel contained, Scandinavia stable. Iberia is now a live front with F MAO + A SPA; forecast: 60% chance France tries MAO\u2013POR while A SPA presses GAS this year.\n\nTrust update: Germany/Russia reliable; France opportunistic under restraint. Lesson: keep Channel clamp ready, pre-position a fleet wall MAO/WES if possible, and trade MAO access only for explicit Iberian guarantees."
+                    ],
+                    "private_diary": [
+                        "[S1915M] West: I offered France a limited armistice (no hit on Brest if they avoid Channel/Low Countries). France countered: I vacate SPA to MAO so they take MAR\u2013SPA; they\u2019d avoid ENG and use BRE\u2013MAO to help vs POR/Mid. They threatened ENG/GAS/BUR pressure if I refuse. Germany proposed status quo: F KIE holds/only BAL with notice; I not support attacks on KIE/BER; I proposed KIE H and no northern Russian supports. Russia: mutual quiet in Scandinavia; I won\u2019t press STP if they don\u2019t probe NWY/Fin. Others received assurances I\u2019d stabilize west and contain Kiel; all were told I expect a 62% chance France over-commits if given slack and I\u2019ll clamp the Channel if so.\nIntent: Maintain western naval leverage while testing French restraint without yielding Iberia. Orders intent: hold/cover North Sea approaches (NTH/HEL/ENG coverage via adjacent armies/fleets), keep Belgium/Holland secure (A BEL/HOL H), keep Scandinavia quiet (A NWY/SWE/DEN H), do not attack Brest this spring, do not support on KIE or BER this turn, keep pressure option on KIE via adjacency but no execution, do not vacate SPA (decline French MAR\u2013SPA swap), keep POR and SPA held, maintain A EDI/LON/LVP as Channel/North Sea reserves. Fulfilments: honour no-attack on KIE/BER and no move on Brest; honour quiet with Russia in the north; do not enter ENG unless France lunges into PIC/GAS/BUR or F BRE\u2013ENG appears, in which case immediate clamp: cover ENG/NTH and tap PIC/BRE if feasible.",
+                        "[S1915M] France partially honored the armistice: they avoided the Channel and took MAO via BRE\u2013MAO, but they did push MAR\u2013SPA, forcing my SPA\u2013GAS retreat to keep Iberia contested. Germany matched the status quo: KIE/BER/MUN held, no northern probes. Russia kept Scandinavia quiet. No one lunged at the North Sea or Low Countries.\n\nSurprises: France did execute the Iberian squeeze despite my refusal to vacate\u2014predictable but still a firm test. No covert support to Germany appeared.\n\nImpact: Naval lanes remain secure (ENG/NTH uncontested), Belgium/Holland safe, Kiel contained, Scandinavia stable. Iberia is now a live front with F MAO + A SPA; forecast: 60% chance France tries MAO\u2013POR while A SPA presses GAS this year.\n\nTrust update: Germany/Russia reliable; France opportunistic under restraint. Lesson: keep Channel clamp ready, pre-position a fleet wall MAO/WES if possible, and trade MAO access only for explicit Iberian guarantees."
+                    ]
+                },
+                "FRANCE": {
+                    "power_name": "FRANCE",
+                    "model_id": "storyworld+gpt-5-2025-08-07",
+                    "max_tokens": 1200,
+                    "goals": [
+                        "Deny England consolidation of Iberia and prevent an English naval cascade into the Mid",
+                        "Regain or at least contest Spain/Portugal without exposing Burgundy/Munich",
+                        "Keep Germany stable while extracting anti-English coordination or at minimum non-aggression in BUR",
+                        "Forge a temporary FR-IT-RU pressure net that raises England's defensive costs in MAO/ENG/North",
+                        "Avoid Channel overcommitment; preserve French survival and rebuild prospects"
+                    ],
+                    "relationships": {
+                        "AUSTRIA": "Friendly",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Unfriendly",
+                        "ITALY": "Friendly",
+                        "RUSSIA": "Friendly"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] England offered a limited western armistice and not to hit Brest if I avoid ENG/Low Countries pushes; he flagged a 62% risk I would over\u2011commit after a concession and will keep cover. I countered: England vacates Spain to MAO while I take MAR\u2013SPA and keep BRE\u2013MAO to help pressure POR/Mid; if he refuses, I threatened F BRE\u2013ENG with PAR\u2013PIC and MAR pressure to rally Germany/Italy. Germany proposed general non\u2011aggression and turtling without concrete help; I asked for either support vs BEL or cover for MUN if I take BUR. Italy was asked to coordinate Iberian rollback (WMS/NAf pressure) if I go MAO/PIE; Austria was asked to keep Italy honest with a pledge I won\u2019t enter BUR if VEN stays off PIE/TYR; Russia was asked to feint at Nwy to raise English defensive costs; Turkey was nudged to dissuade Italy from aiding England in WMS. No firm English acceptance yet; no concrete German support secured. Coalition signals pending.\nIntent: Primary plan: anti-English posture without overcommitting in the Channel. Orders: F BRE\u2013MAO (contest Iberia, enable Mid pressure), A PAR\u2013PIC (screen Channel coast and signal anti-ENG), A MAR\u2013SPA (walk-in if ENG vacates; otherwise contest). No entry to ENG this turn unless England blatantly holds SPA and masses fleets north; only then consider F BRE\u2013ENG, but current intent is MAO. Maintain BUR neutrality this spring to avoid provoking Germany unless Germany explicitly promises MUN cover; if Germany offers MUN cover or BEL play late, upgrade MAR\u2013BUR instead of MAR\u2013SPA. Coordinate diplomatically with Italy for WMS pressure and with Russia for Nwy feints. Fulfilment: I will honour promises not to strike BUR this season if Austria/Italy refrain from PIE/TYR; I will not attack Belgium this move.",
+                        "[S1915M] S1915M diary \u2014 Forecasting Analysis Mode on. England did not honor the proposed Iberian de-escalation; instead he slid SPA\u2013GAS while holding POR, signaling intent to lock Iberia and stage for MAO/Mid. My primary plan executed: BRE\u2013MAO, PAR\u2013PIC, MAR\u2013SPA all succeeded, reclaiming SPA and keeping Channel commitments limited. No one else moved: Germany turtled (no BUR/BEL help), Italy/Austria stayed inert, Russia/Turkey static. Surprise: England didn\u2019t contest MAO, implying a forecast of English consolidation via GAS\u2013SPA retake with POR support next turn. Trust updates: England remains predatory but cautious; Germany passive and risk-averse; Italy unreliable for WMS help without stronger leverage. Impact: I deny an English MAO cascade and re-enter Iberia, but I\u2019m isolated at 3 with no allies committing. Lesson: Use Iberian leverage\u2014threaten POR cut from MAO and invite Italy to WMS/NAf to raise English defensive costs; keep BUR neutral while pressing Berlin for concrete MUN/BEL guarantees."
+                    ],
+                    "private_diary": [
+                        "[S1915M] England offered a limited western armistice and not to hit Brest if I avoid ENG/Low Countries pushes; he flagged a 62% risk I would over\u2011commit after a concession and will keep cover. I countered: England vacates Spain to MAO while I take MAR\u2013SPA and keep BRE\u2013MAO to help pressure POR/Mid; if he refuses, I threatened F BRE\u2013ENG with PAR\u2013PIC and MAR pressure to rally Germany/Italy. Germany proposed general non\u2011aggression and turtling without concrete help; I asked for either support vs BEL or cover for MUN if I take BUR. Italy was asked to coordinate Iberian rollback (WMS/NAf pressure) if I go MAO/PIE; Austria was asked to keep Italy honest with a pledge I won\u2019t enter BUR if VEN stays off PIE/TYR; Russia was asked to feint at Nwy to raise English defensive costs; Turkey was nudged to dissuade Italy from aiding England in WMS. No firm English acceptance yet; no concrete German support secured. Coalition signals pending.\nIntent: Primary plan: anti-English posture without overcommitting in the Channel. Orders: F BRE\u2013MAO (contest Iberia, enable Mid pressure), A PAR\u2013PIC (screen Channel coast and signal anti-ENG), A MAR\u2013SPA (walk-in if ENG vacates; otherwise contest). No entry to ENG this turn unless England blatantly holds SPA and masses fleets north; only then consider F BRE\u2013ENG, but current intent is MAO. Maintain BUR neutrality this spring to avoid provoking Germany unless Germany explicitly promises MUN cover; if Germany offers MUN cover or BEL play late, upgrade MAR\u2013BUR instead of MAR\u2013SPA. Coordinate diplomatically with Italy for WMS pressure and with Russia for Nwy feints. Fulfilment: I will honour promises not to strike BUR this season if Austria/Italy refrain from PIE/TYR; I will not attack Belgium this move.",
+                        "[S1915M] S1915M diary \u2014 Forecasting Analysis Mode on. England did not honor the proposed Iberian de-escalation; instead he slid SPA\u2013GAS while holding POR, signaling intent to lock Iberia and stage for MAO/Mid. My primary plan executed: BRE\u2013MAO, PAR\u2013PIC, MAR\u2013SPA all succeeded, reclaiming SPA and keeping Channel commitments limited. No one else moved: Germany turtled (no BUR/BEL help), Italy/Austria stayed inert, Russia/Turkey static. Surprise: England didn\u2019t contest MAO, implying a forecast of English consolidation via GAS\u2013SPA retake with POR support next turn. Trust updates: England remains predatory but cautious; Germany passive and risk-averse; Italy unreliable for WMS help without stronger leverage. Impact: I deny an English MAO cascade and re-enter Iberia, but I\u2019m isolated at 3 with no allies committing. Lesson: Use Iberian leverage\u2014threaten POR cut from MAO and invite Italy to WMS/NAf to raise English defensive costs; keep BUR neutral while pressing Berlin for concrete MUN/BEL guarantees."
+                    ]
+                },
+                "GERMANY": {
+                    "power_name": "GERMANY",
+                    "model_id": "storyworld+gpt-5-mini",
+                    "max_tokens": 1200,
+                    "goals": [
+                        "Prevent a two\u2011front war by keeping western border stable and securing Austrian flank",
+                        "Preserve supply centers BER/MUN/KIE and maintain ability to rapidly support Austria if Russia or another power aggressively moves",
+                        "Maintain credibility with England and France through conditional, observable commitments (hold KIE; hold BER/MUN)",
+                        "Collect timely notifications from Austria/Russia/Turkey to reduce miscalculation risk"
+                    ],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Ally",
+                        "TURKEY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] Established restrained, security\u2011focused understandings with England, France, Austria, Russia, and Turkey. England: maritime understanding \u2014 F KIE will hold/avoid DEN/HOL if England refrains from supporting moves against KIE/BER; England will keep North Sea reserves. France: tentative non\u2011aggression \u2014 Germany will hold BER/MUN and avoid pushing into BUR/SIL if France keeps F BRE/PAR/MAR and signals not to contest Kiel; France asked for concrete support if it commits north. Austria: pledge to hold VIE/BUD and stabilise the Balkans while Germany refrains from moves into BOH/TYR and keeps MUN/BER defensive; mutual aid notifications agreed. Russia: limited information sharing and notification of moves toward PRU/BOH; Germany will not move into PRU/SIL absent clear Russian aggression. Turkey: Germany will not interfere in Aegean/Anatolian operations if Turkey avoids aggression toward Bulgaria/Adriatic that would threaten Austria. All understandings framed by forecasts warning of a 60% chance of near\u2011term aggression toward Austria (forecast_coalition_p) and a separate ~60% England\u2192France overreach risk, so commitments are conditional and aimed at reducing two\u2011front escalation risk.\nIntent: S1915M orders intent: F KIE \u2014 HOLD (commitment to England). A BER \u2014 HOLD/DEFEND (no moves into BUR or toward France). A MUN \u2014 HOLD/READY (available to cover Austria if Russia advances; no move into BOH/PRU/SIL this turn). Maintain defensive posture that signals non\u2011aggression to France and Austria while preserving flexibility for rapid support if forecasts materialize. I intend to fulfill these commitments to maintain credibility; if any partner violates agreed constraints (notably aggression vs Austria or a supported assault on KIE/BER), I will immediately reassign A MUN to either BOH or PRU in response next phase. I will also send secure notification to Austria, Russia, and Turkey of these exact orders so future self remembers the conditional commitments.",
+                        "[S1915M] S1915M Diary \u2014 concise record and implications.\n\nAll agreed holds were observed this phase. I kept F KIE H, A BER H, A MUN S A BER as committed; England respected the maritime understanding by holding DEN/HOL and keeping North Sea reserves \u2014 no breach. Austria and Turkey held; Russia made no aggressive moves into PRU/BOH/SIL. France repositioned MAO\u2192BRE and PAR\u2192PIC and MAR\u2192SPA (pressing into Iberia), signaling westward focus rather than contesting Kiel. No surprises or unexpected attacks.\n\nImplications: my conditional commitments reduced immediate two\u2011front risk \u2014 forecast_coalition_p (60% near\u2011term aggression to Austria) did not materialize this turn, lowering urgency but not eliminating risk. Trustworthiness: England and Austria strengthened credibility; France appears non\u2011aggressive toward KIE for now but remains opportunistic (westward pressure). Russia remains noncommittal; continue treating it as medium risk.\n\nLessons: maintain visible, verifiable holds to preserve credibility. Continue secure notifications to Austria/Russia/Turkey and prepare contingency to move A MUN to BOH/PRU if any violation occurs."
+                    ],
+                    "private_diary": [
+                        "[S1915M] Established restrained, security\u2011focused understandings with England, France, Austria, Russia, and Turkey. England: maritime understanding \u2014 F KIE will hold/avoid DEN/HOL if England refrains from supporting moves against KIE/BER; England will keep North Sea reserves. France: tentative non\u2011aggression \u2014 Germany will hold BER/MUN and avoid pushing into BUR/SIL if France keeps F BRE/PAR/MAR and signals not to contest Kiel; France asked for concrete support if it commits north. Austria: pledge to hold VIE/BUD and stabilise the Balkans while Germany refrains from moves into BOH/TYR and keeps MUN/BER defensive; mutual aid notifications agreed. Russia: limited information sharing and notification of moves toward PRU/BOH; Germany will not move into PRU/SIL absent clear Russian aggression. Turkey: Germany will not interfere in Aegean/Anatolian operations if Turkey avoids aggression toward Bulgaria/Adriatic that would threaten Austria. All understandings framed by forecasts warning of a 60% chance of near\u2011term aggression toward Austria (forecast_coalition_p) and a separate ~60% England\u2192France overreach risk, so commitments are conditional and aimed at reducing two\u2011front escalation risk.\nIntent: S1915M orders intent: F KIE \u2014 HOLD (commitment to England). A BER \u2014 HOLD/DEFEND (no moves into BUR or toward France). A MUN \u2014 HOLD/READY (available to cover Austria if Russia advances; no move into BOH/PRU/SIL this turn). Maintain defensive posture that signals non\u2011aggression to France and Austria while preserving flexibility for rapid support if forecasts materialize. I intend to fulfill these commitments to maintain credibility; if any partner violates agreed constraints (notably aggression vs Austria or a supported assault on KIE/BER), I will immediately reassign A MUN to either BOH or PRU in response next phase. I will also send secure notification to Austria, Russia, and Turkey of these exact orders so future self remembers the conditional commitments.",
+                        "[S1915M] S1915M Diary \u2014 concise record and implications.\n\nAll agreed holds were observed this phase. I kept F KIE H, A BER H, A MUN S A BER as committed; England respected the maritime understanding by holding DEN/HOL and keeping North Sea reserves \u2014 no breach. Austria and Turkey held; Russia made no aggressive moves into PRU/BOH/SIL. France repositioned MAO\u2192BRE and PAR\u2192PIC and MAR\u2192SPA (pressing into Iberia), signaling westward focus rather than contesting Kiel. No surprises or unexpected attacks.\n\nImplications: my conditional commitments reduced immediate two\u2011front risk \u2014 forecast_coalition_p (60% near\u2011term aggression to Austria) did not materialize this turn, lowering urgency but not eliminating risk. Trustworthiness: England and Austria strengthened credibility; France appears non\u2011aggressive toward KIE for now but remains opportunistic (westward pressure). Russia remains noncommittal; continue treating it as medium risk.\n\nLessons: maintain visible, verifiable holds to preserve credibility. Continue secure notifications to Austria/Russia/Turkey and prepare contingency to move A MUN to BOH/PRU if any violation occurs."
+                    ]
+                },
+                "ITALY": {
+                    "power_name": "ITALY",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "RUSSIA": {
+                    "power_name": "RUSSIA",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                },
+                "TURKEY": {
+                    "power_name": "TURKEY",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}"
+                    ]
+                }
+            },
+            "order_results": {
+                "AUSTRIA": {
+                    "hold": [
+                        {
+                            "order": "A BUD H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SER H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F TRI H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A VIE H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "ENGLAND": {
+                    "hold": [
+                        {
+                            "order": "A BEL H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A DEN H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A EDI H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A HOL H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A LON H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A LVP H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A NWY H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A POR H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SWE H",
+                            "result": "success"
+                        }
+                    ],
+                    "move": [
+                        {
+                            "order": "A SPA - GAS",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "FRANCE": {
+                    "move": [
+                        {
+                            "order": "F BRE - MAO",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A PAR - PIC",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A MAR - SPA",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "GERMANY": {
+                    "hold": [
+                        {
+                            "order": "F KIE H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A BER H",
+                            "result": "success"
+                        }
+                    ],
+                    "support": [
+                        {
+                            "order": "A MUN S A BER",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "ITALY": {
+                    "hold": [
+                        {
+                            "order": "F NAP H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A ROM H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A TUN H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A VEN H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "RUSSIA": {
+                    "hold": [
+                        {
+                            "order": "A MOS H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A RUM H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F SEV H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F STP/SC H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A WAR H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "TURKEY": {
+                    "hold": [
+                        {
+                            "order": "F ANK H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A BUL H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A CON H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A GRE H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SMY H",
+                            "result": "success"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "F1915M",
+            "state": {
+                "timestamp": 1770377214288870,
+                "zobrist_hash": "1501496669611670454",
+                "note": "1915 crisis snapshot. England is dominant in the west and at sea. France is on death-ground, surrounded and forced into risk-heavy diplomacy. Austria is stretched and fragile in the Balkans. Russia and Turkey are locked in a brutal contest for the Black Sea and the Balkans. Use this backdrop to reason about high-stakes forecasts and second-order consequences.",
+                "name": "F1915M",
+                "units": {
+                    "AUSTRIA": [
+                        "A VIE",
+                        "A BUD",
+                        "F TRI",
+                        "A SER"
+                    ],
+                    "ENGLAND": [
+                        "A EDI",
+                        "A LON",
+                        "A LVP",
+                        "A NWY",
+                        "A SWE",
+                        "A DEN",
+                        "A HOL",
+                        "A BEL",
+                        "A POR",
+                        "A GAS"
+                    ],
+                    "FRANCE": [
+                        "F MAO",
+                        "A PIC",
+                        "A SPA"
+                    ],
+                    "GERMANY": [
+                        "A BER",
+                        "A MUN",
+                        "F KIE"
+                    ],
+                    "ITALY": [
+                        "A ROM",
+                        "A VEN",
+                        "F NAP",
+                        "A TUN"
+                    ],
+                    "RUSSIA": [
+                        "A MOS",
+                        "F SEV",
+                        "A WAR",
+                        "F STP/SC",
+                        "A RUM"
+                    ],
+                    "TURKEY": [
+                        "F ANK",
+                        "A CON",
+                        "A SMY",
+                        "A BUL",
+                        "A GRE"
+                    ]
+                },
+                "retreats": {
+                    "AUSTRIA": {},
+                    "ENGLAND": {},
+                    "FRANCE": {},
+                    "GERMANY": {},
+                    "ITALY": {},
+                    "RUSSIA": {},
+                    "TURKEY": {}
+                },
+                "centers": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "SPA",
+                        "POR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "homes": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "TRI",
+                        "VIE"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "MAR",
+                        "PAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "KIE",
+                        "MUN"
+                    ],
+                    "ITALY": [
+                        "NAP",
+                        "ROM",
+                        "VEN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "STP",
+                        "WAR"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY"
+                    ]
+                },
+                "influence": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "POR",
+                        "GAS"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR",
+                        "MAO",
+                        "PIC",
+                        "SPA"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "civil_disorder": {
+                    "AUSTRIA": 0,
+                    "ENGLAND": 0,
+                    "FRANCE": 0,
+                    "GERMANY": 0,
+                    "ITALY": 0,
+                    "RUSSIA": 0,
+                    "TURKEY": 0
+                },
+                "builds": {
+                    "AUSTRIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ENGLAND": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "FRANCE": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "GERMANY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ITALY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "RUSSIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "TURKEY": {
+                        "count": 0,
+                        "homes": []
+                    }
+                },
+                "phase": "F1915M",
+                "game_id": "FORECAST-1915-DEATHGROUND",
+                "map": "standard",
+                "rules": [
+                    "POWER_CHOICE"
+                ]
+            },
+            "orders": {
+                "AUSTRIA": [
+                    "A BUD H",
+                    "A SER H",
+                    "F TRI H",
+                    "A VIE H"
+                ],
+                "ENGLAND": [
+                    "A BEL S A GAS - BUR",
+                    "A DEN S A SWE",
+                    "A EDI H",
+                    "A GAS - BUR",
+                    "A HOL S A BEL",
+                    "A LON H",
+                    "A LVP H",
+                    "A NWY S A SWE",
+                    "A POR H",
+                    "A SWE S A DEN"
+                ],
+                "FRANCE": [
+                    "F MAO - POR",
+                    "A SPA S F MAO - POR",
+                    "A PIC H"
+                ],
+                "GERMANY": [
+                    "A BER H",
+                    "F KIE H",
+                    "A MUN S A BER"
+                ],
+                "ITALY": [
+                    "F NAP H",
+                    "A ROM H",
+                    "A TUN H",
+                    "A VEN H"
+                ],
+                "RUSSIA": [
+                    "A MOS H",
+                    "A RUM H",
+                    "F SEV H",
+                    "F STP/SC H",
+                    "A WAR H"
+                ],
+                "TURKEY": [
+                    "F ANK H",
+                    "A BUL H",
+                    "A CON H",
+                    "A GRE H",
+                    "A SMY H"
+                ]
+            },
+            "results": {
+                "A VIE": [],
+                "A BUD": [],
+                "F TRI": [],
+                "A SER": [],
+                "A EDI": [],
+                "A LON": [],
+                "A LVP": [],
+                "A NWY": [],
+                "A SWE": [],
+                "A DEN": [],
+                "A HOL": [],
+                "A BEL": [],
+                "A POR": [
+                    "dislodged"
+                ],
+                "A GAS": [],
+                "F MAO": [],
+                "A PIC": [],
+                "A SPA": [],
+                "A BER": [],
+                "A MUN": [],
+                "F KIE": [],
+                "A ROM": [],
+                "A VEN": [],
+                "F NAP": [],
+                "A TUN": [],
+                "A MOS": [],
+                "F SEV": [],
+                "A WAR": [],
+                "F STP/SC": [],
+                "A RUM": [],
+                "F ANK": [],
+                "A CON": [],
+                "A SMY": [],
+                "A BUL": [],
+                "A GRE": []
+            },
+            "messages": [
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "GERMANY",
+                    "time_sent": 1770377185141443,
+                    "phase": "F1915M",
+                    "message": "Kiel: understood. You\u2019ll get predictability from me. I will not support any move on KIE or BER this turn, and I expect F KIE to hold or, if you must shift, BAL only with prior notice. Forecast note: the storyworld artifact flags France as the target with a 62% probability of aggression if granted concessions; that raises Channel/North Sea risk and makes our status quo valuable. If France points ENG/MAO north, I\u2019ll keep HOL/BEL covered and DEN/SWE/NWY quiet. If you maintain the freeze at Kiel, I keep my northern armies in place and off your dots."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "FRANCE",
+                    "time_sent": 1770377185142526,
+                    "phase": "F1915M",
+                    "message": "Your proposal asks me to vacate Spain without a durable check on MAO/ENG. I can\u2019t trade firm coastal lanes for your tempo. I will not attack Brest this turn, and I will not open the Channel unless you do. If you keep out of ENG and keep SPA calm (no POR, no GAS press), I can keep my focus east and leave BRE/PAR unmolested. If you lunge\u2014ENG or MAO->POR with SPA pressure\u2014I\u2019ll clamp the Channel and turn coalition attention your way. Forecast note: the STORYWORLD artifact tags you as the target with 62% odds of aggression if offered a concession; I won\u2019t incentivize that. If you want survival through balance, show restraint this move and we can discuss a phased Iberian de-escalation later."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770377185143132,
+                    "phase": "F1915M",
+                    "message": "North remains quiet from me: NWY/SWE/DEN hold, no STP probe. I\u2019d welcome your continued stillness at STP/Fin. If France pushes ENG/MAO, I pivot west and keep Germany contained at Kiel. Forecast signal: artifact pegs France at 62% to act aggressively if given slack; expect Channel/MAO turbulence. If that materializes, I\u2019ll keep Scandinavia entirely calm and signal you before any shifts."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "ITALY",
+                    "time_sent": 1770377185143745,
+                    "phase": "F1915M",
+                    "message": "Iberia will be contested but I\u2019m not opening ENG. If France swings MAO->POR with SPA pressure, I\u2019ll clamp and you\u2019ll have freer hands in the south. If you keep Piedmont/Mediterranean pressure measured and avoid empowering a French rebound, I\u2019ll keep my fight contained to Iberia and off the Mid. Forecast note: artifact suggests 62% chance France over-commits when tossed a concession; if you see ENG/MAO aggression, that\u2019s your cue that the west is self-balancing."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770377185144568,
+                    "phase": "F1915M",
+                    "message": "I\u2019m holding north and west lanes; no Channel theatrics unless France forces it. If you need diplomatic cover against a southern surge, I can keep Germany locked at Kiel and discourage a northern pile-on. Forecast artifact flags France at 62% to lunge if indulged; if you see them pivoting north, your Balkans front should breathe a bit. Tell me if you need me to signal Germany to keep the freeze."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770377185145426,
+                    "phase": "F1915M",
+                    "message": "England will not disturb the north this turn. I expect western friction only if France pushes ENG/MAO. If that happens, I focus west and keep Germany contained, which reduces any sudden northern swing against you. Forecast artifact: France has 62% odds to act aggressively if given a concession; watch for them to test ENG/MAO. If they do, your eastern calculus against Russia may get marginally easier."
+                },
+                {
+                    "sender": "ENGLAND",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770377185146218,
+                    "phase": "F1915M",
+                    "message": "To all: I will keep the North Sea approaches and Kiel front stable so long as the Channel remains calm. Any move on ENG or an Iberian smash-and-grab will be met with coordinated containment. Forecast note (per the shared artifact): there is a 62% chance France escalates if handed a soft concession; accordingly, my posture will be firm but limited to preserve balance. Quiet seas benefit everyone."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "ENGLAND",
+                    "time_sent": 1770377185147324,
+                    "phase": "F1915M",
+                    "message": "Across the Channel, clarity. You used an artifact last season to argue I\u2019d overreach after a concession (62% risk, confidence 0.6). I didn\u2019t: I stayed out of ENG/BEL/HOL and limited myself to Iberian recovery while you slid GAS and held POR. We now face a simple choice. If you want stable lanes, vacate Spain this fall and let me hold it; I will not enter ENG or touch BEL/HOL. In return, I will focus westward pressure only through MAO/WES, not the Channel. If you refuse and keep both POR and a retake of SPA, I will coordinate FR-IT-RU pressure and contest POR from MAO while inviting Italy into WMS/NAf. Forecast: if you attempt to lock Iberia, your northern line thins; I estimate a 55\u201365% chance Russia feints Nwy and Germany stiffens Kiel/Munich, forcing you to tie down 2\u20133 armies that could be east. Offer: England holds POR, France holds SPA, neither of us enters ENG, and Belgium stays neutral. You gain security in the North; I regain a foothold without threatening the Low Countries."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "GERMANY",
+                    "time_sent": 1770377185148287,
+                    "phase": "F1915M",
+                    "message": "Berlin, a balanced West serves us both. I accept non\u2011aggression in BUR and will not touch BEL this phase provided you keep MUN/BER steady and do not move to BUR. England is at 10 and eyeing consolidation; I assess a 50\u201360% chance he tries to lock Iberia and then pivot MAO\u2192ENG/IRI. If he does, I\u2019ll pin him from MAO and seek an Italian WMS entry. What I need from you: public calm and one tangible coordination point. Either: 1) If England pressures Kiel later, you signal readiness for KIE\u2013BAL or KIE H with contingency support from MUN; or 2) If I must step to BUR later, you pre\u2011clear that as a screen, not an attack. I will not strike BEL or MUN without prior agreement. Result: Germany preserves MUN, I tie down England in the west, and the Low Countries don\u2019t become a battlefield."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "ITALY",
+                    "time_sent": 1770377185149509,
+                    "phase": "F1915M",
+                    "message": "Roma, this is the moment to tax England\u2019s western reach. If you can put even a feint toward WMS/NAf (NAP\u2013WES or NAF via convoy later), I can hit POR from MAO and hold SPA, forcing England to spend two armies covering Iberia instead of helping in the North. That\u2019s your leverage to keep Austria from meddling and to bargain for Tunis security. Using a forecast artifact targeting Austria (confidence 0.6), there\u2019s a 60% chance Vienna acts aggressively next phase; your best hedge is England tied down in Iberia while you keep VEN/ROM oriented to your northeast screen. I pledge: I won\u2019t go PIE/TYR, and if you step WMS, I\u2019ll keep my pressure west of Sardinia\u2014not a drop toward TYS/GOL. Let\u2019s create a FR\u2011IT clamp: I contest POR/MAO, you show WMS, and England has to choose between ENG or saving Iberia."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770377185150220,
+                    "phase": "F1915M",
+                    "message": "Petersburg, a light touch can move mountains. If you show a posture toward Nwy (even just STP/SC\u2013BAR or a hold with press), I can threaten POR from MAO and freeze England\u2019s Iberian armies. My estimate: with a northern feint, there\u2019s a 60% probability England keeps two units tied to NTH/NSk cover, reducing his ability to cascade fleets into ENG/IRI. In turn, I\u2019ll keep BUR neutral and avoid BEL, keeping Germany less jumpy and more inclined to hold the line against England. If you want, we can coordinate timing: I move MAO\u2013POR (with SPA S) the same season you posture at Nwy, spiking his defense costs by 2\u20133 units."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770377185150806,
+                    "phase": "F1915M",
+                    "message": "Vienna, mutual stability pays. I will not touch BUR/TYR/PIE and will counsel Italy to keep a northern screen rather than a Balkan sortie. Note: a storyworld artifact targeting Austria (confidence 0.6) flags a 60% chance of Austrian aggression next phase; if that materializes, Italy will pivot away from the west and you\u2019ll lose the breathing space you need. If, instead, you signal restraint, I can pull Italy westward against England in WMS, lowering your immediate risk in Trieste/Adriatic. My interest is simple: keep the Med calm while I bleed England\u2019s Iberian attention. If you maintain current lines and avoid VEN/TYR adventures, I\u2019ll reinforce that arrangement with Rome."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "TURKEY",
+                    "time_sent": 1770377185151889,
+                    "phase": "F1915M",
+                    "message": "Sublime Porte, a quiet suggestion: encourage Italy west. If Rome points WMS/NAf, England must hold two armies in Iberia and can\u2019t spare northern cover, which indirectly eases Russian pressure on you by shifting his calculus away from the north. My forecast: with Italian WMS posture and my MAO hit at POR, there\u2019s a 55\u201365% chance England delays any northern surge, giving you time to shape the Black Sea front. I\u2019ll underline to Italy that I won\u2019t touch PIE/TYS/GOL if he heads west\u2014safer for you and me both."
+                },
+                {
+                    "sender": "FRANCE",
+                    "recipient": "GLOBAL",
+                    "time_sent": 1770377185152649,
+                    "phase": "F1915M",
+                    "message": "France seeks limited de-escalation: I will not enter the English Channel or attack Belgium this phase if Spain is respected as French. I intend to focus on Iberian equilibrium and broader balance, not low-country adventurism. Forecast note referencing a published artifact (target: Austria, confidence 0.6): rising Balkan aggression risk argues for stabilizing the Western seas rather than opening new fronts. Partners willing to support a contained West will find France a reliable counterpart."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "ENGLAND",
+                    "time_sent": 1770377185153492,
+                    "phase": "F1915M",
+                    "message": "I confirm: F KIE will HOLD this phase and Germany will not support moves against STP. In return I ask England to refrain from any supported assault on KIE/BER and to keep North Sea reserves as promised. I will also keep A BER and A MUN visibly defensive (BER H, MUN H/S BER) to demonstrate my credibility to France and Austria. Forecast implication: the forecast_false_concession_p artifact indicates a 62% chance that offering a low-risk concession lures the target (Austria) or others into aggression; therefore my commitments are explicitly conditional \u2014 if England observes any supported aggression that threatens Austria or a breach against KIE/BER, Germany will immediately redeploy A MUN to BOH or PRU to counter a two\u2011front escalation. Practical request: If you accept, send a short note publicly that you will not support moves against KIE/BER this turn so my holds are verifiable to France and Austria."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "FRANCE",
+                    "time_sent": 1770377185155010,
+                    "phase": "F1915M",
+                    "message": "I will keep BER and MUN held this phase and F KIE will remain defensive. I understand your desire to check English dominance \u2014 Germany will not block a French move into BUR should you press there, provided France does not support moves against KIE or aid an English push that threatens my north. Forecast implication: the forecast_false_concession_p artifact (62% aggression probability) advises caution \u2014 Germany assesses a substantial (~60%) risk that apparent concessions can precipitate opportunistic aggression, so any French advance must be signaled in advance. Offer: if you plan PAR\u2013PIC and a northern commitment, notify me securely of intended supports; in return I will provide conditional support (A MUN to BUR only if France provides credible, observable moves against HOL/BEL to tie down England)."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "AUSTRIA",
+                    "time_sent": 1770377185155946,
+                    "phase": "F1915M",
+                    "message": "Austria \u2014 Germany confirms the security promise: A MUN and A BER remain defensive this phase to free your forces to hold VIE/BUD/TRI. I will send a secure notification of these exact orders so you can coordinate confidently. Forecast implication: per forecast_false_concession_p, there is a 62% chance that low\u2011risk concessions invite opportunistic aggression against Austria; I therefore request Austria immediately inform Germany of any suspicious English/French/Russian support patterns toward the Balkans or PRU so I can react rapidly. If you detect aggression, Germany will be prepared to move A MUN to BOH next phase to shield your flank."
+                },
+                {
+                    "sender": "GERMANY",
+                    "recipient": "RUSSIA",
+                    "time_sent": 1770377185156609,
+                    "phase": "F1915M",
+                    "message": "Germany reaffirms a temporary restraint: we will not advance into PRU or SIL this phase and keep MUN/BER held, conditional on Russia avoiding supported moves into PRU/BOH. For mutual risk reduction, please notify Germany promptly of any intent to support advances toward PRU or pressure BOH. Forecast implication: the forecast_false_concession_p artifact assigns a 62% chance that concessions can be exploited \u2014 thus clear, timely notifications lower miscalculation risk; we request one if you plan to shift forces westward so we can respond without immediate escalation."
+                }
+            ],
+            "summary": "",
+            "statistical_summary": null,
+            "config": {
+                "run_dir": "C:\\projects\\AI_Diplomacy\\results\\focused_1915_pvalue_20260206_112347",
+                "critical_state_analysis_dir": "",
+                "resume_from_phase": "",
+                "end_at_phase": "W1915A",
+                "max_year": 1915,
+                "num_negotiation_rounds": 1,
+                "forecasting_analysis_mode": true,
+                "forecasting_focus_powers": "ENGLAND,FRANCE,GERMANY",
+                "forecasting_state_file": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\scenarios\\forecasting_1915_press.json",
+                "models": "gpt-5-mini,gpt-5-2025-08-07,gpt-5-2025-08-07,gpt-5-mini,gpt-5-mini,gpt-5-mini,gpt-5-mini",
+                "planning_phase": false,
+                "max_tokens": 1200,
+                "seed_base": 42,
+                "max_tokens_per_model": "",
+                "prompts_dir": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                "simple_prompts": false,
+                "generate_phase_summaries": false,
+                "use_unformatted_prompts": false,
+                "country_specific_prompts": false,
+                "prompts_dir_map": {
+                    "AUSTRIA": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "ENGLAND": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "FRANCE": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "GERMANY": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "ITALY": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "RUSSIA": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting",
+                    "TURKEY": "C:\\projects\\AI_Diplomacy\\ai_diplomacy\\prompts_forecasting"
+                }
+            },
+            "state_agents": {
+                "AUSTRIA": {
+                    "power_name": "AUSTRIA",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ]
+                },
+                "ENGLAND": {
+                    "power_name": "ENGLAND",
+                    "model_id": "storyworld+gpt-5-2025-08-07",
+                    "max_tokens": 1200,
+                    "goals": [
+                        "Preserve naval control of the Channel/North Sea and safe lanes around the Low Countries",
+                        "Hold POR and deny an easy French sweep of Iberia without binding Channel/MAO guarantees",
+                        "Keep Germany contained at Kiel predictably without provoking a northern coalition",
+                        "Keep Scandinavia quiet and non-hostile with Russia (no STP/NWY tensions)",
+                        "Shape a flexible anti-hegemon balance; be ready to clamp France if they lunge",
+                        "Avoid overextension that would give any land power an easy rebound"
+                    ],
+                    "relationships": {
+                        "FRANCE": "Unfriendly",
+                        "AUSTRIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Friendly",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Friendly"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] West: I offered France a limited armistice (no hit on Brest if they avoid Channel/Low Countries). France countered: I vacate SPA to MAO so they take MAR\u2013SPA; they\u2019d avoid ENG and use BRE\u2013MAO to help vs POR/Mid. They threatened ENG/GAS/BUR pressure if I refuse. Germany proposed status quo: F KIE holds/only BAL with notice; I not support attacks on KIE/BER; I proposed KIE H and no northern Russian supports. Russia: mutual quiet in Scandinavia; I won\u2019t press STP if they don\u2019t probe NWY/Fin. Others received assurances I\u2019d stabilize west and contain Kiel; all were told I expect a 62% chance France over-commits if given slack and I\u2019ll clamp the Channel if so.\nIntent: Maintain western naval leverage while testing French restraint without yielding Iberia. Orders intent: hold/cover North Sea approaches (NTH/HEL/ENG coverage via adjacent armies/fleets), keep Belgium/Holland secure (A BEL/HOL H), keep Scandinavia quiet (A NWY/SWE/DEN H), do not attack Brest this spring, do not support on KIE or BER this turn, keep pressure option on KIE via adjacency but no execution, do not vacate SPA (decline French MAR\u2013SPA swap), keep POR and SPA held, maintain A EDI/LON/LVP as Channel/North Sea reserves. Fulfilments: honour no-attack on KIE/BER and no move on Brest; honour quiet with Russia in the north; do not enter ENG unless France lunges into PIC/GAS/BUR or F BRE\u2013ENG appears, in which case immediate clamp: cover ENG/NTH and tap PIC/BRE if feasible.",
+                        "[S1915M] France partially honored the armistice: they avoided the Channel and took MAO via BRE\u2013MAO, but they did push MAR\u2013SPA, forcing my SPA\u2013GAS retreat to keep Iberia contested. Germany matched the status quo: KIE/BER/MUN held, no northern probes. Russia kept Scandinavia quiet. No one lunged at the North Sea or Low Countries.\n\nSurprises: France did execute the Iberian squeeze despite my refusal to vacate\u2014predictable but still a firm test. No covert support to Germany appeared.\n\nImpact: Naval lanes remain secure (ENG/NTH uncontested), Belgium/Holland safe, Kiel contained, Scandinavia stable. Iberia is now a live front with F MAO + A SPA; forecast: 60% chance France tries MAO\u2013POR while A SPA presses GAS this year.\n\nTrust update: Germany/Russia reliable; France opportunistic under restraint. Lesson: keep Channel clamp ready, pre-position a fleet wall MAO/WES if possible, and trade MAO access only for explicit Iberian guarantees.",
+                        "[F1915M] Status quo secured in the North/Low Countries and at Kiel. Germany confirmed F KIE H; no English supports vs KIE/BER this phase, and public predictability requested. Russia affirmed quiet in Scandinavia; I reciprocate no STP probe. France stayed out of ENG and Low Countries but pressed Iberia (MAR->SPA; F BRE->MAO). France now proposes: I keep POR, they keep SPA, neither enters ENG, BEL/HOL untouched; otherwise they threaten MAO->POR + SPA pressure with FR-IT-RU coordination. I rejected vacating SPA without MAO/ENG guarantees; I will not attack Brest this turn and keep the Channel closed unless France lunges. Italy encouraged to keep measured Med pressure; I signaled I\u2019d clamp France if they push ENG/MAO. Austria and Turkey notified: West remains contained unless France escalates; I will keep Kiel frozen to prevent a northern pile-on.\nIntent: Maintain naval control and safe lanes: keep ENG/NTH un-entered unless France violates by moving to ENG or MAO->POR with SPA pressure, in which case clamp Channel and contain. Honour: no support vs KIE/BER; keep Scandinavia quiet (NWY/SWE/DEN hold, no STP probe). Iberia: hold POR; contest SPA defensively from GAS; do not concede SPA unless France provides binding restraint (which they have not). Keep BEL/HOL secure. Maintain adjacency pressure options on KIE without executing. No attack on Brest this turn. Be ready to pivot to a Channel clamp if France orders ENG or MAO->POR+SPA->GAS.",
+                        "[F1915M] France violated the limited armistice by executing MAO->POR with SPA support, dislodging POR despite staying out of ENG/Low Countries. Germany and Russia honored commitments: KIE/BER held, no northern probes; Scandinavia stayed quiet. I upheld pledges: no Channel clamp, no Brest attack, no supports vs KIE/BER. Surprise: France chose the immediate Iberian strike rather than hold MAO and bargain, confirming opportunism under restraint. Impact: loss of POR unit position (pending retreat), Channel/North Sea lanes still secure, Kiel frozen, Low Countries safe. Trust recalibration: France downgraded; Germany/Russia upgraded as predictable. Lessons: any MAO tolerance must be paired with explicit Iberian guarantees; pre-position a MAO/WES wall before offering de-escalation. Next: reassert naval leverage\u2014clamp Channel if France presses further, coordinate quiet north to free fleets for MAO/WES, and trade forecasts to align Germany/Italy against a French Atlantic push."
+                    ],
+                    "private_diary": [
+                        "[S1915M] West: I offered France a limited armistice (no hit on Brest if they avoid Channel/Low Countries). France countered: I vacate SPA to MAO so they take MAR\u2013SPA; they\u2019d avoid ENG and use BRE\u2013MAO to help vs POR/Mid. They threatened ENG/GAS/BUR pressure if I refuse. Germany proposed status quo: F KIE holds/only BAL with notice; I not support attacks on KIE/BER; I proposed KIE H and no northern Russian supports. Russia: mutual quiet in Scandinavia; I won\u2019t press STP if they don\u2019t probe NWY/Fin. Others received assurances I\u2019d stabilize west and contain Kiel; all were told I expect a 62% chance France over-commits if given slack and I\u2019ll clamp the Channel if so.\nIntent: Maintain western naval leverage while testing French restraint without yielding Iberia. Orders intent: hold/cover North Sea approaches (NTH/HEL/ENG coverage via adjacent armies/fleets), keep Belgium/Holland secure (A BEL/HOL H), keep Scandinavia quiet (A NWY/SWE/DEN H), do not attack Brest this spring, do not support on KIE or BER this turn, keep pressure option on KIE via adjacency but no execution, do not vacate SPA (decline French MAR\u2013SPA swap), keep POR and SPA held, maintain A EDI/LON/LVP as Channel/North Sea reserves. Fulfilments: honour no-attack on KIE/BER and no move on Brest; honour quiet with Russia in the north; do not enter ENG unless France lunges into PIC/GAS/BUR or F BRE\u2013ENG appears, in which case immediate clamp: cover ENG/NTH and tap PIC/BRE if feasible.",
+                        "[S1915M] France partially honored the armistice: they avoided the Channel and took MAO via BRE\u2013MAO, but they did push MAR\u2013SPA, forcing my SPA\u2013GAS retreat to keep Iberia contested. Germany matched the status quo: KIE/BER/MUN held, no northern probes. Russia kept Scandinavia quiet. No one lunged at the North Sea or Low Countries.\n\nSurprises: France did execute the Iberian squeeze despite my refusal to vacate\u2014predictable but still a firm test. No covert support to Germany appeared.\n\nImpact: Naval lanes remain secure (ENG/NTH uncontested), Belgium/Holland safe, Kiel contained, Scandinavia stable. Iberia is now a live front with F MAO + A SPA; forecast: 60% chance France tries MAO\u2013POR while A SPA presses GAS this year.\n\nTrust update: Germany/Russia reliable; France opportunistic under restraint. Lesson: keep Channel clamp ready, pre-position a fleet wall MAO/WES if possible, and trade MAO access only for explicit Iberian guarantees.",
+                        "[F1915M] Status quo secured in the North/Low Countries and at Kiel. Germany confirmed F KIE H; no English supports vs KIE/BER this phase, and public predictability requested. Russia affirmed quiet in Scandinavia; I reciprocate no STP probe. France stayed out of ENG and Low Countries but pressed Iberia (MAR->SPA; F BRE->MAO). France now proposes: I keep POR, they keep SPA, neither enters ENG, BEL/HOL untouched; otherwise they threaten MAO->POR + SPA pressure with FR-IT-RU coordination. I rejected vacating SPA without MAO/ENG guarantees; I will not attack Brest this turn and keep the Channel closed unless France lunges. Italy encouraged to keep measured Med pressure; I signaled I\u2019d clamp France if they push ENG/MAO. Austria and Turkey notified: West remains contained unless France escalates; I will keep Kiel frozen to prevent a northern pile-on.\nIntent: Maintain naval control and safe lanes: keep ENG/NTH un-entered unless France violates by moving to ENG or MAO->POR with SPA pressure, in which case clamp Channel and contain. Honour: no support vs KIE/BER; keep Scandinavia quiet (NWY/SWE/DEN hold, no STP probe). Iberia: hold POR; contest SPA defensively from GAS; do not concede SPA unless France provides binding restraint (which they have not). Keep BEL/HOL secure. Maintain adjacency pressure options on KIE without executing. No attack on Brest this turn. Be ready to pivot to a Channel clamp if France orders ENG or MAO->POR+SPA->GAS.",
+                        "[F1915M] France violated the limited armistice by executing MAO->POR with SPA support, dislodging POR despite staying out of ENG/Low Countries. Germany and Russia honored commitments: KIE/BER held, no northern probes; Scandinavia stayed quiet. I upheld pledges: no Channel clamp, no Brest attack, no supports vs KIE/BER. Surprise: France chose the immediate Iberian strike rather than hold MAO and bargain, confirming opportunism under restraint. Impact: loss of POR unit position (pending retreat), Channel/North Sea lanes still secure, Kiel frozen, Low Countries safe. Trust recalibration: France downgraded; Germany/Russia upgraded as predictable. Lessons: any MAO tolerance must be paired with explicit Iberian guarantees; pre-position a MAO/WES wall before offering de-escalation. Next: reassert naval leverage\u2014clamp Channel if France presses further, coordinate quiet north to free fleets for MAO/WES, and trade forecasts to align Germany/Italy against a French Atlantic push."
+                    ]
+                },
+                "FRANCE": {
+                    "power_name": "FRANCE",
+                    "model_id": "storyworld+gpt-5-2025-08-07",
+                    "max_tokens": 1200,
+                    "goals": [
+                        "Hold Spain and contest Portugal to prevent an English Iberian lock",
+                        "Avoid Channel overcommitment while denying England a MAO cascade",
+                        "Keep BUR neutral and Germany calm; secure permission for future BUR screen if needed",
+                        "Induce Italy into WMS/NAf posture to tax England\u2019s Iberian defense",
+                        "Encourage a Russian Nwy feint to stretch English northern cover",
+                        "Preserve French survival and rebuild tempo without provoking a western coalition"
+                    ],
+                    "relationships": {
+                        "AUSTRIA": "Friendly",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Unfriendly",
+                        "ITALY": "Friendly",
+                        "RUSSIA": "Friendly"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] England offered a limited western armistice and not to hit Brest if I avoid ENG/Low Countries pushes; he flagged a 62% risk I would over\u2011commit after a concession and will keep cover. I countered: England vacates Spain to MAO while I take MAR\u2013SPA and keep BRE\u2013MAO to help pressure POR/Mid; if he refuses, I threatened F BRE\u2013ENG with PAR\u2013PIC and MAR pressure to rally Germany/Italy. Germany proposed general non\u2011aggression and turtling without concrete help; I asked for either support vs BEL or cover for MUN if I take BUR. Italy was asked to coordinate Iberian rollback (WMS/NAf pressure) if I go MAO/PIE; Austria was asked to keep Italy honest with a pledge I won\u2019t enter BUR if VEN stays off PIE/TYR; Russia was asked to feint at Nwy to raise English defensive costs; Turkey was nudged to dissuade Italy from aiding England in WMS. No firm English acceptance yet; no concrete German support secured. Coalition signals pending.\nIntent: Primary plan: anti-English posture without overcommitting in the Channel. Orders: F BRE\u2013MAO (contest Iberia, enable Mid pressure), A PAR\u2013PIC (screen Channel coast and signal anti-ENG), A MAR\u2013SPA (walk-in if ENG vacates; otherwise contest). No entry to ENG this turn unless England blatantly holds SPA and masses fleets north; only then consider F BRE\u2013ENG, but current intent is MAO. Maintain BUR neutrality this spring to avoid provoking Germany unless Germany explicitly promises MUN cover; if Germany offers MUN cover or BEL play late, upgrade MAR\u2013BUR instead of MAR\u2013SPA. Coordinate diplomatically with Italy for WMS pressure and with Russia for Nwy feints. Fulfilment: I will honour promises not to strike BUR this season if Austria/Italy refrain from PIE/TYR; I will not attack Belgium this move.",
+                        "[S1915M] S1915M diary \u2014 Forecasting Analysis Mode on. England did not honor the proposed Iberian de-escalation; instead he slid SPA\u2013GAS while holding POR, signaling intent to lock Iberia and stage for MAO/Mid. My primary plan executed: BRE\u2013MAO, PAR\u2013PIC, MAR\u2013SPA all succeeded, reclaiming SPA and keeping Channel commitments limited. No one else moved: Germany turtled (no BUR/BEL help), Italy/Austria stayed inert, Russia/Turkey static. Surprise: England didn\u2019t contest MAO, implying a forecast of English consolidation via GAS\u2013SPA retake with POR support next turn. Trust updates: England remains predatory but cautious; Germany passive and risk-averse; Italy unreliable for WMS help without stronger leverage. Impact: I deny an English MAO cascade and re-enter Iberia, but I\u2019m isolated at 3 with no allies committing. Lesson: Use Iberian leverage\u2014threaten POR cut from MAO and invite Italy to WMS/NAf to raise English defensive costs; keep BUR neutral while pressing Berlin for concrete MUN/BEL guarantees.",
+                        "[F1915M] England refused to vacate Spain and insists on Iberian status quo with Channel calm; he cites a 62% artifact risk of French overreach and threatens coalition if I lunge at POR or ENG. I reiterated: no ENG/BEL if Spain is French; offered POR=England, SPA=France, ENG shut. England noncommittal. Germany agreed to BUR non-aggression and will not block a French step to BUR later if not used against him; he remains defensive and wants prior signaling. Italy entertained WMS pressure if kept safe from Austrian/tyrolian threats; I pledged no PIE/TYR/TYS/GOL pressure if he goes WMS/NAf. Russia open to a Norway feint to raise England\u2019s northern costs; I tied this to a simultaneous POR contest. Austria nudged toward restraint; I promised to keep PIE/TYR empty and steer Italy west if Vienna stays calm. Turkey encouraged to nudge Italy west to pin England in Iberia.\nIntent: Orders focus on Iberian equilibrium and Channel restraint. Planned: F MAO\u2013POR with A SPA S F MAO\u2013POR to contest Portugal while keeping A PIC H (covering PAR/BRE lanes) or A PIC\u2013BRE if needed purely defensively; no move to ENG and no attack on BEL this phase. If late intel shows Italy not entering WMS and England doubling north, consider switching F MAO H and A SPA H to hold Spain and preserve tempo. Will not enter BUR this phase unless Germany explicitly greenlights and Italy/Austria suddenly threaten PIE/TYR; default is no BUR, honoring prior commitments. Aim to coordinate Russia\u2019s Nwy feint this move to split English defenses. Fulfil current promises: no ENG, no BEL strike, no PIE/TYR entry.",
+                        "[F1915M] Betrayal: England escalated, marching GAS\u2013BUR with BEL/HOL supports despite \u201cChannel calm/Iberian status quo\u201d talk. That violates his implied pledge to keep pressure off my interior while we sorted Iberia. Collaborations: None active; Germany honored a passive BUR non\u2011aggression but offered no cover. Italy/Russia/Turkey/Austria stayed inert.\n\nSurprises: England chose a land thrust into BUR instead of contesting MAO/Por by sea\u2014reveals intent to pin Paris/Burgundy while previously holding POR. My POR take with SPA support succeeded; PIC held.\n\nImpact: I secure Iberia\u2019s coast and deny an English MAO cascade, but face immediate land pressure on PAR/BRE from BUR. Trust: England predatory and coalition\u2011minded; Germany risk\u2011averse but not hostile; Italy only moves with leverage.\n\nLessons: Use POR as bargaining chip while demanding ENG neutrality and a BUR bounce; court Germany for MUN cover vs BUR and pull Italy into WMS/NAf to split English attention. Avoid Channel overreach; prioritize Paris/Brest defense."
+                    ],
+                    "private_diary": [
+                        "[S1915M] England offered a limited western armistice and not to hit Brest if I avoid ENG/Low Countries pushes; he flagged a 62% risk I would over\u2011commit after a concession and will keep cover. I countered: England vacates Spain to MAO while I take MAR\u2013SPA and keep BRE\u2013MAO to help pressure POR/Mid; if he refuses, I threatened F BRE\u2013ENG with PAR\u2013PIC and MAR pressure to rally Germany/Italy. Germany proposed general non\u2011aggression and turtling without concrete help; I asked for either support vs BEL or cover for MUN if I take BUR. Italy was asked to coordinate Iberian rollback (WMS/NAf pressure) if I go MAO/PIE; Austria was asked to keep Italy honest with a pledge I won\u2019t enter BUR if VEN stays off PIE/TYR; Russia was asked to feint at Nwy to raise English defensive costs; Turkey was nudged to dissuade Italy from aiding England in WMS. No firm English acceptance yet; no concrete German support secured. Coalition signals pending.\nIntent: Primary plan: anti-English posture without overcommitting in the Channel. Orders: F BRE\u2013MAO (contest Iberia, enable Mid pressure), A PAR\u2013PIC (screen Channel coast and signal anti-ENG), A MAR\u2013SPA (walk-in if ENG vacates; otherwise contest). No entry to ENG this turn unless England blatantly holds SPA and masses fleets north; only then consider F BRE\u2013ENG, but current intent is MAO. Maintain BUR neutrality this spring to avoid provoking Germany unless Germany explicitly promises MUN cover; if Germany offers MUN cover or BEL play late, upgrade MAR\u2013BUR instead of MAR\u2013SPA. Coordinate diplomatically with Italy for WMS pressure and with Russia for Nwy feints. Fulfilment: I will honour promises not to strike BUR this season if Austria/Italy refrain from PIE/TYR; I will not attack Belgium this move.",
+                        "[S1915M] S1915M diary \u2014 Forecasting Analysis Mode on. England did not honor the proposed Iberian de-escalation; instead he slid SPA\u2013GAS while holding POR, signaling intent to lock Iberia and stage for MAO/Mid. My primary plan executed: BRE\u2013MAO, PAR\u2013PIC, MAR\u2013SPA all succeeded, reclaiming SPA and keeping Channel commitments limited. No one else moved: Germany turtled (no BUR/BEL help), Italy/Austria stayed inert, Russia/Turkey static. Surprise: England didn\u2019t contest MAO, implying a forecast of English consolidation via GAS\u2013SPA retake with POR support next turn. Trust updates: England remains predatory but cautious; Germany passive and risk-averse; Italy unreliable for WMS help without stronger leverage. Impact: I deny an English MAO cascade and re-enter Iberia, but I\u2019m isolated at 3 with no allies committing. Lesson: Use Iberian leverage\u2014threaten POR cut from MAO and invite Italy to WMS/NAf to raise English defensive costs; keep BUR neutral while pressing Berlin for concrete MUN/BEL guarantees.",
+                        "[F1915M] England refused to vacate Spain and insists on Iberian status quo with Channel calm; he cites a 62% artifact risk of French overreach and threatens coalition if I lunge at POR or ENG. I reiterated: no ENG/BEL if Spain is French; offered POR=England, SPA=France, ENG shut. England noncommittal. Germany agreed to BUR non-aggression and will not block a French step to BUR later if not used against him; he remains defensive and wants prior signaling. Italy entertained WMS pressure if kept safe from Austrian/tyrolian threats; I pledged no PIE/TYR/TYS/GOL pressure if he goes WMS/NAf. Russia open to a Norway feint to raise England\u2019s northern costs; I tied this to a simultaneous POR contest. Austria nudged toward restraint; I promised to keep PIE/TYR empty and steer Italy west if Vienna stays calm. Turkey encouraged to nudge Italy west to pin England in Iberia.\nIntent: Orders focus on Iberian equilibrium and Channel restraint. Planned: F MAO\u2013POR with A SPA S F MAO\u2013POR to contest Portugal while keeping A PIC H (covering PAR/BRE lanes) or A PIC\u2013BRE if needed purely defensively; no move to ENG and no attack on BEL this phase. If late intel shows Italy not entering WMS and England doubling north, consider switching F MAO H and A SPA H to hold Spain and preserve tempo. Will not enter BUR this phase unless Germany explicitly greenlights and Italy/Austria suddenly threaten PIE/TYR; default is no BUR, honoring prior commitments. Aim to coordinate Russia\u2019s Nwy feint this move to split English defenses. Fulfil current promises: no ENG, no BEL strike, no PIE/TYR entry.",
+                        "[F1915M] Betrayal: England escalated, marching GAS\u2013BUR with BEL/HOL supports despite \u201cChannel calm/Iberian status quo\u201d talk. That violates his implied pledge to keep pressure off my interior while we sorted Iberia. Collaborations: None active; Germany honored a passive BUR non\u2011aggression but offered no cover. Italy/Russia/Turkey/Austria stayed inert.\n\nSurprises: England chose a land thrust into BUR instead of contesting MAO/Por by sea\u2014reveals intent to pin Paris/Burgundy while previously holding POR. My POR take with SPA support succeeded; PIC held.\n\nImpact: I secure Iberia\u2019s coast and deny an English MAO cascade, but face immediate land pressure on PAR/BRE from BUR. Trust: England predatory and coalition\u2011minded; Germany risk\u2011averse but not hostile; Italy only moves with leverage.\n\nLessons: Use POR as bargaining chip while demanding ENG neutrality and a BUR bounce; court Germany for MUN cover vs BUR and pull Italy into WMS/NAf to split English attention. Avoid Channel overreach; prioritize Paris/Brest defense."
+                    ]
+                },
+                "GERMANY": {
+                    "power_name": "GERMANY",
+                    "model_id": "storyworld+gpt-5-mini",
+                    "max_tokens": 1200,
+                    "goals": [
+                        "Prevent a two\u2011front war by keeping western border stable and securing Austria's flank",
+                        "Preserve supply centers BER/MUN/KIE and maintain ability to rapidly support Austria if Russia or another power aggressively moves",
+                        "Maintain credibility with England and France through conditional, observable commitments (hold KIE; hold BER/MUN)",
+                        "Collect timely notifications from Austria/Russia/Turkey to reduce miscalculation risk",
+                        "Be prepared to redeploy A MUN to BOH or PRU immediately if any partner breaches commitments or hostile supports toward Austria/PRU appear"
+                    ],
+                    "relationships": {
+                        "FRANCE": "Friendly",
+                        "AUSTRIA": "Ally",
+                        "TURKEY": "Neutral",
+                        "ENGLAND": "Friendly",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] Established restrained, security\u2011focused understandings with England, France, Austria, Russia, and Turkey. England: maritime understanding \u2014 F KIE will hold/avoid DEN/HOL if England refrains from supporting moves against KIE/BER; England will keep North Sea reserves. France: tentative non\u2011aggression \u2014 Germany will hold BER/MUN and avoid pushing into BUR/SIL if France keeps F BRE/PAR/MAR and signals not to contest Kiel; France asked for concrete support if it commits north. Austria: pledge to hold VIE/BUD and stabilise the Balkans while Germany refrains from moves into BOH/TYR and keeps MUN/BER defensive; mutual aid notifications agreed. Russia: limited information sharing and notification of moves toward PRU/BOH; Germany will not move into PRU/SIL absent clear Russian aggression. Turkey: Germany will not interfere in Aegean/Anatolian operations if Turkey avoids aggression toward Bulgaria/Adriatic that would threaten Austria. All understandings framed by forecasts warning of a 60% chance of near\u2011term aggression toward Austria (forecast_coalition_p) and a separate ~60% England\u2192France overreach risk, so commitments are conditional and aimed at reducing two\u2011front escalation risk.\nIntent: S1915M orders intent: F KIE \u2014 HOLD (commitment to England). A BER \u2014 HOLD/DEFEND (no moves into BUR or toward France). A MUN \u2014 HOLD/READY (available to cover Austria if Russia advances; no move into BOH/PRU/SIL this turn). Maintain defensive posture that signals non\u2011aggression to France and Austria while preserving flexibility for rapid support if forecasts materialize. I intend to fulfill these commitments to maintain credibility; if any partner violates agreed constraints (notably aggression vs Austria or a supported assault on KIE/BER), I will immediately reassign A MUN to either BOH or PRU in response next phase. I will also send secure notification to Austria, Russia, and Turkey of these exact orders so future self remembers the conditional commitments.",
+                        "[S1915M] S1915M Diary \u2014 concise record and implications.\n\nAll agreed holds were observed this phase. I kept F KIE H, A BER H, A MUN S A BER as committed; England respected the maritime understanding by holding DEN/HOL and keeping North Sea reserves \u2014 no breach. Austria and Turkey held; Russia made no aggressive moves into PRU/BOH/SIL. France repositioned MAO\u2192BRE and PAR\u2192PIC and MAR\u2192SPA (pressing into Iberia), signaling westward focus rather than contesting Kiel. No surprises or unexpected attacks.\n\nImplications: my conditional commitments reduced immediate two\u2011front risk \u2014 forecast_coalition_p (60% near\u2011term aggression to Austria) did not materialize this turn, lowering urgency but not eliminating risk. Trustworthiness: England and Austria strengthened credibility; France appears non\u2011aggressive toward KIE for now but remains opportunistic (westward pressure). Russia remains noncommittal; continue treating it as medium risk.\n\nLessons: maintain visible, verifiable holds to preserve credibility. Continue secure notifications to Austria/Russia/Turkey and prepare contingency to move A MUN to BOH/PRU if any violation occurs.",
+                        "[F1915M] Germany secured conditional, verifiable holds with England, France, Austria, Russia, and Turkey. Commitments: F KIE \u2014 HOLD (publicly signalled to England); A BER \u2014 HOLD; A MUN \u2014 HOLD/READY to redeploy to BOH/PRU if aggression occurs. England pledged not to support moves against KIE/BER and to keep North Sea reserves; France agreed not to attack BEL or MUN this phase provided Germany visibly holds BER/MUN and signals intentions; Austria agreed to hold VIE/BUD/TRI and to notify Germany of suspicious supports toward the Balkans/PRU; Russia agreed to notify any moves toward PRU/BOH and refrain from supported advances this phase. All understandings are explicitly conditional and recorded; secure notifications will be exchanged to reduce miscalculation risk.\nIntent: F KIE \u2014 HOLD. A BER \u2014 HOLD/DEFEND. A MUN \u2014 HOLD (supporting A BER if required) but ready to move to BOH or PRU next phase if any ally or rival violates commitments. Send secure notifications of these orders to Austria, Russia, and Turkey immediately. If England or France publicly supports aggression against KIE/BER or Austria sees threatening supports to PRU/BOH, reassign A MUN to BOH or PRU in the next ordering phase to shield Austria and prevent a two\u2011front escalation. Fulfil all agreed holds this phase to preserve credibility.",
+                        "[F1915M] All agreed holds were observed: I held F KIE, A BER, and A MUN supported A BER as promised; England upheld the maritime understanding by holding DEN/HOL and keeping North Sea reserves, and France redirected westward into Iberia. No betrayals by England, Austria, Russia, Turkey, or France this phase; I did not break any commitments. Collaboration with England and Austria proved effective at reducing immediate two\u2011front risk \u2014 the 60% forecast of aggression toward Austria did not materialize. Impact: my frontline stability and credibility improved, preserving BER/MUN/KIE and readiness to redeploy A MUN. Updated trust: England and Austria more reliable; France opportunistic but non\u2011threatening for now; Russia remains medium risk. Lesson: continue visible, verifiable holds and secure notifications; be prepared to move A MUN to BOH/PRU immediately if any violation appears."
+                    ],
+                    "private_diary": [
+                        "[S1915M] Established restrained, security\u2011focused understandings with England, France, Austria, Russia, and Turkey. England: maritime understanding \u2014 F KIE will hold/avoid DEN/HOL if England refrains from supporting moves against KIE/BER; England will keep North Sea reserves. France: tentative non\u2011aggression \u2014 Germany will hold BER/MUN and avoid pushing into BUR/SIL if France keeps F BRE/PAR/MAR and signals not to contest Kiel; France asked for concrete support if it commits north. Austria: pledge to hold VIE/BUD and stabilise the Balkans while Germany refrains from moves into BOH/TYR and keeps MUN/BER defensive; mutual aid notifications agreed. Russia: limited information sharing and notification of moves toward PRU/BOH; Germany will not move into PRU/SIL absent clear Russian aggression. Turkey: Germany will not interfere in Aegean/Anatolian operations if Turkey avoids aggression toward Bulgaria/Adriatic that would threaten Austria. All understandings framed by forecasts warning of a 60% chance of near\u2011term aggression toward Austria (forecast_coalition_p) and a separate ~60% England\u2192France overreach risk, so commitments are conditional and aimed at reducing two\u2011front escalation risk.\nIntent: S1915M orders intent: F KIE \u2014 HOLD (commitment to England). A BER \u2014 HOLD/DEFEND (no moves into BUR or toward France). A MUN \u2014 HOLD/READY (available to cover Austria if Russia advances; no move into BOH/PRU/SIL this turn). Maintain defensive posture that signals non\u2011aggression to France and Austria while preserving flexibility for rapid support if forecasts materialize. I intend to fulfill these commitments to maintain credibility; if any partner violates agreed constraints (notably aggression vs Austria or a supported assault on KIE/BER), I will immediately reassign A MUN to either BOH or PRU in response next phase. I will also send secure notification to Austria, Russia, and Turkey of these exact orders so future self remembers the conditional commitments.",
+                        "[S1915M] S1915M Diary \u2014 concise record and implications.\n\nAll agreed holds were observed this phase. I kept F KIE H, A BER H, A MUN S A BER as committed; England respected the maritime understanding by holding DEN/HOL and keeping North Sea reserves \u2014 no breach. Austria and Turkey held; Russia made no aggressive moves into PRU/BOH/SIL. France repositioned MAO\u2192BRE and PAR\u2192PIC and MAR\u2192SPA (pressing into Iberia), signaling westward focus rather than contesting Kiel. No surprises or unexpected attacks.\n\nImplications: my conditional commitments reduced immediate two\u2011front risk \u2014 forecast_coalition_p (60% near\u2011term aggression to Austria) did not materialize this turn, lowering urgency but not eliminating risk. Trustworthiness: England and Austria strengthened credibility; France appears non\u2011aggressive toward KIE for now but remains opportunistic (westward pressure). Russia remains noncommittal; continue treating it as medium risk.\n\nLessons: maintain visible, verifiable holds to preserve credibility. Continue secure notifications to Austria/Russia/Turkey and prepare contingency to move A MUN to BOH/PRU if any violation occurs.",
+                        "[F1915M] Germany secured conditional, verifiable holds with England, France, Austria, Russia, and Turkey. Commitments: F KIE \u2014 HOLD (publicly signalled to England); A BER \u2014 HOLD; A MUN \u2014 HOLD/READY to redeploy to BOH/PRU if aggression occurs. England pledged not to support moves against KIE/BER and to keep North Sea reserves; France agreed not to attack BEL or MUN this phase provided Germany visibly holds BER/MUN and signals intentions; Austria agreed to hold VIE/BUD/TRI and to notify Germany of suspicious supports toward the Balkans/PRU; Russia agreed to notify any moves toward PRU/BOH and refrain from supported advances this phase. All understandings are explicitly conditional and recorded; secure notifications will be exchanged to reduce miscalculation risk.\nIntent: F KIE \u2014 HOLD. A BER \u2014 HOLD/DEFEND. A MUN \u2014 HOLD (supporting A BER if required) but ready to move to BOH or PRU next phase if any ally or rival violates commitments. Send secure notifications of these orders to Austria, Russia, and Turkey immediately. If England or France publicly supports aggression against KIE/BER or Austria sees threatening supports to PRU/BOH, reassign A MUN to BOH or PRU in the next ordering phase to shield Austria and prevent a two\u2011front escalation. Fulfil all agreed holds this phase to preserve credibility.",
+                        "[F1915M] All agreed holds were observed: I held F KIE, A BER, and A MUN supported A BER as promised; England upheld the maritime understanding by holding DEN/HOL and keeping North Sea reserves, and France redirected westward into Iberia. No betrayals by England, Austria, Russia, Turkey, or France this phase; I did not break any commitments. Collaboration with England and Austria proved effective at reducing immediate two\u2011front risk \u2014 the 60% forecast of aggression toward Austria did not materialize. Impact: my frontline stability and credibility improved, preserving BER/MUN/KIE and readiness to redeploy A MUN. Updated trust: England and Austria more reliable; France opportunistic but non\u2011threatening for now; Russia remains medium risk. Lesson: continue visible, verifiable holds and secure notifications; be prepared to move A MUN to BOH/PRU immediately if any violation appears."
+                    ]
+                },
+                "ITALY": {
+                    "power_name": "ITALY",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ]
+                },
+                "RUSSIA": {
+                    "power_name": "RUSSIA",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Neutral",
+                        "TURKEY": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ]
+                },
+                "TURKEY": {
+                    "power_name": "TURKEY",
+                    "model_id": "silent",
+                    "max_tokens": 1200,
+                    "goals": [],
+                    "relationships": {
+                        "FRANCE": "Neutral",
+                        "AUSTRIA": "Neutral",
+                        "GERMANY": "Neutral",
+                        "ENGLAND": "Neutral",
+                        "ITALY": "Neutral",
+                        "RUSSIA": "Neutral"
+                    },
+                    "full_private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ],
+                    "private_diary": [
+                        "[S1915M] (LLM diary entry generation or parsing failed.)",
+                        "[S1915M] {}",
+                        "[F1915M] (LLM diary entry generation or parsing failed.)",
+                        "[F1915M] {}"
+                    ]
+                }
+            },
+            "order_results": {
+                "AUSTRIA": {
+                    "hold": [
+                        {
+                            "order": "A BUD H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SER H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F TRI H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A VIE H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "ENGLAND": {
+                    "support": [
+                        {
+                            "order": "A BEL S A GAS - BUR",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A DEN S A SWE",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A HOL S A BEL",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A NWY S A SWE",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SWE S A DEN",
+                            "result": "success"
+                        }
+                    ],
+                    "hold": [
+                        {
+                            "order": "A EDI H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A LON H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A LVP H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A POR H",
+                            "result": "dislodged"
+                        },
+                        {
+                            "order": "A BEL H",
+                            "result": "invalid"
+                        },
+                        {
+                            "order": "A DEN H",
+                            "result": "invalid"
+                        },
+                        {
+                            "order": "A HOL H",
+                            "result": "invalid"
+                        },
+                        {
+                            "order": "A NWY H",
+                            "result": "invalid"
+                        },
+                        {
+                            "order": "A SWE H",
+                            "result": "invalid"
+                        }
+                    ],
+                    "move": [
+                        {
+                            "order": "A GAS - BUR",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "FRANCE": {
+                    "move": [
+                        {
+                            "order": "F MAO - POR",
+                            "result": "success"
+                        }
+                    ],
+                    "support": [
+                        {
+                            "order": "A SPA S F MAO - POR",
+                            "result": "success"
+                        }
+                    ],
+                    "hold": [
+                        {
+                            "order": "A PIC H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "GERMANY": {
+                    "hold": [
+                        {
+                            "order": "A BER H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F KIE H",
+                            "result": "success"
+                        }
+                    ],
+                    "support": [
+                        {
+                            "order": "A MUN S A BER",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "ITALY": {
+                    "hold": [
+                        {
+                            "order": "F NAP H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A ROM H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A TUN H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A VEN H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "RUSSIA": {
+                    "hold": [
+                        {
+                            "order": "A MOS H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A RUM H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F SEV H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "F STP/SC H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A WAR H",
+                            "result": "success"
+                        }
+                    ]
+                },
+                "TURKEY": {
+                    "hold": [
+                        {
+                            "order": "F ANK H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A BUL H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A CON H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A GRE H",
+                            "result": "success"
+                        },
+                        {
+                            "order": "A SMY H",
+                            "result": "success"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "W1915A",
+            "state": {
+                "timestamp": 1770377222742661,
+                "zobrist_hash": "1891006770639766579",
+                "note": "1915 crisis snapshot. England is dominant in the west and at sea. France is on death-ground, surrounded and forced into risk-heavy diplomacy. Austria is stretched and fragile in the Balkans. Russia and Turkey are locked in a brutal contest for the Black Sea and the Balkans. Use this backdrop to reason about high-stakes forecasts and second-order consequences.",
+                "name": "W1915A",
+                "units": {
+                    "AUSTRIA": [
+                        "A VIE",
+                        "A BUD",
+                        "F TRI",
+                        "A SER"
+                    ],
+                    "ENGLAND": [
+                        "A EDI",
+                        "A LON",
+                        "A LVP",
+                        "A NWY",
+                        "A SWE",
+                        "A DEN",
+                        "A HOL",
+                        "A BEL",
+                        "A BUR"
+                    ],
+                    "FRANCE": [
+                        "A PIC",
+                        "A SPA",
+                        "F POR"
+                    ],
+                    "GERMANY": [
+                        "A BER",
+                        "A MUN",
+                        "F KIE"
+                    ],
+                    "ITALY": [
+                        "A ROM",
+                        "A VEN",
+                        "F NAP",
+                        "A TUN"
+                    ],
+                    "RUSSIA": [
+                        "A MOS",
+                        "F SEV",
+                        "A WAR",
+                        "F STP/SC",
+                        "A RUM"
+                    ],
+                    "TURKEY": [
+                        "F ANK",
+                        "A CON",
+                        "A SMY",
+                        "A BUL",
+                        "A GRE"
+                    ]
+                },
+                "retreats": {
+                    "AUSTRIA": {},
+                    "ENGLAND": {},
+                    "FRANCE": {},
+                    "GERMANY": {},
+                    "ITALY": {},
+                    "RUSSIA": {},
+                    "TURKEY": {}
+                },
+                "centers": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR",
+                        "SPA",
+                        "POR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "homes": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "TRI",
+                        "VIE"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "MAR",
+                        "PAR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "KIE",
+                        "MUN"
+                    ],
+                    "ITALY": [
+                        "NAP",
+                        "ROM",
+                        "VEN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "STP",
+                        "WAR"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY"
+                    ]
+                },
+                "influence": {
+                    "AUSTRIA": [
+                        "BUD",
+                        "VIE",
+                        "TRI",
+                        "SER"
+                    ],
+                    "ENGLAND": [
+                        "EDI",
+                        "LON",
+                        "LVP",
+                        "NWY",
+                        "SWE",
+                        "DEN",
+                        "HOL",
+                        "BEL",
+                        "GAS",
+                        "BUR"
+                    ],
+                    "FRANCE": [
+                        "BRE",
+                        "PAR",
+                        "MAR",
+                        "MAO",
+                        "PIC",
+                        "SPA",
+                        "POR"
+                    ],
+                    "GERMANY": [
+                        "BER",
+                        "MUN",
+                        "KIE"
+                    ],
+                    "ITALY": [
+                        "ROM",
+                        "VEN",
+                        "NAP",
+                        "TUN"
+                    ],
+                    "RUSSIA": [
+                        "MOS",
+                        "SEV",
+                        "WAR",
+                        "STP",
+                        "RUM"
+                    ],
+                    "TURKEY": [
+                        "ANK",
+                        "CON",
+                        "SMY",
+                        "BUL",
+                        "GRE"
+                    ]
+                },
+                "civil_disorder": {
+                    "AUSTRIA": 0,
+                    "ENGLAND": 0,
+                    "FRANCE": 0,
+                    "GERMANY": 0,
+                    "ITALY": 0,
+                    "RUSSIA": 0,
+                    "TURKEY": 0
+                },
+                "builds": {
+                    "AUSTRIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ENGLAND": {
+                        "count": -1,
+                        "homes": []
+                    },
+                    "FRANCE": {
+                        "count": 2,
+                        "homes": [
+                            "BRE",
+                            "MAR",
+                            "PAR"
+                        ]
+                    },
+                    "GERMANY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "ITALY": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "RUSSIA": {
+                        "count": 0,
+                        "homes": []
+                    },
+                    "TURKEY": {
+                        "count": 0,
+                        "homes": []
+                    }
+                },
+                "phase": "W1915A",
+                "game_id": "FORECAST-1915-DEATHGROUND",
+                "map": "standard",
+                "rules": [
+                    "POWER_CHOICE"
+                ]
+            },
+            "orders": {
+                "AUSTRIA": [],
+                "ENGLAND": null,
+                "FRANCE": null,
+                "GERMANY": [],
+                "ITALY": [],
+                "RUSSIA": [],
+                "TURKEY": []
+            },
+            "results": {},
+            "messages": [],
+            "summary": "",
+            "statistical_summary": null
+        }
+    ],
+    "phase_summaries": {
+        "S1915M": "(No LLM callback provided.)",
+        "F1915M": "(No LLM callback provided.)"
+    },
+    "final_agent_states": {
+        "AUSTRIA": {
+            "relationships": {
+                "FRANCE": "Neutral",
+                "TURKEY": "Neutral",
+                "GERMANY": "Neutral",
+                "ENGLAND": "Neutral",
+                "ITALY": "Neutral",
+                "RUSSIA": "Neutral"
+            },
+            "goals": []
+        },
+        "ENGLAND": {
+            "relationships": {
+                "FRANCE": "Unfriendly",
+                "AUSTRIA": "Neutral",
+                "TURKEY": "Neutral",
+                "GERMANY": "Friendly",
+                "ITALY": "Neutral",
+                "RUSSIA": "Friendly"
+            },
+            "goals": [
+                "Preserve naval control of the Channel/North Sea and safe lanes around the Low Countries",
+                "Hold POR and deny an easy French sweep of Iberia without binding Channel/MAO guarantees",
+                "Keep Germany contained at Kiel predictably without provoking a northern coalition",
+                "Keep Scandinavia quiet and non-hostile with Russia (no STP/NWY tensions)",
+                "Shape a flexible anti-hegemon balance; be ready to clamp France if they lunge",
+                "Avoid overextension that would give any land power an easy rebound"
+            ]
+        },
+        "FRANCE": {
+            "relationships": {
+                "AUSTRIA": "Friendly",
+                "TURKEY": "Neutral",
+                "GERMANY": "Neutral",
+                "ENGLAND": "Unfriendly",
+                "ITALY": "Friendly",
+                "RUSSIA": "Friendly"
+            },
+            "goals": [
+                "Hold Spain and contest Portugal to prevent an English Iberian lock",
+                "Avoid Channel overcommitment while denying England a MAO cascade",
+                "Keep BUR neutral and Germany calm; secure permission for future BUR screen if needed",
+                "Induce Italy into WMS/NAf posture to tax England\u2019s Iberian defense",
+                "Encourage a Russian Nwy feint to stretch English northern cover",
+                "Preserve French survival and rebuild tempo without provoking a western coalition"
+            ]
+        },
+        "GERMANY": {
+            "relationships": {
+                "FRANCE": "Friendly",
+                "AUSTRIA": "Ally",
+                "TURKEY": "Neutral",
+                "ENGLAND": "Friendly",
+                "ITALY": "Neutral",
+                "RUSSIA": "Neutral"
+            },
+            "goals": [
+                "Prevent a two\u2011front war by keeping western border stable and securing Austria's flank",
+                "Preserve supply centers BER/MUN/KIE and maintain ability to rapidly support Austria if Russia or another power aggressively moves",
+                "Maintain credibility with England and France through conditional, observable commitments (hold KIE; hold BER/MUN)",
+                "Collect timely notifications from Austria/Russia/Turkey to reduce miscalculation risk",
+                "Be prepared to redeploy A MUN to BOH or PRU immediately if any partner breaches commitments or hostile supports toward Austria/PRU appear"
+            ]
+        },
+        "ITALY": {
+            "relationships": {
+                "FRANCE": "Neutral",
+                "AUSTRIA": "Neutral",
+                "TURKEY": "Neutral",
+                "GERMANY": "Neutral",
+                "ENGLAND": "Neutral",
+                "RUSSIA": "Neutral"
+            },
+            "goals": []
+        },
+        "RUSSIA": {
+            "relationships": {
+                "FRANCE": "Neutral",
+                "AUSTRIA": "Neutral",
+                "TURKEY": "Neutral",
+                "GERMANY": "Neutral",
+                "ENGLAND": "Neutral",
+                "ITALY": "Neutral"
+            },
+            "goals": []
+        },
+        "TURKEY": {
+            "relationships": {
+                "FRANCE": "Neutral",
+                "AUSTRIA": "Neutral",
+                "GERMANY": "Neutral",
+                "ENGLAND": "Neutral",
+                "ITALY": "Neutral",
+                "RUSSIA": "Neutral"
+            },
+            "goals": []
+        }
+    }
+}

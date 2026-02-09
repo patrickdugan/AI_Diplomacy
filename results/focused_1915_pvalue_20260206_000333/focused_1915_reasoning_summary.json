@@ -1,0 +1,305 @@
+{
+  "run_dir": "C:\\projects\\AI_Diplomacy\\results\\focused_1915_pvalue_20260206_000333",
+  "files_present": {
+    "storyworld_forecasts.jsonl": true,
+    "storyworld_impact.jsonl": true,
+    "forecast_scores.jsonl": true,
+    "storyworld_play_steps.jsonl": true,
+    "storyworld_play_reasoning_steps.jsonl": true,
+    "llm_responses.csv": true
+  },
+  "forecast_count": 2,
+  "impact_count": 2,
+  "score_count": 2,
+  "play_step_count": 10,
+  "play_reasoning_step_count": 10,
+  "explicit_impact_count": 2,
+  "mean_confidence": 0.6,
+  "mean_brier": 0.36,
+  "forecast_by_power": {
+    "GERMANY": 1,
+    "FRANCE": 1
+  },
+  "forecast_by_storyworld": {
+    "forecast_coalition_p": 1,
+    "forecast_backstab_p": 1
+  },
+  "total_negotiation_diaries": 14,
+  "signal_negotiation_diaries": 6,
+  "signal_diary_examples": [
+    {
+      "phase": "S1915M",
+      "power": "FRANCE",
+      "snippet": "{ \"negotiation_summary\": \"France secured tentative, tactical non\u2011aggression and stabilizing understandings with England, Germany, Italy, and Austria aimed at blunting a German northern sprint and avoiding wasteful Cha..."
+    },
+    {
+      "phase": "S1915M",
+      "power": "ENGLAND",
+      "snippet": "{ \"negotiation_summary\": \"England positioned as maritime balancer. Publicly committed to keeping sea lanes open and preventing a continental hegemon. Privately: to France \u2014 offered defensive support in Low Countries/C..."
+    },
+    {
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "snippet": "{ \"negotiation_summary\": \"Germany pursued stabilization and reciprocal non-aggression to reduce two-front risk. Private understandings: with England \u2014 mutual restraint in the North Sea/Low Countries: Germany will not ..."
+    },
+    {
+      "phase": "F1915M",
+      "power": "GERMANY",
+      "snippet": "{ \"negotiation_summary\": \"Germany secured one\u2011phase, conditional, reciprocal holds with England, France, Austria, and Russia to reduce immediate two\u2011front risk. Public commitments: A BER and F KIE to hold; A MUN moved..."
+    },
+    {
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "snippet": "{ \"negotiation_summary\": \"France secured a short, tactical western d\u00e9tente: France will hold PAR, BRE, and MAR and refrain from Channel offensives so long as England visibly restrains fleets in the Low Countries/Denma..."
+    },
+    {
+      "phase": "F1915M",
+      "power": "ENGLAND",
+      "snippet": "{ \"negotiation_summary\": \"England secured a provisional, one\u2011phase, observable restraint understanding with Germany, France, and tacit coordination with Russia and Italy. With Germany: mutual public holds \u2014 Germany wi..."
+    }
+  ],
+  "play_step_examples": [
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 1,
+      "encounter_id": "enc_turn_1",
+      "encounter_title": "Turn 1: Forecast Offer",
+      "choice_id": "opt_1_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_turn_2",
+      "raw_model_output": "{\"opt_id\":\"opt_1_1\"}"
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 2,
+      "encounter_id": "enc_turn_2",
+      "encounter_title": "Turn 2: Forecast Offer",
+      "choice_id": "opt_2_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_turn_3",
+      "raw_model_output": "{\"choice_id\":\"opt_2_1\"}"
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 3,
+      "encounter_id": "enc_turn_3",
+      "encounter_title": "Turn 3: Forecast Offer",
+      "choice_id": "opt_3_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_turn_4",
+      "raw_model_output": "{\"opt_id\":\"opt_3_1\"}"
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 4,
+      "encounter_id": "enc_turn_4",
+      "encounter_title": "Turn 4: Forecast Offer",
+      "choice_id": "opt_4_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_ending_1",
+      "raw_model_output": "{\"opt_id\":\"opt_4_1\"}"
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 5,
+      "encounter_id": "enc_ending_1",
+      "encounter_title": "Ending: Coalition Locks",
+      "choice_id": null,
+      "choice_text": null,
+      "next_encounter_id": null,
+      "raw_model_output": "{\"choice_id\":\"opt_1\"}"
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 1,
+      "encounter_id": "enc_turn_1",
+      "encounter_title": "Turn 1: Forecast Offer",
+      "choice_id": "opt_1_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_turn_2",
+      "raw_model_output": "{\"opt_id\":\"opt_1_1\"}"
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 2,
+      "encounter_id": "enc_turn_2",
+      "encounter_title": "Turn 2: Forecast Offer",
+      "choice_id": "opt_2_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_turn_3",
+      "raw_model_output": "{\"choice_id\":\"opt_2_1\"}"
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 3,
+      "encounter_id": "enc_turn_3",
+      "encounter_title": "Turn 3: Forecast Offer",
+      "choice_id": "opt_3_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_turn_4",
+      "raw_model_output": "{\"choice_id\":\"opt_3_1\"}"
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 4,
+      "encounter_id": "enc_turn_4",
+      "encounter_title": "Turn 4: Forecast Offer",
+      "choice_id": "opt_4_1",
+      "choice_text": "Accept a forecast-backed alliance proposal.",
+      "next_encounter_id": "enc_ending_1",
+      "raw_model_output": "{\"opt_id\":\"opt_4_1\"}"
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 5,
+      "encounter_id": "enc_ending_1",
+      "encounter_title": "Ending: Coalition Locks",
+      "choice_id": null,
+      "choice_text": null,
+      "next_encounter_id": null,
+      "raw_model_output": "{\"choice_id\":\"opt_id\"}"
+    }
+  ],
+  "play_reasoning_examples": [
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 1,
+      "encounter_id": "enc_turn_1",
+      "choice_id": "opt_1_1",
+      "inference": "At Turn 1: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 2,
+      "encounter_id": "enc_turn_2",
+      "choice_id": "opt_2_1",
+      "inference": "At Turn 2: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 3,
+      "encounter_id": "enc_turn_3",
+      "choice_id": "opt_3_1",
+      "inference": "At Turn 3: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 4,
+      "encounter_id": "enc_turn_4",
+      "choice_id": "opt_4_1",
+      "inference": "At Turn 4: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347033.9593785,
+      "phase": "S1915M",
+      "power": "GERMANY",
+      "storyworld_id": "forecast_coalition_p",
+      "step": 5,
+      "encounter_id": "enc_ending_1",
+      "choice_id": null,
+      "inference": "At Ending: Coalition Locks, the chosen option 'None' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 1,
+      "encounter_id": "enc_turn_1",
+      "choice_id": "opt_1_1",
+      "inference": "At Turn 1: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 2,
+      "encounter_id": "enc_turn_2",
+      "choice_id": "opt_2_1",
+      "inference": "At Turn 2: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 3,
+      "encounter_id": "enc_turn_3",
+      "choice_id": "opt_3_1",
+      "inference": "At Turn 3: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 4,
+      "encounter_id": "enc_turn_4",
+      "choice_id": "opt_4_1",
+      "inference": "At Turn 4: Forecast Offer, the chosen option 'Accept a forecast-backed alliance proposal.' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    },
+    {
+      "ts": 1770347099.8214953,
+      "phase": "F1915M",
+      "power": "FRANCE",
+      "storyworld_id": "forecast_backstab_p",
+      "step": 5,
+      "encounter_id": "enc_ending_1",
+      "choice_id": null,
+      "inference": "At Ending: Coalition Locks, the chosen option 'None' indicates a short-horizon attempt to shift trust/threat incentives.",
+      "overall_inference": "Reasoning trace derived directly from the storyworld path."
+    }
+  ]
+}

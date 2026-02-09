@@ -1,0 +1,20 @@
+{
+  "run_dir": "C:\\projects\\AI_Diplomacy\\results\\quick_run_1901",
+  "files_present": {
+    "storyworld_forecasts.jsonl": false,
+    "storyworld_impact.jsonl": false,
+    "forecast_scores.jsonl": false,
+    "llm_responses.csv": true
+  },
+  "forecast_count": 0,
+  "impact_count": 0,
+  "score_count": 0,
+  "explicit_impact_count": 0,
+  "mean_confidence": null,
+  "mean_brier": null,
+  "forecast_by_power": {},
+  "forecast_by_storyworld": {},
+  "total_negotiation_diaries": 7,
+  "signal_negotiation_diaries": 0,
+  "signal_diary_examples": []
+}
